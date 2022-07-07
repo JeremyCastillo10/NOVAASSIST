@@ -1,0 +1,34 @@
+﻿<Window x:Class="NOVAASSIST.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NOVAASSIST"
+        Title="Menu admin" Height="700" Width="1100" WindowStartupLocation="CenterScreen" Background="#00635d"
+        WindowState="Maximized" Icon="\Img\Icono.png" >
+    <Grid Background="white" >
+        <StackPanel>
+            <Menu>
+            
+                <MenuItem Header="Registros">
+                    <MenuItem Header ="Registro de Horario" Click ="RegistroAsistencia_Click" />
+                    <MenuItem Header ="Registro de empleados" Click ="RegistroEmpleados_Click" />
+                    <MenuItem Header ="Registro de Vacaciones" Click ="RegistroVacaciones_Click" />
+                </MenuItem>
+
+                <MenuItem Header="Consultas">
+                    <MenuItem Header="Consulta de asistencia" Click ="ConsultaAsistencia_Click" />
+                    <MenuItem Header="Consulta de empleados" Click ="ConsultaEmpleados_Click" />
+                </MenuItem>
+
+                <MenuItem Header="Reportes">
+                    <MenuItem Header="Reporte de empleados" Click ="ReportesEmpleados_Click" />
+                    <MenuItem Header="Reporte de empleados de inacistencia durante los 60 dias"  />
+                    <MenuItem Header="Reporte de empleados de asistencia durante los 30 dias"  />
+                </MenuItem>
+
+            </Menu>
+            <Image Height="622" Width="1103" Source="/Img/Nova.png" Stretch="Uniform"/>
+        </StackPanel>
+    </Grid>
+</Window>

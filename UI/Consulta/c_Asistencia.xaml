@@ -1,0 +1,82 @@
+<Window x:Class="NOVAASSIST.UI.Consulta.c_Asistencia"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:local="clr-namespace:NOVAASSIST.UI.Consulta"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    mc:Ignorable="d"
+    Title="Consulta de asistencia" Height="700" Width="1100" Icon="\Img\Icono.png" WindowStartupLocation="CenterScreen" Background="#00635d"
+    >
+
+    <Border CornerRadius="0" Background="White" >
+        <Grid>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Consulta de asistencias" Margin="30,20,0,0" FontSize="20" FontWeight="SemiBold" Width="1040"  />
+            </StackPanel>
+         
+
+            <StackPanel Orientation="Horizontal" Margin="30,72,30,0" VerticalAlignment="Top" >
+
+                <!-- Id empleado -->
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                    <Label Content="Id" VerticalAlignment="Top" Height="35" FontSize="14" />
+                    <TextBox x:Name="IdTextBox"  TextWrapping="Wrap" Width="55"/>
+                </StackPanel>
+
+                <!-- Nombre empleado -->
+                <StackPanel Orientation="Vertical" Margin="10, 0" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                    <Label Content="Nombre" Height="35" FontSize="14" />
+                    <TextBox x:Name="NombreTextBox" TextWrapping="Wrap" Width="223"/>
+                </StackPanel>
+
+                <!-- Cedula empleado -->
+                <StackPanel Orientation="Vertical" Margin="10, 0" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                    <Label Content="Cedula" Height="35" FontSize="14" />
+                    <TextBox x:Name="CedulaTextBox" TextWrapping="Wrap" Width="183"/>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="30,137,30,0" >
+
+                <!-- Fecha desde -->
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                    <Label Content="Desde" Height="35" FontSize="14" />
+                    <DatePicker x:Name="DesdeDate" Width="127" />
+                </StackPanel>
+
+                <!-- Fecha hasta -->
+                <StackPanel Orientation="Vertical" Margin="10, 0" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                    <Label Content="Hasta" Height="35" FontSize="14" />
+                    <DatePicker x:Name="HastaDate" Foreground="Black" Width="125" />
+                </StackPanel>
+
+                <!-- Tipo de asistencia -->
+                <StackPanel Orientation="Vertical" Margin="10, 0" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                    <Label Content="Tipo de asistencia"  VerticalAlignment="Top" Height="35" FontSize="14" />
+                    <TextBox x:Name="TipoTextBox" TextWrapping="Wrap" Width="163"/>
+                </StackPanel>
+
+                <!-- Area empleado -->
+                <StackPanel Orientation="Vertical" Margin="10, 0" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                    <Label Content="Area" Height="35" FontSize="14" />
+                    <TextBox x:Name="AreaTextBox" TextWrapping="Wrap" Width="162"/>
+                </StackPanel>
+
+                <!-- BUSCAR -->
+                <Button Content="Buscar" Background="White" Margin="60, 0" Style="{StaticResource MaterialDesignRaisedDarkButton}"  Height="35" Click="BuscarButton_Click"
+                        VerticalContentAlignment="Center" VerticalAlignment="Bottom" HorizontalContentAlignment="Center"  Width="125"/>
+            </StackPanel>
+
+            <!-- GRID
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="30,216,30,0" Height="468" >
+                <DataGrid x:Name="AsistenciaDataGrid"  Width="1040" />
+            </StackPanel>
+             -->
+            <DataGrid x:Name="AsistenciaDataGrid" Margin="30,217,30,61" />
+
+
+        </Grid>
+    </Border>
+</Window>
