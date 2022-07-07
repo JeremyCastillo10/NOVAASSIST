@@ -26,17 +26,42 @@ namespace NOVAASSIST.UI.Consulta
         public c_Asistencia()
         {
             InitializeComponent();
+             var lista= AsistenciasBLL.GetList(e => true);
+
+            AsistenciaDataGrid.ItemsSource = null;
+            AsistenciaDataGrid.ItemsSource = lista;
         }
 
         private void BuscarButton_Click(object sender, RoutedEventArgs e)
         {
             var lista = new List<Asistencias>();
-            var empleado = new List<Empleados>();
+            
 
-            if (IdTextBox.Text != "" || NombreTextBox.Text != "" || CedulaTextBox.Text != "" || AreaTextBox.Text != "")
+            if (!string.IsNullOrEmpty(IdTextBox.Text) || !string.IsNullOrEmpty(NombreTextBox.Text) || !string.IsNullOrEmpty(CedulaTextBox.Text) || !string.IsNullOrEmpty(AreaTextBox.Text))
             {
-                empleado = EmpleadosBLL.GetList(e => e.EmpleadoId.ToString() == IdTextBox.Text || e.Nombre == NombreTextBox.Text || e.Cedula == CedulaTextBox.Text || e.Area == AreaTextBox.Text);
-                lista = AsistenciasBLL.GetList(e => (e.EmpleadoId.ToString() == IdTextBox.Text || e.EmpleadoId == empleado.First().EmpleadoId) || (DesdeDate.DisplayDate >= e.Fecha_Entrada && HastaDate.DisplayDate <= e.Fecha_Entrada));
+              
+                 if(!string.IsNullOrEmpty(IdTextBox.Text))
+                
+                        lista= AsistenciasBLL.GetList(e => e.AsistenciaId.ToString() == IdTextBox.Text);
+
+                if(!string.IsNullOrEmpty(NombreTextBox.Text))
+                foreach(var empleado in  AsistenciasBLL.GetList(e => e.Nombre.ToLower().Contains(NombreTextBox.Text.ToLower())))
+
+                {
+                     if(!lista.Any(e => e.Equals(empleado)))
+                        lista.Add(empleado);
+                }
+
+                if(!string.IsNullOrEmpty(CedulaTextBox.Text)){
+                      foreach(var empleado in  AsistenciasBLL.GetList(e => e.cedula==CedulaTextBox.Text))
+                        {
+                            if(!lista.Any(e => e.Equals(empleado)))
+                                lista.Add(empleado);
+                        }
+                }
+                
+                
+                
             }
             else
             {

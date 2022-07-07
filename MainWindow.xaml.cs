@@ -60,7 +60,7 @@ namespace NOVAASSIST
 
         private void ConsultaEmpleados_Click(object sender, RoutedEventArgs e)
         {
-          rConsultarEmpleado m =new rConsultarEmpleado();
+          c_Empleado m =new c_Empleado();
           m.Show();
         }
 
