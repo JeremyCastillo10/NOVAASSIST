@@ -29,14 +29,9 @@ namespace NOVAASSIST.UI.Consulta
             InitializeComponent();
             var listado = EmpleadosBLL.GetList(e => true);
 
-            tablatexbo.ItemsSource = null;
-            tablatexbo.ItemsSource = listado;
-
-
-
+            TablaTexto.ItemsSource = null;
+            TablaTexto.ItemsSource = listado;
         }
-
-
 
         private void Idtexbo_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -48,19 +43,12 @@ namespace NOVAASSIST.UI.Consulta
 
         }
 
-
-
         private void buscartexbo_Click(object sender, RoutedEventArgs e)
         {
             var listado = new List<Empleados>();
 
-
             if (!string.IsNullOrEmpty(Idtexbo.Text) || !string.IsNullOrEmpty(nombretexbo.Text) || !string.IsNullOrEmpty(generotexbo.Text) || !string.IsNullOrEmpty(emailtexbo.Text) || !string.IsNullOrEmpty(cedulatexbo.Text) || !string.IsNullOrEmpty(telefonotexbo.Text))
             {
-
-
-
-
                 if (!string.IsNullOrEmpty(Idtexbo.Text))
                     foreach (var empleado in EmpleadosBLL.GetList(e => e.EmpleadoId.ToString() == Idtexbo.Text))
                     {
@@ -107,28 +95,21 @@ namespace NOVAASSIST.UI.Consulta
                             listado.Add(empleado);
                     }
                 }
-
-
-
-
-
             }
             else
             {
                 listado = EmpleadosBLL.GetList(e => true);
             }
 
-
-
             if (desdetexbo.SelectedDate != null || hastatexbo.SelectedDate != null)
                 listado = EmpleadosBLL.GetList(c => c.FechaNacimiento.Date >= desdetexbo.SelectedDate && c.FechaNacimiento.Date <= hastatexbo.SelectedDate);
 
-            tablatexbo.ItemsSource = null;
-            tablatexbo.ItemsSource = listado;
+            TablaTexto.ItemsSource = null;
+            TablaTexto.ItemsSource = listado;
         }
+
         private void Nuevo_Click(object sender, RoutedEventArgs e)
         {
-
             Idtexbo.Text = "";
             nombretexbo.Text = "";
             cedulatexbo.Text = "";
@@ -136,27 +117,19 @@ namespace NOVAASSIST.UI.Consulta
             generotexbo.Text = "";
             telefonotexbo.Text = "";
         }
+
         private void VER_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                 var listado = new List<Empleados>();
-               
-                
-                    foreach (var item in  EmpleadosBLL.GetList(e => e.EmpleadoId.ToString() == Idtexbo.Text))
-                    {
-                        nombretexbo.Text= item.EmpleadoId.ToString();
-                    }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-            }
+            //Empleados empleados = (Empleados)TablaTexto.SelectedItem;
+ 
+            Empleados empleados = (Empleados)TablaTexto.SelectedItem;
+             
+             MessageBox.Show("ID para buscar: " +empleados.EmpleadoId, "Validacion", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            
+            rEmpleados empleadosRegistro = new rEmpleados(Convert.ToInt32(empleados.EmpleadoId));
+            empleadosRegistro.Show();
         }
-       
-
-
-
 
         private void cedulatexbo_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -173,16 +146,13 @@ namespace NOVAASSIST.UI.Consulta
 
         }
 
-
-
         private void telefonotexbo_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }
 
-        private void tablatexbo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void TablaTexto_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
 
         }
     }

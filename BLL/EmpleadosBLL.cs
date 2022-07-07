@@ -95,6 +95,25 @@ namespace NOVAASSIST.BLL
             return empleados;
         }
 
+        public static Empleados Buscar(int id)
+        {
+            Contexto contexto = new Contexto();
+            Empleados? empleados;
+
+            try
+            {
+                empleados = contexto.Empleados.Where(e => e.EmpleadoId == id).SingleOrDefault();
+                 
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally { contexto.Dispose(); }
+
+            return empleados;
+        }
+
         public static bool Existe(string id, string id2)
         {
      

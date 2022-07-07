@@ -15,6 +15,7 @@ namespace NOVAASSIST.Entidades
         /* public string Fecha_Descanso { get; set; }  */
         public string? Fecha_Salida { get; set; } 
         public string? Dias { get; set; }
+        public Boolean? HorarioEliminado { get; set; }
 
     }
 }

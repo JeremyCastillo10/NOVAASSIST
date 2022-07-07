@@ -30,23 +30,22 @@
                 <ComboBoxItem Content="M" />
             </ComboBox.Items>
         </ComboBox>
+        
         <Label Content="Genero" HorizontalAlignment="Left" FontSize="14" Margin="490,138,0,0" VerticalAlignment="Top" Height="25"/>
         <Label Content="Telefono" HorizontalAlignment="Left" FontSize="14" Margin="575,140,0,0" VerticalAlignment="Top" Height="30"/>
         <TextBox x:Name="telefonotexbo"  HorizontalAlignment="Left" Margin="575,168,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  Width="178" RenderTransformOrigin="0.545,0.579" TextChanged="telefonotexbo_TextChanged"/>
 
-        <DataGrid x:Name="tablatexbo" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="35,237,35,92" SelectionChanged="tablatexbo_SelectionChanged" IsReadOnly="true" >
-        <DataGrid.Columns>
+        <DataGrid x:Name="TablaTexto" ItemsSource="{Binding Path=Empleados}" SelectedItem="{Binding Path=SelectedEmpleados, Mode=TwoWay}" Margin="35,237,35,92" SelectionChanged="TablaTexto_SelectionChanged" IsReadOnly="true" >
+            <DataGrid.Columns>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate> 
                          <DataTemplate> 
-                          <Button  x:Name="verdatos" Content="Ver" Background="White"   Click="VER_Click"/>
+                          <Button  x:Name="verdatos" Content="Ver" Background="White" Click="VER_Click"/>
                         </DataTemplate> 
                     </DataGridTemplateColumn.CellTemplate> 
                </DataGridTemplateColumn>
-
             </DataGrid.Columns>
-          </DataGrid>
-
+        </DataGrid>
 
     </Grid>
 </Window>

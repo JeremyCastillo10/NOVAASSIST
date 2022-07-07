@@ -32,11 +32,29 @@ namespace NOVAASSIST.UI.Registros
             VacacionesTextBox.DisplayMemberPath = "Descripcion";
         }
 
+        public rEmpleados(int id)
+        {
+            InitializeComponent();
+
+            var encontro = EmpleadosBLL.Buscar(id);
+
+            if(encontro != null)
+            {
+                empleados = encontro;
+                IdTextBox.IsEnabled = false;
+                this.DataContext = null;
+                this.DataContext = empleados;
+            }
+
+           // this.DataContext = EmpleadosBLL.Buscar(id);
+        }
+
         private void Cargar()
         {
             this.DataContext = null;
             this.DataContext = this.empleados;
         }
+
         private bool Validar()
         {
             bool valido = true;
@@ -45,9 +63,8 @@ namespace NOVAASSIST.UI.Registros
             if (string.IsNullOrWhiteSpace(NombreTextBox.Text) && string.IsNullOrWhiteSpace(AreaTextBox.Text) && string.IsNullOrWhiteSpace(GeneroTextBox.Text) && string.IsNullOrWhiteSpace(EmailTextBox.Text) && string.IsNullOrWhiteSpace(CedulaTextBox.Text) &&
             string.IsNullOrWhiteSpace(TelefonoTextBox.Text) && string.IsNullOrWhiteSpace(UsuarioTextBox.Text) && string.IsNullOrWhiteSpace(ClaveTextBox.Text))
             {
-
                 valido = false;
-                MessageBox.Show("Tiene que llenar todo los campo", "Validacion", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Tiene que llenar todo los campos", "Validacion", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
@@ -55,101 +72,89 @@ namespace NOVAASSIST.UI.Registros
                 {
                     valido = false;
                     NombreTextBox.Focus();
-                    mensaje += ",Nombre";
-
-
+                    mensaje += ", Nombre";
                 }
                 if (string.IsNullOrWhiteSpace(AreaTextBox.Text))
                 {
                     valido = false;
                     AreaTextBox.Focus();
-                    mensaje += ",Area";
+                    mensaje += ", Area";
                 }
                 if (string.IsNullOrWhiteSpace(GeneroTextBox.Text))
                 {
                     valido = false;
                     GeneroTextBox.Focus();
-                    mensaje += ",Genero";
+                    mensaje += ", Genero";
                 }
                 if (string.IsNullOrWhiteSpace(EmailTextBox.Text) && ValidarEmail(EmailTextBox.Text) == false)
                 {
                     valido = false;
                     EmailTextBox.Focus();
-                    mensaje += ",Email";
+                    mensaje += ", Email";
                 }
+
                 if (string.IsNullOrWhiteSpace(CedulaTextBox.Text))
                 {
                     valido = false;
                     CedulaTextBox.Focus();
-                    mensaje += ",Cedula";
-                } else
+                    mensaje += ", Cedula";
+                }
+                else
                 {
                     if (Regex.IsMatch(CedulaTextBox.Text, @"^[0-9]+$"))
                     {
-                         if (CedulaTextBox.Text.Length != 11)
+                        if (CedulaTextBox.Text.Length != 11)
                         {
-                             MessageBox.Show("La cedula solo tiene 11 digito", "Validacion", MessageBoxButton.OK, MessageBoxImage.Error);
-                             
+                            MessageBox.Show("La cedula solo tiene 11 digito", "Validacion", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
-
-                        
-                    }else{
+                    }
+                    else
+                    {
                         MessageBox.Show("La cedula solo admite numero", "Validacion", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
-                }       
+                }
+
                 if (string.IsNullOrWhiteSpace(TelefonoTextBox.Text))
                 {
                     valido = false;
                     TelefonoTextBox.Focus();
-                    mensaje += ",Telefono";
-
+                    mensaje += ", Telefono";
                 }
                 else
                 {
                     if (Regex.IsMatch(TelefonoTextBox.Text, @"^[0-9]+$"))
                     {
-                        
-                         if (TelefonoTextBox.Text.Length != 10)
+                        if (TelefonoTextBox.Text.Length != 10)
                         {
-                             MessageBox.Show("El telefono solo tiene 10 digito", "Validacion", MessageBoxButton.OK, MessageBoxImage.Error);
-                             
+                            MessageBox.Show("El telefono solo tiene 10 digito", "Validacion", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
-
-                            
-                       
-
-
                     }
                     else
                     {
                         MessageBox.Show("El telefono solo admite numero", "Validacion", MessageBoxButton.OK, MessageBoxImage.Error);
-                       
                     }
-
                 }
                 if (string.IsNullOrWhiteSpace(UsuarioTextBox.Text) || (UsuarioTextBox.Text.Length != 6) && (UsuarioTextBox.Text.Length != 7) && (UsuarioTextBox.Text.Length != 8))
                 {
                     valido = false;
                     UsuarioTextBox.Focus();
-                    mensaje += ",Usuiario";
+                    mensaje += ", Usuiario";
                 }
                 if (string.IsNullOrWhiteSpace(ClaveTextBox.Text) || (ClaveTextBox.Text.Length != 6) && (ClaveTextBox.Text.Length != 7) && (ClaveTextBox.Text.Length != 8))
                 {
                     valido = false;
                     ClaveTextBox.Focus();
-                    mensaje += ",Clave";
+                    mensaje += ", Clave";
                 }
                 if (FechaTextBox == null)
                 {
                     valido = false;
                     FechaTextBox.Focus();
-                    mensaje += ",Fecha";
-
+                    mensaje += ", Fecha";
                 }
 
                 MessageBox.Show(mensaje, "Validacion", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
 
             return valido;
         }
@@ -160,6 +165,11 @@ namespace NOVAASSIST.UI.Registros
             this.DataContext = empleados;
             CedulaTextBox.Text = "";
             GeneroTextBox.Text = "";
+        }
+
+        private void Telefono_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = new Regex("[^0-9]").IsMatch(e.Text);
         }
 
         public static bool ValidarEmail(string comprobarEmail)
@@ -183,12 +193,10 @@ namespace NOVAASSIST.UI.Registros
             }
         }
 
-       
-
-
         private void NuevoButton_Click(object sender, RoutedEventArgs e)
         {
             Limpiar();
+            IdTextBox.IsEnabled = true;
         }
 
         private void GuardarButton_Click(object sender, RoutedEventArgs e)
@@ -207,14 +215,9 @@ namespace NOVAASSIST.UI.Registros
                 MessageBox.Show("empleado guardado", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
                 Limpiar();
             }
-
             else
                 MessageBox.Show("No se pudo Guardar el empleadoo", "fallo", MessageBoxButton.OK, MessageBoxImage.Information);
-
-
-
         }
-
 
         private void EliminarButton_Click(object sender, RoutedEventArgs e)
         {
@@ -230,6 +233,5 @@ namespace NOVAASSIST.UI.Registros
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
     }
 }

@@ -121,6 +121,9 @@ namespace NOVAASSIST.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("TEXT");
 
+                    b.Property<bool?>("EmpleadoEliminado")
+                        .HasColumnType("INTEGER");
+
                     b.Property<bool?>("Estado")
                         .HasColumnType("INTEGER");
 
@@ -226,6 +229,9 @@ namespace NOVAASSIST.Migrations
 
                     b.Property<string>("Fecha_Salida")
                         .HasColumnType("TEXT");
+
+                    b.Property<bool?>("HorarioEliminado")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("HorarioId");
 

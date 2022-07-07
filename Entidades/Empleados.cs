@@ -33,6 +33,7 @@ namespace NOVAASSIST.Entidades
         
         public int contador { get; set; }=0;
         public Boolean? Estado { get; set; }
+        public Boolean? EmpleadoEliminado { get; set; }
         public override bool Equals(object? obj)
         {
             if(obj==null)
