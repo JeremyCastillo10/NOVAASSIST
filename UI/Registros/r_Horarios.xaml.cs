@@ -28,7 +28,7 @@ namespace NOVAASSIST.UI.Registros
     public partial class r_Horarios : Window
     {
         private Horarios horario = new Horarios();
-        private HorariosBLL horariosBLL = new HorariosBLL();
+       
 
         private string Dias;
 
@@ -140,6 +140,43 @@ namespace NOVAASSIST.UI.Registros
 
         private void EliminarButton_Click(object sender, RoutedEventArgs e)
         {
+
+              var encontro = HorariosBLL.Buscar(Convert.ToInt32(horario.HorarioId));
+
+            if(encontro != null)
+            {
+                horario = encontro;
+
+                if(horario.HorarioEliminado == false)
+                {
+                    horario.HorarioEliminado = true;
+
+                    if(HorariosBLL.Guardar(horario))
+                    {
+                        MessageBox.Show("Horario eliminado", "Exito",
+                            MessageBoxButton.OK);
+                        Limpiar();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se fue posible eliminar el horario", "Fallo",
+                            MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Horario ya esta en estado eliminado", "Exito",
+                            MessageBoxButton.OK);
+
+                }
+                
+            }
+            else
+            {
+                MessageBox.Show("Empleado no existe");
+            }
+
+            /*
             if (HorariosBLL.Eliminar(horario.HorarioId))
             {
                 Limpiar();
@@ -147,6 +184,8 @@ namespace NOVAASSIST.UI.Registros
             }
             else
                 MessageBox.Show("No se pudo eliminar el Horario", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            */
         }
           private void SelectAll_Checked(object sender, RoutedEventArgs e)
         {

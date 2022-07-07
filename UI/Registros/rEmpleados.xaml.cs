@@ -42,8 +42,7 @@ namespace NOVAASSIST.UI.Registros
             {
                 empleados = encontro;
                 IdTextBox.IsEnabled = false;
-                this.DataContext = null;
-                this.DataContext = empleados;
+                 Cargar();
             }
 
            // this.DataContext = EmpleadosBLL.Buscar(id);
@@ -53,6 +52,8 @@ namespace NOVAASSIST.UI.Registros
         {
             this.DataContext = null;
             this.DataContext = this.empleados;
+            CedulaTextBox.Text = empleados.Cedula;
+            
         }
 
         private bool Validar()
@@ -221,6 +222,48 @@ namespace NOVAASSIST.UI.Registros
 
         private void EliminarButton_Click(object sender, RoutedEventArgs e)
         {
+
+            var encontro = EmpleadosBLL.Buscar(Convert.ToInt32(empleados.EmpleadoId));
+
+            if(encontro != null)
+            {
+                empleados = encontro;
+
+                if(empleados.EmpleadoEliminado == false)
+                {
+                    empleados.EmpleadoEliminado = true;
+
+                    if(EmpleadosBLL.Modificar(empleados))
+                    {
+                        MessageBox.Show("Empleado eliminado", "Exito",
+                            MessageBoxButton.OK);
+                        Limpiar();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se fue posible eliminar el empleado", "Fallo",
+                            MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Empleado ya esta en estado eliminado", "Exito",
+                            MessageBoxButton.OK);
+
+                }
+                
+            }
+            else
+            {
+                MessageBox.Show("Empleado no existe");
+            }
+
+
+
+
+
+
+            /*
             if (EmpleadosBLL.Eliminar(Convert.ToInt32(IdTextBox.Text)))
             {
                 MessageBox.Show("Se puedo guardar el empleado", "Exito",
@@ -232,6 +275,7 @@ namespace NOVAASSIST.UI.Registros
                 MessageBox.Show("No se fue posible eliminar empleado", "Fallo",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            */
         }
     }
 }

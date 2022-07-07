@@ -116,22 +116,22 @@ namespace NOVAASSIST.Migrations
             migrationBuilder.InsertData(
                 table: "Empleados",
                 columns: new[] { "EmpleadoId", "Area", "Cedula", "ClaveAcceso", "ClaveUsuarios", "Email", "EmpleadoEliminado", "Estado", "FechaNacimiento", "Genero", "Nombre", "Telefono", "Vacaciones", "contador" },
-                values: new object[] { 1, "bobo", "123", "123", "12345", "jfasnfn@gmail.com", null, null, new DateTime(2010, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "F", "Luisa", "8093", "Si", 0 });
+                values: new object[] { 1, "bobo", "123", "123", "12345", "jfasnfn@gmail.com", false, null, new DateTime(2010, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "F", "Luisa", "8093", "Si", 0 });
 
             migrationBuilder.InsertData(
                 table: "Empleados",
                 columns: new[] { "EmpleadoId", "Area", "Cedula", "ClaveAcceso", "ClaveUsuarios", "Email", "EmpleadoEliminado", "Estado", "FechaNacimiento", "Genero", "Nombre", "Telefono", "Vacaciones", "contador" },
-                values: new object[] { 2, "bobo", "1234", "12", "1234", "jf@gmail.com", null, null, new DateTime(2015, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "M", "pedro", "80934", "Si", 0 });
+                values: new object[] { 2, "bobo", "1234", "12", "1234", "jf@gmail.com", false, null, new DateTime(2015, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "M", "pedro", "80934", "Si", 0 });
 
             migrationBuilder.InsertData(
                 table: "Empleados",
                 columns: new[] { "EmpleadoId", "Area", "Cedula", "ClaveAcceso", "ClaveUsuarios", "Email", "EmpleadoEliminado", "Estado", "FechaNacimiento", "Genero", "Nombre", "Telefono", "Vacaciones", "contador" },
-                values: new object[] { 3, "bobo", "1235", "124", "123", "mm@gmail.com", null, null, new DateTime(2017, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "F", "maria", "80939", "Si", 0 });
+                values: new object[] { 3, "bobo", "1235", "124", "123", "mm@gmail.com", false, null, new DateTime(2017, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "F", "maria", "80939", "Si", 0 });
 
             migrationBuilder.InsertData(
                 table: "Empleados",
                 columns: new[] { "EmpleadoId", "Area", "Cedula", "ClaveAcceso", "ClaveUsuarios", "Email", "EmpleadoEliminado", "Estado", "FechaNacimiento", "Genero", "Nombre", "Telefono", "Vacaciones", "contador" },
-                values: new object[] { 4, "bobo", "1236", "126", "12", "zz@gmail.com", null, null, new DateTime(2022, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "M", "mario", "80938", "Si", 0 });
+                values: new object[] { 4, "bobo", "1236", "126", "12", "zz@gmail.com", false, null, new DateTime(2022, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "M", "mario", "80938", "Si", 0 });
 
             migrationBuilder.InsertData(
                 table: "Vacaciones",

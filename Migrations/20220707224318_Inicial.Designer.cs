@@ -11,7 +11,7 @@ using NOVAASSIST.DAL;
 namespace NOVAASSIST.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20220707210851_Inicial")]
+    [Migration("20220707224318_Inicial")]
     partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -160,6 +160,7 @@ namespace NOVAASSIST.Migrations
                             ClaveAcceso = "123",
                             ClaveUsuarios = "12345",
                             Email = "jfasnfn@gmail.com",
+                            EmpleadoEliminado = false,
                             FechaNacimiento = new DateTime(2010, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Genero = "F",
                             Nombre = "Luisa",
@@ -175,6 +176,7 @@ namespace NOVAASSIST.Migrations
                             ClaveAcceso = "12",
                             ClaveUsuarios = "1234",
                             Email = "jf@gmail.com",
+                            EmpleadoEliminado = false,
                             FechaNacimiento = new DateTime(2015, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Genero = "M",
                             Nombre = "pedro",
@@ -190,6 +192,7 @@ namespace NOVAASSIST.Migrations
                             ClaveAcceso = "124",
                             ClaveUsuarios = "123",
                             Email = "mm@gmail.com",
+                            EmpleadoEliminado = false,
                             FechaNacimiento = new DateTime(2017, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Genero = "F",
                             Nombre = "maria",
@@ -205,6 +208,7 @@ namespace NOVAASSIST.Migrations
                             ClaveAcceso = "126",
                             ClaveUsuarios = "12",
                             Email = "zz@gmail.com",
+                            EmpleadoEliminado = false,
                             FechaNacimiento = new DateTime(2022, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Genero = "M",
                             Nombre = "mario",

@@ -40,7 +40,7 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate> 
                          <DataTemplate> 
-                          <Button  x:Name="verdatos" Content="Ver" Background="White" Click="VER_Click"/>
+                          <Button  x:Name="verdatos" Content="Editar" Background="White" Click="VER_Click"/>
                         </DataTemplate> 
                     </DataGridTemplateColumn.CellTemplate> 
                </DataGridTemplateColumn>
