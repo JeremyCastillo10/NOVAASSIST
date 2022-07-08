@@ -17,6 +17,7 @@ using NOVAASSIST.BLL;
 using NOVAASSIST.Entidades;
 using System.Data.SqlClient;
 using System.Data;
+
 namespace NOVAASSIST.UI.Consulta
 {
     /// <summary>
@@ -47,7 +48,7 @@ namespace NOVAASSIST.UI.Consulta
         {
             var listado = new List<Empleados>();
 
-            if (!string.IsNullOrEmpty(Idtexbo.Text) || !string.IsNullOrEmpty(nombretexbo.Text) || !string.IsNullOrEmpty(generotexbo.Text) || !string.IsNullOrEmpty(emailtexbo.Text) || !string.IsNullOrEmpty(cedulatexbo.Text) || !string.IsNullOrEmpty(telefonotexbo.Text))
+            if (!string.IsNullOrEmpty(Idtexbo.Text) || !string.IsNullOrEmpty(nombretexbo.Text) /* || !string.IsNullOrEmpty(generotexbo.Text) */ || !string.IsNullOrEmpty(emailtexbo.Text) || !string.IsNullOrEmpty(cedulatexbo.Text) || !string.IsNullOrEmpty(telefonotexbo.Text))
             {
                 if (!string.IsNullOrEmpty(Idtexbo.Text))
                     foreach (var empleado in EmpleadosBLL.GetList(e => e.EmpleadoId.ToString() == Idtexbo.Text && e.EmpleadoEliminado == false))
@@ -71,14 +72,14 @@ namespace NOVAASSIST.UI.Consulta
                             listado.Add(empleado);
                     }
                 }
-                if (!string.IsNullOrEmpty(generotexbo.Text))
+                /* if (!string.IsNullOrEmpty(generotexbo.Text))
                 {
                     foreach (var empleado in EmpleadosBLL.GetList(e => e.Genero.ToLower() == generotexbo.Text.ToLower() && e.EmpleadoEliminado == false))
                     {
                         if (!listado.Any(e => e.Equals(empleado)))
                             listado.Add(empleado);
                     }
-                }
+                } */
                 if (!string.IsNullOrEmpty(telefonotexbo.Text))
                 {
                     foreach (var empleado in EmpleadosBLL.GetList(e => e.Telefono == telefonotexbo.Text && e.EmpleadoEliminado == false))
@@ -114,18 +115,15 @@ namespace NOVAASSIST.UI.Consulta
             nombretexbo.Text = "";
             cedulatexbo.Text = "";
             emailtexbo.Text = "";
-            generotexbo.Text = "";
+            /* generotexbo.Text = ""; */
             telefonotexbo.Text = "";
         }
 
         private void VER_Click(object sender, RoutedEventArgs e)
         {
-            //Empleados empleados = (Empleados)TablaTexto.SelectedItem;
- 
             Empleados empleados = (Empleados)TablaTexto.SelectedItem;
              
-             MessageBox.Show("ID para buscar: " +empleados.EmpleadoId, "Validacion", MessageBoxButton.OK, MessageBoxImage.Error);
-
+            MessageBox.Show("ID para buscar: " + empleados.EmpleadoId, "Validacion", MessageBoxButton.OK, MessageBoxImage.Error);
             
             rEmpleados empleadosRegistro = new rEmpleados(Convert.ToInt32(empleados.EmpleadoId));
             empleadosRegistro.Show();

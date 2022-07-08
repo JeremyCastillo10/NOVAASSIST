@@ -18,18 +18,18 @@ namespace NOVAASSIST.Entidades
         //public string ClaveHuella {get; set;} // tiene que generarse con un hash
 
         public DateTime FechaNacimiento { get; set; }= DateTime.Now;
-        
+
         public string? Cedula { get; set; }
 
-        public string? Genero { get; set; }
+        public int Genero { get; set; }
 
-        public string? Area { get; set; } //id area
+        public int Area { get; set; } //id area
 
         public string? Telefono { get; set; }
 
         public string? Email    { get; set; }
 
-        public string? Vacaciones { get; set; } // id vacaciones
+        public int Vacaciones { get; set; } // id vacaciones
         
         public int contador { get; set; } = 0;
 

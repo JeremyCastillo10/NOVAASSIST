@@ -41,11 +41,17 @@ namespace NOVAASSIST.UI.Registros
             if(encontro != null)
             {
                 empleados = encontro;
-                IdTextBox.IsEnabled = false;
-                 Cargar();
-            }
+                
+                AreaTextBox.ItemsSource = EmpleadosBLL.GetAreas();
+                AreaTextBox.SelectedValuePath = "AreaId";
+                AreaTextBox.DisplayMemberPath = "Nombre";
 
-           // this.DataContext = EmpleadosBLL.Buscar(id);
+                VacacionesTextBox.ItemsSource = EmpleadosBLL.GetVacaciones();
+                VacacionesTextBox.SelectedValuePath = "VacacionesId";
+                VacacionesTextBox.DisplayMemberPath = "Descripcion";
+                IdTextBox.IsEnabled = false;
+                Cargar();
+            }
         }
 
         private void Cargar()
@@ -53,7 +59,6 @@ namespace NOVAASSIST.UI.Registros
             this.DataContext = null;
             this.DataContext = this.empleados;
             CedulaTextBox.Text = empleados.Cedula;
-            
         }
 
         private bool Validar()
@@ -203,7 +208,7 @@ namespace NOVAASSIST.UI.Registros
         private void GuardarButton_Click(object sender, RoutedEventArgs e)
         {
             empleados.Cedula = CedulaTextBox.Text;
-            empleados.Genero = GeneroTextBox.Text;
+            empleados.Genero = Convert.ToInt32(GeneroTextBox.Text);
 
             bool pasa = false;
             if (!Validar())

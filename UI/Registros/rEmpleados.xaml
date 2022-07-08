@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NOVAASSIST.UI.Registros"
         mc:Ignorable="d"
-        Title="Registro de empleados" Height="540" Width="570">
+        Title="Registro de empleados" Height="590" Width="570">
 
     <StackPanel Orientation="Vertical" Margin="10" HorizontalAlignment="Center">
         <StackPanel>

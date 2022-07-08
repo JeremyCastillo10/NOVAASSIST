@@ -26,16 +26,16 @@ namespace NOVAASSIST.DAL
         {
             modelBuilder.Entity<Empleados>().HasData(
                 new Empleados{EmpleadoId=1, Nombre="Luisa", ClaveUsuarios="12345", ClaveAcceso="123", FechaNacimiento= new DateTime(2010,5,5), Cedula="123",
-                Genero = "F", Area="bobo", Telefono="8093", Email="jfasnfn@gmail.com", Vacaciones="Si", Estado = null, EmpleadoEliminado = false},
+                Genero=1, Area=1, Telefono="8093", Email="jfasnfn@gmail.com", Vacaciones=1, Estado = null, EmpleadoEliminado = false},
 
                 new Empleados{EmpleadoId=2, Nombre="pedro", ClaveUsuarios="1234", ClaveAcceso="12", FechaNacimiento= new DateTime(2015,5,5), Cedula="1234",
-                Genero = "M", Area="bobo", Telefono="80934", Email="jf@gmail.com", Vacaciones="Si", Estado = null, EmpleadoEliminado = false},
+                Genero=2, Area=2, Telefono="80934", Email="jf@gmail.com", Vacaciones=2, Estado = null, EmpleadoEliminado = false},
                 
                 new Empleados{EmpleadoId=3, Nombre="maria", ClaveUsuarios="123", ClaveAcceso="124", FechaNacimiento= new DateTime(2017,5,5), Cedula="1235",
-                Genero = "F", Area="bobo", Telefono="80939", Email="mm@gmail.com", Vacaciones="Si", Estado = null, EmpleadoEliminado = false},
+                Genero=1, Area=1, Telefono="80939", Email="mm@gmail.com", Vacaciones=1, Estado = null, EmpleadoEliminado = false},
                
                 new Empleados{EmpleadoId=4, Nombre="mario", ClaveUsuarios="12", ClaveAcceso="126", FechaNacimiento= new DateTime(2022,5,5), Cedula="1236",
-                Genero = "M", Area="bobo", Telefono="80938", Email="zz@gmail.com", Vacaciones="Si", Estado = null, EmpleadoEliminado = false}
+                Genero=2, Area=2, Telefono="80938", Email="zz@gmail.com", Vacaciones=2, Estado = null, EmpleadoEliminado = false}
                
             );
 

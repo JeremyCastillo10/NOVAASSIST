@@ -106,8 +106,8 @@ namespace NOVAASSIST.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Area")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Area")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Cedula")
                         .HasColumnType("TEXT");
@@ -130,8 +130,8 @@ namespace NOVAASSIST.Migrations
                     b.Property<DateTime>("FechaNacimiento")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Genero")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Genero")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Nombre")
                         .HasColumnType("TEXT");
@@ -139,8 +139,8 @@ namespace NOVAASSIST.Migrations
                     b.Property<string>("Telefono")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Vacaciones")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Vacaciones")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("contador")
                         .HasColumnType("INTEGER");
@@ -153,65 +153,65 @@ namespace NOVAASSIST.Migrations
                         new
                         {
                             EmpleadoId = 1,
-                            Area = "bobo",
+                            Area = 1,
                             Cedula = "123",
                             ClaveAcceso = "123",
                             ClaveUsuarios = "12345",
                             Email = "jfasnfn@gmail.com",
                             EmpleadoEliminado = false,
                             FechaNacimiento = new DateTime(2010, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Genero = "F",
+                            Genero = 1,
                             Nombre = "Luisa",
                             Telefono = "8093",
-                            Vacaciones = "Si",
+                            Vacaciones = 1,
                             contador = 0
                         },
                         new
                         {
                             EmpleadoId = 2,
-                            Area = "bobo",
+                            Area = 2,
                             Cedula = "1234",
                             ClaveAcceso = "12",
                             ClaveUsuarios = "1234",
                             Email = "jf@gmail.com",
                             EmpleadoEliminado = false,
                             FechaNacimiento = new DateTime(2015, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Genero = "M",
+                            Genero = 2,
                             Nombre = "pedro",
                             Telefono = "80934",
-                            Vacaciones = "Si",
+                            Vacaciones = 2,
                             contador = 0
                         },
                         new
                         {
                             EmpleadoId = 3,
-                            Area = "bobo",
+                            Area = 1,
                             Cedula = "1235",
                             ClaveAcceso = "124",
                             ClaveUsuarios = "123",
                             Email = "mm@gmail.com",
                             EmpleadoEliminado = false,
                             FechaNacimiento = new DateTime(2017, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Genero = "F",
+                            Genero = 1,
                             Nombre = "maria",
                             Telefono = "80939",
-                            Vacaciones = "Si",
+                            Vacaciones = 1,
                             contador = 0
                         },
                         new
                         {
                             EmpleadoId = 4,
-                            Area = "bobo",
+                            Area = 2,
                             Cedula = "1236",
                             ClaveAcceso = "126",
                             ClaveUsuarios = "12",
                             Email = "zz@gmail.com",
                             EmpleadoEliminado = false,
                             FechaNacimiento = new DateTime(2022, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Genero = "M",
+                            Genero = 2,
                             Nombre = "mario",
                             Telefono = "80938",
-                            Vacaciones = "Si",
+                            Vacaciones = 2,
                             contador = 0
                         });
                 });
