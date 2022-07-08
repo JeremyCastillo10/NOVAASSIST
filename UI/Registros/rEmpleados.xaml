@@ -49,7 +49,7 @@
 
         <StackPanel Orientation="Horizontal" Margin="0,5">
             <Label Content="Usuario" FontSize="16"/>
-            <TextBox x:Name="UsuarioTextBox" Text="{Binding ClaveUsuarios }" Background="White" Width="113" FontSize="16"/>
+            <TextBox x:Name="UsuarioTextBox" Text="{Binding ClaveUsuarios}" Background="White" Width="113" FontSize="16"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="0,5">

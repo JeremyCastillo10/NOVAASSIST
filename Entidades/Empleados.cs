@@ -12,13 +12,13 @@ namespace NOVAASSIST.Entidades
         public string? Nombre { get; set; }
 
         public string? ClaveUsuarios { get; set; } // tiene que ser string
+
         public string? ClaveAcceso { get; set; } // tiene que ser string
 
         //public string ClaveHuella {get; set;} // tiene que generarse con un hash
 
         public DateTime FechaNacimiento { get; set; }= DateTime.Now;
         
-     
         public string? Cedula { get; set; }
 
         public string? Genero { get; set; }
@@ -31,22 +31,22 @@ namespace NOVAASSIST.Entidades
 
         public string? Vacaciones { get; set; } // id vacaciones
         
-        public int contador { get; set; }=0;
+        public int contador { get; set; } = 0;
+
         public Boolean? Estado { get; set; }
+
         public Boolean? EmpleadoEliminado { get; set; } = false;
+
         public override bool Equals(object? obj)
         {
             if(obj==null)
                 return false;
                 
             if(!(obj is Empleados))
-            return false;
-
+                return false;
 
             return (this.EmpleadoId == ((Empleados)obj).EmpleadoId)
                     && this.EmpleadoId== ((Empleados)obj).EmpleadoId;
-          
-
         }
     }
 }

@@ -11,8 +11,8 @@ using NOVAASSIST.DAL;
 namespace NOVAASSIST.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20220707224318_Inicial")]
-    partial class Inicial
+    [Migration("20220708004439_inicio")]
+    partial class inicio
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

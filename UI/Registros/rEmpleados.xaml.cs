@@ -222,7 +222,6 @@ namespace NOVAASSIST.UI.Registros
 
         private void EliminarButton_Click(object sender, RoutedEventArgs e)
         {
-
             var encontro = EmpleadosBLL.Buscar(Convert.ToInt32(empleados.EmpleadoId));
 
             if(encontro != null)
@@ -247,35 +246,17 @@ namespace NOVAASSIST.UI.Registros
                 }
                 else
                 {
-                    MessageBox.Show("Empleado ya esta en estado eliminado", "Exito",
+                    MessageBox.Show("Empleado ya eliminado fue restaurado", "Exito",
                             MessageBoxButton.OK);
-
+                    empleados.EmpleadoEliminado = false;
+                    EmpleadosBLL.Modificar(empleados);
+                    Limpiar();
                 }
-                
             }
             else
             {
                 MessageBox.Show("Empleado no existe");
             }
-
-
-
-
-
-
-            /*
-            if (EmpleadosBLL.Eliminar(Convert.ToInt32(IdTextBox.Text)))
-            {
-                MessageBox.Show("Se puedo guardar el empleado", "Exito",
-                    MessageBoxButton.OK);
-                Limpiar();
-            }
-            else
-            {
-                MessageBox.Show("No se fue posible eliminar empleado", "Fallo",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            */
         }
     }
 }

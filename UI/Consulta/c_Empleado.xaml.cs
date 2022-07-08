@@ -27,7 +27,7 @@ namespace NOVAASSIST.UI.Consulta
         public c_Empleado()
         {
             InitializeComponent();
-            var listado = EmpleadosBLL.GetList(e => true);
+            var listado = EmpleadosBLL.GetList(e => true && e.EmpleadoEliminado == false);
 
             TablaTexto.ItemsSource = null;
             TablaTexto.ItemsSource = listado;
@@ -50,14 +50,14 @@ namespace NOVAASSIST.UI.Consulta
             if (!string.IsNullOrEmpty(Idtexbo.Text) || !string.IsNullOrEmpty(nombretexbo.Text) || !string.IsNullOrEmpty(generotexbo.Text) || !string.IsNullOrEmpty(emailtexbo.Text) || !string.IsNullOrEmpty(cedulatexbo.Text) || !string.IsNullOrEmpty(telefonotexbo.Text))
             {
                 if (!string.IsNullOrEmpty(Idtexbo.Text))
-                    foreach (var empleado in EmpleadosBLL.GetList(e => e.EmpleadoId.ToString() == Idtexbo.Text))
+                    foreach (var empleado in EmpleadosBLL.GetList(e => e.EmpleadoId.ToString() == Idtexbo.Text && e.EmpleadoEliminado == false))
                     {
                         if (!listado.Any(e => e.Equals(empleado)))
                             listado.Add(empleado);
                     }
 
                 if (!string.IsNullOrEmpty(nombretexbo.Text))
-                    foreach (var empleado in EmpleadosBLL.GetList(e => e.Nombre.ToLower().Contains(nombretexbo.Text.ToLower())))
+                    foreach (var empleado in EmpleadosBLL.GetList(e => e.Nombre.ToLower().Contains(nombretexbo.Text.ToLower()) && e.EmpleadoEliminado == false))
 
                     {
                         listado = EmpleadosBLL.GetList(e => e.EmpleadoId.ToString() == Idtexbo.Text);
@@ -65,7 +65,7 @@ namespace NOVAASSIST.UI.Consulta
 
                 if (!string.IsNullOrEmpty(emailtexbo.Text))
                 {
-                    foreach (var empleado in EmpleadosBLL.GetList(e => e.Email.ToLower().Contains(emailtexbo.Text.ToLower())))
+                    foreach (var empleado in EmpleadosBLL.GetList(e => e.Email.ToLower().Contains(emailtexbo.Text.ToLower()) && e.EmpleadoEliminado == false))
                     {
                         if (!listado.Any(e => e.Equals(empleado)))
                             listado.Add(empleado);
@@ -73,7 +73,7 @@ namespace NOVAASSIST.UI.Consulta
                 }
                 if (!string.IsNullOrEmpty(generotexbo.Text))
                 {
-                    foreach (var empleado in EmpleadosBLL.GetList(e => e.Genero.ToLower() == generotexbo.Text.ToLower()))
+                    foreach (var empleado in EmpleadosBLL.GetList(e => e.Genero.ToLower() == generotexbo.Text.ToLower() && e.EmpleadoEliminado == false))
                     {
                         if (!listado.Any(e => e.Equals(empleado)))
                             listado.Add(empleado);
@@ -81,7 +81,7 @@ namespace NOVAASSIST.UI.Consulta
                 }
                 if (!string.IsNullOrEmpty(telefonotexbo.Text))
                 {
-                    foreach (var empleado in EmpleadosBLL.GetList(e => e.Telefono == telefonotexbo.Text))
+                    foreach (var empleado in EmpleadosBLL.GetList(e => e.Telefono == telefonotexbo.Text && e.EmpleadoEliminado == false))
                     {
                         if (!listado.Any(e => e.Equals(empleado)))
                             listado.Add(empleado);
@@ -89,7 +89,7 @@ namespace NOVAASSIST.UI.Consulta
                 }
                 if (!string.IsNullOrEmpty(cedulatexbo.Text))
                 {
-                    foreach (var empleado in EmpleadosBLL.GetList(e => e.Cedula == cedulatexbo.Text))
+                    foreach (var empleado in EmpleadosBLL.GetList(e => e.Cedula == cedulatexbo.Text && e.EmpleadoEliminado == false))
                     {
                         if (!listado.Any(e => e.Equals(empleado)))
                             listado.Add(empleado);
@@ -98,11 +98,11 @@ namespace NOVAASSIST.UI.Consulta
             }
             else
             {
-                listado = EmpleadosBLL.GetList(e => true);
+                listado = EmpleadosBLL.GetList(e => true && e.EmpleadoEliminado == false);
             }
 
             if (desdetexbo.SelectedDate != null || hastatexbo.SelectedDate != null)
-                listado = EmpleadosBLL.GetList(c => c.FechaNacimiento.Date >= desdetexbo.SelectedDate && c.FechaNacimiento.Date <= hastatexbo.SelectedDate);
+                listado = EmpleadosBLL.GetList(c => (c.FechaNacimiento.Date >= desdetexbo.SelectedDate && c.FechaNacimiento.Date <= hastatexbo.SelectedDate) && c.EmpleadoEliminado == false);
 
             TablaTexto.ItemsSource = null;
             TablaTexto.ItemsSource = listado;
