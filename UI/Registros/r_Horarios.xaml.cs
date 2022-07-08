@@ -39,6 +39,21 @@ namespace NOVAASSIST.UI.Registros
             obtnerHoras();
         }
 
+        public r_Horarios(int id)
+        {
+            InitializeComponent();
+
+            var encontro = HorariosBLL.Buscar(id);
+
+            if(encontro != null)
+            {
+                horario= encontro;
+                IdTextBox.IsEnabled = false;
+                Cargar();
+            }
+        }
+
+
         public void obtnerHoras()
         {
             for(int i = 0; i < 24; i++)

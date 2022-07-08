@@ -19,6 +19,7 @@
                 <MenuItem Header="Consultas">
                     <MenuItem Header="Consulta de asistencia" Click ="ConsultaAsistencia_Click" />
                     <MenuItem Header="Consulta de empleados" Click ="ConsultaEmpleados_Click" />
+                    <MenuItem Header="Consulta de Horario" Click ="ConsultaHorario_Click" />
                 </MenuItem>
 
                 <MenuItem Header="Reportes">

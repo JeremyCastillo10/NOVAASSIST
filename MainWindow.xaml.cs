@@ -64,6 +64,12 @@ namespace NOVAASSIST
           m.Show();
         }
 
+        private void ConsultaHorario_Click(object sender, RoutedEventArgs e)
+        {
+             c_Horarios m =new c_Horarios();
+          m.Show();
+        }
+
         private void ReportesEmpleados_Click(object sender, RoutedEventArgs e)
         {
             
