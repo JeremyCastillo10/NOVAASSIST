@@ -212,11 +212,26 @@ namespace NOVAASSIST.UI.Registros
         private void GuardarButton_Click(object sender, RoutedEventArgs e)
         {
             empleados.Cedula = CedulaTextBox.Text;
-            empleados.Genero = Convert.ToInt32(GeneroTextBox.Text);
+            //empleados.Genero = Convert.ToInt32(GeneroTextBox.Text);
+           
+            
 
             bool pasa = false;
             if (!Validar())
                 return;
+
+                 
+            foreach(var item in EmpleadosBLL.GetAreas())
+            {
+                if(item.AreaId == empleados.Area)
+                    empleados.AreaDescripcion = item.Descripcion+" "+item.Nombre;
+            }
+
+            foreach(var item in EmpleadosBLL.GetVacaciones())
+            {
+                if(item.VacacionesId == empleados.Vacaciones)
+                    empleados.VacacionesDescripcion = item.Descripcion;
+            }
 
             pasa = EmpleadosBLL.Insertar(empleados);
 

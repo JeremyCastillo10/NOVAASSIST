@@ -11,8 +11,8 @@ using NOVAASSIST.DAL;
 namespace NOVAASSIST.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20220708023415_inicio")]
-    partial class inicio
+    [Migration("20220708032607_Inicial")]
+    partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -111,6 +111,9 @@ namespace NOVAASSIST.Migrations
                     b.Property<int>("Area")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("AreaDescripcion")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Cedula")
                         .HasColumnType("TEXT");
 
@@ -147,6 +150,9 @@ namespace NOVAASSIST.Migrations
                     b.Property<int>("Vacaciones")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("VacacionesDescripcion")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("contador")
                         .HasColumnType("INTEGER");
 
@@ -159,6 +165,7 @@ namespace NOVAASSIST.Migrations
                         {
                             EmpleadoId = 1,
                             Area = 1,
+                            AreaDescripcion = "Contabilidad",
                             Cedula = "123",
                             ClaveAcceso = "123",
                             ClaveUsuarios = "12345",
@@ -170,12 +177,14 @@ namespace NOVAASSIST.Migrations
                             Nombre = "Luisa",
                             Telefono = "8093",
                             Vacaciones = 1,
+                            VacacionesDescripcion = "Vacaciones diciembre",
                             contador = 0
                         },
                         new
                         {
                             EmpleadoId = 2,
                             Area = 2,
+                            AreaDescripcion = "Informatica",
                             Cedula = "1234",
                             ClaveAcceso = "12",
                             ClaveUsuarios = "1234",
@@ -187,12 +196,14 @@ namespace NOVAASSIST.Migrations
                             Nombre = "pedro",
                             Telefono = "80934",
                             Vacaciones = 2,
+                            VacacionesDescripcion = "Vacaciones diciembre",
                             contador = 0
                         },
                         new
                         {
                             EmpleadoId = 3,
                             Area = 1,
+                            AreaDescripcion = "Contabilidad",
                             Cedula = "1235",
                             ClaveAcceso = "124",
                             ClaveUsuarios = "123",
@@ -204,12 +215,14 @@ namespace NOVAASSIST.Migrations
                             Nombre = "maria",
                             Telefono = "80939",
                             Vacaciones = 1,
+                            VacacionesDescripcion = "Vacaciones diciembre",
                             contador = 0
                         },
                         new
                         {
                             EmpleadoId = 4,
                             Area = 2,
+                            AreaDescripcion = "Informatica",
                             Cedula = "1236",
                             ClaveAcceso = "126",
                             ClaveUsuarios = "12",
@@ -221,6 +234,7 @@ namespace NOVAASSIST.Migrations
                             Nombre = "mario",
                             Telefono = "80938",
                             Vacaciones = 2,
+                            VacacionesDescripcion = "Vacaciones diciembre",
                             contador = 0
                         });
                 });

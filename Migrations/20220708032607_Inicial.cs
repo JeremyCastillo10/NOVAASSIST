@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace NOVAASSIST.Migrations
 {
-    public partial class inicio : Migration
+    public partial class Inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -59,9 +59,11 @@ namespace NOVAASSIST.Migrations
                     Cedula = table.Column<string>(type: "TEXT", nullable: true),
                     Genero = table.Column<int>(type: "INTEGER", nullable: false),
                     Area = table.Column<int>(type: "INTEGER", nullable: false),
+                    AreaDescripcion = table.Column<string>(type: "TEXT", nullable: true),
                     Telefono = table.Column<string>(type: "TEXT", nullable: true),
                     Email = table.Column<string>(type: "TEXT", nullable: true),
                     Vacaciones = table.Column<int>(type: "INTEGER", nullable: false),
+                    VacacionesDescripcion = table.Column<string>(type: "TEXT", nullable: true),
                     Direccion = table.Column<string>(type: "TEXT", nullable: true),
                     contador = table.Column<int>(type: "INTEGER", nullable: false),
                     Estado = table.Column<bool>(type: "INTEGER", nullable: true),
@@ -116,23 +118,23 @@ namespace NOVAASSIST.Migrations
 
             migrationBuilder.InsertData(
                 table: "Empleados",
-                columns: new[] { "EmpleadoId", "Area", "Cedula", "ClaveAcceso", "ClaveUsuarios", "Direccion", "Email", "EmpleadoEliminado", "Estado", "FechaNacimiento", "Genero", "Nombre", "Telefono", "Vacaciones", "contador" },
-                values: new object[] { 1, 1, "123", "123", "12345", "Piantini", "jfasnfn@gmail.com", false, null, new DateTime(2010, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Luisa", "8093", 1, 0 });
+                columns: new[] { "EmpleadoId", "Area", "AreaDescripcion", "Cedula", "ClaveAcceso", "ClaveUsuarios", "Direccion", "Email", "EmpleadoEliminado", "Estado", "FechaNacimiento", "Genero", "Nombre", "Telefono", "Vacaciones", "VacacionesDescripcion", "contador" },
+                values: new object[] { 1, 1, "Contabilidad", "123", "123", "12345", "Piantini", "jfasnfn@gmail.com", false, null, new DateTime(2010, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Luisa", "8093", 1, "Vacaciones diciembre", 0 });
 
             migrationBuilder.InsertData(
                 table: "Empleados",
-                columns: new[] { "EmpleadoId", "Area", "Cedula", "ClaveAcceso", "ClaveUsuarios", "Direccion", "Email", "EmpleadoEliminado", "Estado", "FechaNacimiento", "Genero", "Nombre", "Telefono", "Vacaciones", "contador" },
-                values: new object[] { 2, 2, "1234", "12", "1234", "Pimentel", "jf@gmail.com", false, null, new DateTime(2015, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "pedro", "80934", 2, 0 });
+                columns: new[] { "EmpleadoId", "Area", "AreaDescripcion", "Cedula", "ClaveAcceso", "ClaveUsuarios", "Direccion", "Email", "EmpleadoEliminado", "Estado", "FechaNacimiento", "Genero", "Nombre", "Telefono", "Vacaciones", "VacacionesDescripcion", "contador" },
+                values: new object[] { 2, 2, "Informatica", "1234", "12", "1234", "Pimentel", "jf@gmail.com", false, null, new DateTime(2015, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "pedro", "80934", 2, "Vacaciones diciembre", 0 });
 
             migrationBuilder.InsertData(
                 table: "Empleados",
-                columns: new[] { "EmpleadoId", "Area", "Cedula", "ClaveAcceso", "ClaveUsuarios", "Direccion", "Email", "EmpleadoEliminado", "Estado", "FechaNacimiento", "Genero", "Nombre", "Telefono", "Vacaciones", "contador" },
-                values: new object[] { 3, 1, "1235", "124", "123", "Santo Domingo", "mm@gmail.com", false, null, new DateTime(2017, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "maria", "80939", 1, 0 });
+                columns: new[] { "EmpleadoId", "Area", "AreaDescripcion", "Cedula", "ClaveAcceso", "ClaveUsuarios", "Direccion", "Email", "EmpleadoEliminado", "Estado", "FechaNacimiento", "Genero", "Nombre", "Telefono", "Vacaciones", "VacacionesDescripcion", "contador" },
+                values: new object[] { 3, 1, "Contabilidad", "1235", "124", "123", "Santo Domingo", "mm@gmail.com", false, null, new DateTime(2017, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "maria", "80939", 1, "Vacaciones diciembre", 0 });
 
             migrationBuilder.InsertData(
                 table: "Empleados",
-                columns: new[] { "EmpleadoId", "Area", "Cedula", "ClaveAcceso", "ClaveUsuarios", "Direccion", "Email", "EmpleadoEliminado", "Estado", "FechaNacimiento", "Genero", "Nombre", "Telefono", "Vacaciones", "contador" },
-                values: new object[] { 4, 2, "1236", "126", "12", "Samana", "zz@gmail.com", false, null, new DateTime(2022, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "mario", "80938", 2, 0 });
+                columns: new[] { "EmpleadoId", "Area", "AreaDescripcion", "Cedula", "ClaveAcceso", "ClaveUsuarios", "Direccion", "Email", "EmpleadoEliminado", "Estado", "FechaNacimiento", "Genero", "Nombre", "Telefono", "Vacaciones", "VacacionesDescripcion", "contador" },
+                values: new object[] { 4, 2, "Informatica", "1236", "126", "12", "Samana", "zz@gmail.com", false, null, new DateTime(2022, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "mario", "80938", 2, "Vacaciones diciembre", 0 });
 
             migrationBuilder.InsertData(
                 table: "Vacaciones",

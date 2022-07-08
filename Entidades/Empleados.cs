@@ -24,12 +24,14 @@ namespace NOVAASSIST.Entidades
         public int Genero { get; set; }
 
         public int Area { get; set; } //id area
+        public string? AreaDescripcion {set; get;}
 
         public string? Telefono { get; set; }
 
         public string? Email { get; set; }
 
         public int Vacaciones { get; set; } // id vacaciones
+         public string? VacacionesDescripcion {set; get;}
 
         public string? Direccion { get; set; }
         
