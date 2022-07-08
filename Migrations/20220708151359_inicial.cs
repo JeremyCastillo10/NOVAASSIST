@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace NOVAASSIST.Migrations
 {
-    public partial class inicio : Migration
+    public partial class inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

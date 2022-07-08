@@ -40,8 +40,7 @@ namespace NOVAASSIST.UI.Consulta
             
             if (!string.IsNullOrEmpty(Idtexbo.Text) || !string.IsNullOrEmpty(nombretexbo.Text) || !string.IsNullOrEmpty(GeneroTextBox.Text) || !string.IsNullOrEmpty(emailtexbo.Text) || !string.IsNullOrEmpty(cedulatexbo.Text) || !string.IsNullOrEmpty(telefonotexbo.Text) || desdetexbo.SelectedDate != null || hastatexbo.SelectedDate != null)
             {
-                if (desdetexbo.SelectedDate != null || hastatexbo.SelectedDate != null)
-                    listado = EmpleadosBLL.GetList(c => (c.FechaNacimiento.Date >= desdetexbo.SelectedDate && c.FechaNacimiento.Date <= hastatexbo.SelectedDate) && c.EmpleadoEliminado == false);
+                
                 if (!string.IsNullOrEmpty(Idtexbo.Text))
                 {
                     foreach (var empleado in EmpleadosBLL.GetList(e => e.EmpleadoId.ToString() == Idtexbo.Text && e.EmpleadoEliminado == false))
@@ -54,7 +53,8 @@ namespace NOVAASSIST.UI.Consulta
                 {
                     foreach (var empleado in EmpleadosBLL.GetList(e => e.Nombre.ToLower().Contains(nombretexbo.Text.ToLower()) && e.EmpleadoEliminado == false))
                     {
-                        listado = EmpleadosBLL.GetList(e => e.EmpleadoId.ToString() == Idtexbo.Text);
+                         if (!listado.Any(e => e.Equals(empleado)))
+                            listado.Add(empleado);
                     }
                 }
                 if (!string.IsNullOrEmpty(emailtexbo.Text))
@@ -94,7 +94,9 @@ namespace NOVAASSIST.UI.Consulta
             {
                 listado = EmpleadosBLL.GetList(e => true && e.EmpleadoEliminado == false);
             }
-            
+            if (desdetexbo.SelectedDate != null || hastatexbo.SelectedDate != null){
+                    listado = EmpleadosBLL.GetList(c => (c.FechaNacimiento.Date >= desdetexbo.SelectedDate && c.FechaNacimiento.Date <= hastatexbo.SelectedDate) && c.EmpleadoEliminado == false);
+            }
             TablaTexto.ItemsSource = null;
             TablaTexto.ItemsSource = listado;
         }

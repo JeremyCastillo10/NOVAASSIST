@@ -44,6 +44,8 @@ namespace NOVAASSIST.UI.Registros
         private void GuardarButton_Click(object sender, RoutedEventArgs e)
         {
             bool confirmar = false;
+
+            if(!string.IsNullOrEmpty(descriciontext.Text)){
             
             confirmar = VacacionesBLL.Guardar(vacaciones);
 
@@ -58,6 +60,11 @@ namespace NOVAASSIST.UI.Registros
             {
                 MessageBox.Show("¡¡No se puedo guardar!!", "Fallo",
                     MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            }else{
+                MessageBox.Show("Debe ingresar una descripcion ", "Fallo",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+                
             }
 
         }

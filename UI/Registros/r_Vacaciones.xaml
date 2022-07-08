@@ -21,7 +21,7 @@
 
         <StackPanel Orientation="Horizontal" Margin="0,5">
             <Label Content="Descripcion" FontSize="16"/>
-            <TextBox Text="{Binding Descripcion}" Background="White" Width="200" FontSize="16"
+            <TextBox x:Name="descriciontext" Text="{Binding Descripcion}" Background="White" Width="200" FontSize="16"
             materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}" materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
         </StackPanel>
         
