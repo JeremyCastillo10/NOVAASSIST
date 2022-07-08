@@ -24,6 +24,7 @@ namespace NOVAASSIST.UI.Registros
     public partial class r_Vacaciones : Window
     {
         private Vacaciones vacaciones = new Vacaciones();
+
         public r_Vacaciones()
         {
             InitializeComponent();
@@ -35,10 +36,10 @@ namespace NOVAASSIST.UI.Registros
             this.vacaciones = new Vacaciones();
             this.DataContext = vacaciones;
         }
+
         private void NuevoButton_Click(object sender, RoutedEventArgs e)
         {
             Limpiar();
-
         }
 
         private void GuardarButton_Click(object sender, RoutedEventArgs e)
@@ -51,7 +52,6 @@ namespace NOVAASSIST.UI.Registros
 
             if (confirmar)
             {
-                
                 MessageBox.Show("Se pudo guardar", "Exito",
                     MessageBoxButton.OK);
                 Limpiar();
@@ -64,9 +64,7 @@ namespace NOVAASSIST.UI.Registros
             }else{
                 MessageBox.Show("Debe ingresar una descripcion ", "Fallo",
                     MessageBoxButton.OK, MessageBoxImage.Error);
-                
             }
-
         }
 
         private void EliminarButton_Click(object sender, RoutedEventArgs e)

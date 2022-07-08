@@ -14,7 +14,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
-
 using System.Media;
 using System.Threading;
 using NOVAASSIST.BLL;
@@ -57,6 +56,7 @@ namespace NOVAASSIST.UI.Registros
             timer.Tick += Tickevent;
             timer.Start();
         }
+
         public void Tickevent(object sender, EventArgs e)
         {
             Hora.Text = DateTime.Now.ToString(@"hh\:mm\:ss") + "   " + (DateTime.Now.ToString("d/M/yyyy"));  
@@ -89,46 +89,54 @@ namespace NOVAASSIST.UI.Registros
             Pantalla.Password += "4";
             Pantallausuario.Text += "4";
         }
+
         private void Button5(object sender, RoutedEventArgs e)
         {
             Sonido();
             Pantalla.Password += "5"; 
             Pantallausuario.Text += "5";
         }
+
         private void Button6(object sender, RoutedEventArgs e)
         {
             Sonido();
             Pantalla.Password += "6";
             Pantallausuario.Text += "6"; 
         }
+
         private void Button7(object sender, RoutedEventArgs e)
         {
             Sonido();
             Pantalla.Password += "7";
             Pantallausuario.Text += "7"; 
         }
+
         private void Button8(object sender, RoutedEventArgs e)
         {
             Sonido();
             Pantalla.Password += "8";
             Pantallausuario.Text += "8"; 
         }
+
         private void Button9(object sender, RoutedEventArgs e)
         {
             Sonido();
             Pantalla.Password += "9";
             Pantallausuario.Text += "9";
         }
+
         private void Button0(object sender, RoutedEventArgs e)
         {
             Sonido();
             Pantalla.Password += "0";
             Pantallausuario.Text += "0";
         }
+
         private void ButtonX(object sender, RoutedEventArgs e)
         {
             Eliminar();
         }
+
         private void ButtonOK(object sender, RoutedEventArgs e)
         {
          
@@ -185,6 +193,7 @@ namespace NOVAASSIST.UI.Registros
             asistencias = new Asistencias();
             empleados = new Empleados();
         }
+
         public void Bloqueo(int contado_bloqueador)
         {
             if (contado_bloqueador == 3)
@@ -192,11 +201,13 @@ namespace NOVAASSIST.UI.Registros
                 botonOK.IsEnabled = false;
             }
         }
+
         public void Eliminar()
         {
             Pantalla.Clear();
             Pantallausuario.Clear();
         }
+
         public void Sonido()
         {
             using (var sp = new SoundPlayer(@"Sonido/B.wav"))
@@ -204,6 +215,7 @@ namespace NOVAASSIST.UI.Registros
                 sp.Play();
             }
         }
+
         public void Sonido2()
         {
             using (var sp = new SoundPlayer(@"Sonido/A.wav"))
@@ -211,6 +223,7 @@ namespace NOVAASSIST.UI.Registros
                 sp.Play();
             }
         }
+
         public void Sonido3()
         {
             using (var sp = new SoundPlayer(@"Sonido/C.wav"))
@@ -218,16 +231,19 @@ namespace NOVAASSIST.UI.Registros
                 sp.Play();
             }
         }
+
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             Login m = new Login();
             m.Show();
             this.Close();
         }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
         }
+
         public void insetar_asistencia()
         {
             Empleados encontrado = EmpleadosBLL.Buscar(Pantalla.Password);
@@ -244,31 +260,31 @@ namespace NOVAASSIST.UI.Registros
                     {
                         if (encontrado.Estado == true)
                         {
-                            asistencias.Nombre=encontrado.Nombre;
-                            asistencias.cedula=encontrado.Cedula;
+                            asistencias.Nombre = encontrado.Nombre;
+                            asistencias.cedula = encontrado.Cedula;
                             asistencias.Estado = false;
-                            empleados.Estado=false;
+                            empleados.Estado = false;
                             asistencias.Fecha_Salida = DateTime.Now;
                             EmpleadosBLL.Modificar(empleados);
                         }
                         else
-                        if (encontrado.Estado == false)
-                        {
-                            asistencias.Nombre=encontrado.Nombre;
-                            asistencias.cedula=encontrado.Cedula;
-                            asistencias.Estado = true;
-                            empleados.Estado=true;
-                            asistencias.Fecha_Entrada= DateTime.Now;
-                            EmpleadosBLL.Modificar(empleados);
-                        }
+                            if (encontrado.Estado == false)
+                            {
+                                asistencias.Nombre = encontrado.Nombre;
+                                asistencias.cedula = encontrado.Cedula;
+                                asistencias.Estado = true;
+                                empleados.Estado = true;
+                                asistencias.Fecha_Entrada = DateTime.Now;
+                                EmpleadosBLL.Modificar(empleados);
+                            }
                     }
                     else
                     {
-                        asistencias.Nombre=encontrado.Nombre;
-                        asistencias.cedula=encontrado.Cedula;
-                        asistencias.Fecha_Entrada= DateTime.Now;
+                        asistencias.Nombre = encontrado.Nombre;
+                        asistencias.cedula = encontrado.Cedula;
+                        asistencias.Fecha_Entrada = DateTime.Now;
                         asistencias.Estado = true;
-                        empleados.Estado=true;
+                        empleados.Estado = true;
                         EmpleadosBLL.Modificar(empleados);
                     }
                     asistencias.EmpleadoId = empleados.EmpleadoId;

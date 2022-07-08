@@ -7,7 +7,6 @@ using Microsoft.EntityFrameworkCore;
 using NOVAASSIST.DAL;
 using NOVAASSIST.Entidades;
 
-
 namespace NOVAASSIST.BLL
 {
     public class EmpleadosBLL
@@ -120,7 +119,6 @@ namespace NOVAASSIST.BLL
 
         public static bool Existe(string id, string id2)
         {
-     
             bool confirmars = false;
             Contexto contexto = new Contexto();
 
@@ -196,6 +194,7 @@ namespace NOVAASSIST.BLL
 
             return lista;
         }
+
         public static List<Areas> GetAreas()
         {
             List<Areas> lista = new List<Areas>();
@@ -233,6 +232,5 @@ namespace NOVAASSIST.BLL
             }
             return lista;
         }
-        
     }
 }

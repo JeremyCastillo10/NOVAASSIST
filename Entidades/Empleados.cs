@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+
 namespace NOVAASSIST.Entidades
 {
     public class Empleados
@@ -31,7 +32,8 @@ namespace NOVAASSIST.Entidades
         public string? Email { get; set; }
 
         public int Vacaciones { get; set; } // id vacaciones
-         public string? VacacionesDescripcion {set; get;}
+
+        public string? VacacionesDescripcion {set; get;}
 
         public string? Direccion { get; set; }
         

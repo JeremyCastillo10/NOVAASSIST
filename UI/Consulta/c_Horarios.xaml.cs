@@ -41,16 +41,21 @@ namespace NOVAASSIST.UI.Consulta
             if (!string.IsNullOrEmpty(IdTextBox.Text) || !string.IsNullOrEmpty(DescripcionTextBox.Text))
             {
                 if (!string.IsNullOrEmpty(IdTextBox.Text))
+                {
                     foreach (var horarios1 in HorariosBLL.GetList(e => e.HorarioId.ToString() == IdTextBox.Text && e.HorarioEliminado == false))
                     {
                         if (!listado.Any(e => e.Equals(horarios1)))
                             listado.Add(horarios1);
                     }
+                }
                 if (!string.IsNullOrEmpty(DescripcionTextBox.Text))
+                {
                     foreach (var horarios in HorariosBLL.GetList(e => e.Descripcion.ToLower().Contains(DescripcionTextBox.Text.ToLower()) && e.HorarioEliminado == false))
                     {
-                        listado = HorariosBLL.GetList(e => e.HorarioId.ToString() == IdTextBox.Text);
+                        if (!listado.Any(e => e.Equals(horarios)))
+                            listado.Add(horarios);
                     }
+                }
             }
             else
             {

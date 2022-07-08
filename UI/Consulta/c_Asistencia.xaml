@@ -7,8 +7,7 @@
     xmlns:local="clr-namespace:NOVAASSIST.UI.Consulta"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     mc:Ignorable="d"
-    Title="Consulta de asistencia" Height="700" Width="1100" Icon="\Img\Icono.png" WindowStartupLocation="CenterScreen" Background="#00635d"
-    >
+    Title="Consulta de asistencia" Height="700" Width="1100" Icon="\Img\Icono.png" WindowStartupLocation="CenterScreen" Background="#00635d" >
 
     <Border CornerRadius="0" Background="White" >
         <Grid>
@@ -71,8 +70,12 @@
                 </StackPanel>
 
                 <!-- BUSCAR -->
-                <Button Content="Buscar" Background="White" Margin="60, 0" Style="{StaticResource MaterialDesignRaisedDarkButton}" Width="125" Height="35" Click="BuscarButton_Click"
-                    VerticalContentAlignment="Center" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" />
+                <Button x:Name="Buscar" Content="Buscar" Background="White" Margin="2, 0" Style="{StaticResource MaterialDesignRaisedDarkButton}" Width="125" Height="35" Click="BuscarButton_Click"
+                VerticalAlignment="Bottom" HorizontalContentAlignment="Center" />
+                
+                <!-- NUEVO -->
+                <Button  x:Name="Nuevo" Content="Nuevo" Background="White" Margin="2, 0" Style="{StaticResource MaterialDesignRaisedDarkButton}" Width="125" Height="35" Click="NuevoButton_Click"
+                VerticalAlignment="Bottom" HorizontalContentAlignment="Center" HorizontalAlignment="Left" />
             </StackPanel>
 
             <!-- GRID -->

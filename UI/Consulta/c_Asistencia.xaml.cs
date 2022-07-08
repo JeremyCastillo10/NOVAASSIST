@@ -63,22 +63,22 @@ namespace NOVAASSIST.UI.Consulta
             {
                 lista = AsistenciasBLL.GetList(l => true);
             }
+
             AsistenciaDataGrid.ItemsSource = null;
             AsistenciaDataGrid.ItemsSource = lista;
         }
 
-        /* private void Nuevo_Click(object sender, RoutedEventArgs e)
+        private void NuevoButton_Click(object sender, RoutedEventArgs e)
         {
-            Idtexbo.Text = "";
-            nombretexbo.Text = "";
-            cedulatexbo.Text = "";
-            emailtexbo.Text = "";
-            GeneroTextBox.Text = "";
-            telefonotexbo.Text = "";
-            desdetexbo.Text = "";
-            desdetexbo.SelectedDate = null;
-            hastatexbo.Text = "";
-            hastatexbo.SelectedDate = null;
-        } */
+            IdTextBox.Text = "";
+            NombreTextBox.Text = "";
+            CedulaTextBox.Text = "";
+            DesdeDate.Text = "";
+            DesdeDate.SelectedDate = null;
+            HastaDate.Text = "";
+            HastaDate.SelectedDate = null;
+            TipoTextBox.Text = "";
+            AreaTextBox.Text = "";
+        }
     }
 }

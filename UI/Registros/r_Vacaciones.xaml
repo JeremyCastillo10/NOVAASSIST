@@ -24,7 +24,6 @@
             <TextBox x:Name="descriciontext" Text="{Binding Descripcion}" Background="White" Width="200" FontSize="16"
             materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}" materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
         </StackPanel>
-        
 
         <StackPanel Orientation="Horizontal" Margin="0,5" >
             <Label Content="Fecha Inicio" FontSize="16"/>
@@ -38,9 +37,7 @@
             materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}" materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
         </StackPanel>
 
-
         <StackPanel Margin="0,16,0,0" Orientation="Horizontal" HorizontalAlignment="Center" >
-
             <Button Content="Nuevo" Click="NuevoButton_Click" Background="#D9D9D9" Width="130" Height="40" FontSize="16" Margin="10,2"/>
             <Button Content="Guardar" Click="GuardarButton_Click" Background="#D9D9D9" Width="130" Height="40" FontSize="16" Margin="10,2"/>
             <Button Content="Eliminar" Click="EliminarButton_Click" Background="#D9D9D9" Width="130" Height="40"  FontSize="16" Margin="10,2"/>

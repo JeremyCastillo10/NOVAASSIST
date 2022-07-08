@@ -11,7 +11,6 @@ namespace NOVAASSIST.BLL
 {
     public class AsistenciasBLL
     {
-
         public static bool Insertar(Asistencias asistencias)
         {
             bool confirmar = false;
@@ -30,6 +29,7 @@ namespace NOVAASSIST.BLL
 
             return confirmar;
         }
+
         public static bool Modificar(Asistencias asistencias)
         {
             bool paso = false;
@@ -73,9 +73,8 @@ namespace NOVAASSIST.BLL
 
         public static bool Existe(int id)
         {
-           
             Contexto contexto = new Contexto();
-             bool confirmar = false;
+            bool confirmar = false;
 
             try
             {

@@ -48,7 +48,6 @@ namespace NOVAASSIST.DAL
                 new Vacaciones{VacacionesId= 2, Descripcion="Vacaciones Semana Santa", Fecha_Inicio= new DateTime(2022,4,5), Fecha_Fin=new DateTime(2022,8,8)}
                
             );
-            
         }
     }
 }

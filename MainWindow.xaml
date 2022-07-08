@@ -19,8 +19,8 @@
                 </Button>
             
                 <MenuItem Header="Registros">
-                    <MenuItem Header ="Registro de Horario" Click ="RegistroAsistencia_Click" />
                     <MenuItem Header ="Registro de Empleados" Click ="RegistroEmpleados_Click" />
+                    <MenuItem Header ="Registro de Horario" Click ="RegistroAsistencia_Click" />
                     <MenuItem Header ="Registro de Vacaciones" Click ="RegistroVacaciones_Click" />
                 </MenuItem>
 

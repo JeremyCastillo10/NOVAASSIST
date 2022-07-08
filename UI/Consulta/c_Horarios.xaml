@@ -9,7 +9,7 @@
         Title="Consulta Horarios" Height="750" Width="1200"
         Icon="\Img\Icono.png">
     <Grid>
-        <Label Content="Consulta de Empleados" FontSize="20" FontWeight="SemiBold" Margin="46,10,35,283" />
+        <Label Content="Consulta de Horarios" FontSize="20" FontWeight="SemiBold" Margin="46,10,35,283" />
         
         <StackPanel Orientation="Horizontal" Margin="30,72,30,0" >
 
@@ -22,7 +22,7 @@
 
             <!-- Descripción horarios -->
             <StackPanel Orientation="Vertical" Margin="10, 0" >
-                <Label Content="Nombre" HorizontalAlignment="Left" FontSize="14" VerticalAlignment="Top" Height="35" Width="59"/>
+                <Label Content="Descripción" HorizontalAlignment="Left" FontSize="14" VerticalAlignment="Top" Height="35" Width="59"/>
                 <TextBox x:Name="DescripcionTextBox" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}"
                 materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
             </StackPanel>

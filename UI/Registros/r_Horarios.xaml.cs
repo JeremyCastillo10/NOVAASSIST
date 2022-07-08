@@ -27,7 +27,6 @@ namespace NOVAASSIST.UI.Registros
     public partial class r_Horarios : Window
     {
         private Horarios horario = new Horarios();
-       
 
         private string Dias;
 
@@ -52,12 +51,11 @@ namespace NOVAASSIST.UI.Registros
             }
         }
 
-
         public void obtnerHoras()
         {
             for(int i = 0; i < 24; i++)
             {
-                if(i<10)
+                if(i < 10)
                 {
                     EntradaCombox.Items.Add("0" + i + ":00");
                     SalidaCombox.Items.Add("0" + i + ":00");
@@ -82,10 +80,8 @@ namespace NOVAASSIST.UI.Registros
             if(string.IsNullOrWhiteSpace(horario.Descripcion) && string.IsNullOrWhiteSpace(horario.Fecha_Entrada)&& string.IsNullOrWhiteSpace(horario.Fecha_Salida)
             &&string.IsNullOrWhiteSpace(horario.Dias))
             {
-
                 valido = false;
                 MessageBox.Show("Tiene que llenar todo los campo para poder guardar", "Validacion", MessageBoxButton.OK,MessageBoxImage.Error);
-            
             }
             else
             {
@@ -147,12 +143,10 @@ namespace NOVAASSIST.UI.Registros
             }   
             else
                MessageBox.Show("No se pudo Guardar el Horario", "fallo", MessageBoxButton.OK, MessageBoxImage.Information);
-            
         }
 
         private void EliminarButton_Click(object sender, RoutedEventArgs e)
         {
-
             var encontro = HorariosBLL.Buscar(Convert.ToInt32(horario.HorarioId));
 
             if(encontro != null)
@@ -179,9 +173,7 @@ namespace NOVAASSIST.UI.Registros
                 {
                     MessageBox.Show("Horario ya esta en estado eliminado", "Exito",
                         MessageBoxButton.OK);
-
                 }
-                
             }
             else
             {
@@ -214,15 +206,14 @@ namespace NOVAASSIST.UI.Registros
                 Option5CheckBox.IsChecked == true &&
                 Option6CheckBox.IsChecked == true &&
                 Option7CheckBox.IsChecked == true )
-               
             {
                 // This will cause SelectAll_Unchecked to be executed, so
                 // we don't need to uncheck the other boxes here.
                 horario.Dias = "Lunes, Martes, Miercoes, Jueves, Viernes, Sabado, Domingo";
                 OptionsAllCheckBox.IsChecked = false;
-            }else{
- 
-
+            }
+            else
+            {
                 if (Option1CheckBox.IsChecked == true)
                     horario.Dias += " Lunes ";
                 if (Option2CheckBox.IsChecked == true)
@@ -283,7 +274,5 @@ namespace NOVAASSIST.UI.Registros
         {
             SetCheckedState();
         }
-
-     
     }
 }

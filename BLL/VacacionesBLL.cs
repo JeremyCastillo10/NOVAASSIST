@@ -6,10 +6,64 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 using NOVAASSIST.DAL;
 using NOVAASSIST.Entidades;
+
 namespace NOVAASSIST.BLL
 {
     public class VacacionesBLL
     {
+        public static bool Guardar(Vacaciones vacaciones)
+        {
+            if (!Existe(vacaciones.VacacionesId))
+                return Insertar(vacaciones);
+            else
+                return Modificar(vacaciones);
+        }
+
+        private static bool Insertar(Vacaciones vacaciones)
+        {
+            Contexto contexto = new Contexto();
+            bool paso = false;
+
+            try
+            {
+                contexto.Vacaciones.Add(vacaciones);
+                paso = contexto.SaveChanges() > 0;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                contexto.Dispose();
+            }
+
+            return paso;
+        }
+
+        private static bool Modificar(Vacaciones vacaciones)
+        {
+            Contexto contexto = new Contexto();
+            bool paso = false;
+
+            try
+            {
+                contexto.Entry(vacaciones).State = EntityState.Modified;
+                paso = contexto.SaveChanges() > 0;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                contexto.Dispose();
+            }
+
+            return paso;
+        }
+
         public static bool Existe(int vacacionesId)
         {
             Contexto contexto = new Contexto();
@@ -31,60 +85,11 @@ namespace NOVAASSIST.BLL
             return encontrado;
         }
 
-        public static bool Guardar(Vacaciones vacaciones)
-        {
-            if (!Existe(vacaciones.VacacionesId))
-                return Insertar(vacaciones);
-            else
-                return Modificar(vacaciones);
-
-        }
-
-        private static bool Insertar(Vacaciones vacaciones)
-        {
-            Contexto contexto = new Contexto();
-            bool paso = false;
-            try
-            {
-                contexto.Vacaciones.Add(vacaciones);
-                paso = contexto.SaveChanges() > 0;
-
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            finally
-            {
-                contexto.Dispose();
-            }
-            return paso;
-        }
-
-        private static bool Modificar(Vacaciones vacaciones)
-        {
-            Contexto contexto = new Contexto();
-            bool paso = false;
-            try
-            {
-                contexto.Entry(vacaciones).State = EntityState.Modified;
-                paso = contexto.SaveChanges() > 0;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            finally
-            {
-                contexto.Dispose();
-            }
-            return paso;
-        }
-
         public static bool Eliminar(int vacacionesId)
         {
             Contexto contexto = new Contexto();
             bool paso = false;
+
             try
             {
                 var Vacaciones = contexto.Vacaciones.Find(vacacionesId);
@@ -102,6 +107,7 @@ namespace NOVAASSIST.BLL
             {
                 contexto.Dispose();
             }
+
             return paso;
         }
 
@@ -109,6 +115,7 @@ namespace NOVAASSIST.BLL
         {
             Contexto contexto = new Contexto();
             Vacaciones? Vacaciones;
+
             try
             {
                 Vacaciones = contexto.Vacaciones.Find(vacacionesId);
@@ -121,6 +128,7 @@ namespace NOVAASSIST.BLL
             {
                 contexto.Dispose();
             }
+
             return Vacaciones;
         }
 
@@ -128,6 +136,7 @@ namespace NOVAASSIST.BLL
         {
             Contexto contexto = new Contexto();
             List<Vacaciones> lista = new List<Vacaciones>();
+
             try
             {
                 lista = contexto.Vacaciones.Where(criterio).ToList();
@@ -140,6 +149,7 @@ namespace NOVAASSIST.BLL
             {
                 contexto.Dispose();
             }
+
             return lista;
         }
     }

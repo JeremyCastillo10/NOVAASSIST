@@ -8,6 +8,7 @@ namespace NOVAASSIST.Entidades
     public class Horarios
     {
         [Key]
+        
         public int HorarioId { get; set; }
 
         public string? Descripcion { get; set; }

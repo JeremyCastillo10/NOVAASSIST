@@ -11,6 +11,58 @@ namespace NOVAASSIST.BLL
 {
     public class HorariosBLL
     {
+        public static bool Guardar(Horarios horarios)
+        {
+            if (!Existe(horarios.HorarioId))
+                return Insertar(horarios);
+            else
+                return Modificar(horarios);
+        }
+
+        private static bool Insertar(Horarios horario)
+        {
+            Contexto contexto = new Contexto();
+            bool paso = false;
+
+            try
+            {
+                contexto.Horarios.Add(horario);
+                paso = contexto.SaveChanges() > 0;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                contexto.Dispose();
+            }
+
+            return paso;
+        }
+
+        private static bool Modificar(Horarios horario)
+        {
+            Contexto contexto = new Contexto();
+            bool paso = false;
+
+            try
+            {
+                contexto.Entry(horario).State = EntityState.Modified;
+                paso = contexto.SaveChanges() > 0;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                contexto.Dispose();
+            }
+
+            return paso;
+        }
 
         public static bool Existe(int horarioId)
         {
@@ -33,60 +85,11 @@ namespace NOVAASSIST.BLL
             return encontrado;
         }
 
-        public static bool Guardar(Horarios horarios)
-        {
-            if (!Existe(horarios.HorarioId))
-                return Insertar(horarios);
-            else
-                return Modificar(horarios);
-
-        }
-
-        private static bool Insertar(Horarios horario)
-        {
-            Contexto contexto = new Contexto();
-            bool paso = false;
-            try
-            {
-                contexto.Horarios.Add(horario);
-                paso = contexto.SaveChanges() > 0;
-
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            finally
-            {
-                contexto.Dispose();
-            }
-            return paso;
-        }
-
-        private static bool Modificar(Horarios horario)
-        {
-            Contexto contexto = new Contexto();
-            bool paso = false;
-            try
-            {
-                contexto.Entry(horario).State = EntityState.Modified;
-                paso = contexto.SaveChanges() > 0;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            finally
-            {
-                contexto.Dispose();
-            }
-            return paso;
-        }
-
         public static bool Eliminar(int horarioId)
         {
             Contexto contexto = new Contexto();
             bool paso = false;
+
             try
             {
                 var Horario = contexto.Horarios.Find(horarioId);
@@ -104,6 +107,7 @@ namespace NOVAASSIST.BLL
             {
                 contexto.Dispose();
             }
+            
             return paso;
         }
 
@@ -111,6 +115,7 @@ namespace NOVAASSIST.BLL
         {
             Contexto contexto = new Contexto();
             Horarios? Horario;
+
             try
             {
                 Horario = contexto.Horarios.Find(horarioId);
@@ -123,6 +128,7 @@ namespace NOVAASSIST.BLL
             {
                 contexto.Dispose();
             }
+
             return Horario;
         }
 
@@ -130,6 +136,7 @@ namespace NOVAASSIST.BLL
         {
             Contexto contexto = new Contexto();
             List<Horarios> lista = new List<Horarios>();
+
             try
             {
                 lista = contexto.Horarios.Where(criterio).ToList();
@@ -142,8 +149,8 @@ namespace NOVAASSIST.BLL
             {
                 contexto.Dispose();
             }
+
             return lista;
         }
-        
     }
 }

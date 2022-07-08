@@ -162,9 +162,8 @@ namespace NOVAASSIST.UI.Registros
                     FechaTextBox.Focus();
                     mensaje += ", Fecha";
                 }
-
                 if (!string.IsNullOrWhiteSpace(NombreTextBox.Text) && !string.IsNullOrWhiteSpace(AreaTextBox.Text) && !string.IsNullOrWhiteSpace(GeneroTextBox.Text) && string.IsNullOrWhiteSpace(EmailTextBox.Text) && string.IsNullOrWhiteSpace(CedulaTextBox.Text) &&
-                    !string.IsNullOrWhiteSpace(TelefonoTextBox.Text) && !string.IsNullOrWhiteSpace(UsuarioTextBox.Text) && !string.IsNullOrWhiteSpace(ClaveTextBox.Text))
+                !string.IsNullOrWhiteSpace(TelefonoTextBox.Text) && !string.IsNullOrWhiteSpace(UsuarioTextBox.Text) && !string.IsNullOrWhiteSpace(ClaveTextBox.Text))
                     MessageBox.Show(mensaje, "Validacion", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 

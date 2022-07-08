@@ -5,6 +5,7 @@
              xmlns:local="clr-namespace:NOVAASSIST"
              DispatcherUnhandledException="App_DispatcherUnhandledException"
              StartupUri="/UI/Registros/r_Asistencia.xaml">
+             
     <Application.Resources>
          <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
