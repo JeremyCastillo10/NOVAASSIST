@@ -80,7 +80,7 @@
                 <DataGrid x:Name="AsistenciaDataGrid"  Width="1040" />
             </StackPanel> -->
 
-            <DataGrid x:Name="AsistenciaDataGrid" Margin="30,217,30,61" />
+            <DataGrid x:Name="AsistenciaDataGrid" Margin="30,217,30,61" IsReadOnly="true" />
 
         </Grid>
     </Border>

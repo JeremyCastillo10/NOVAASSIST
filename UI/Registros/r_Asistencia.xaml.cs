@@ -40,6 +40,7 @@ namespace NOVAASSIST.UI.Registros
         public Empleados empleados = new Empleados();
 
         public AsistenciasBLL asistenciasBLL = new AsistenciasBLL();
+        
         public r_Asistencia()
         {
             InitializeComponent();
