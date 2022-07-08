@@ -11,7 +11,7 @@ using NOVAASSIST.DAL;
 namespace NOVAASSIST.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20220708020851_inicio")]
+    [Migration("20220708023415_inicio")]
     partial class inicio
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -120,6 +120,9 @@ namespace NOVAASSIST.Migrations
                     b.Property<string>("ClaveUsuarios")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Direccion")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Email")
                         .HasColumnType("TEXT");
 
@@ -159,6 +162,7 @@ namespace NOVAASSIST.Migrations
                             Cedula = "123",
                             ClaveAcceso = "123",
                             ClaveUsuarios = "12345",
+                            Direccion = "Piantini",
                             Email = "jfasnfn@gmail.com",
                             EmpleadoEliminado = false,
                             FechaNacimiento = new DateTime(2010, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -175,6 +179,7 @@ namespace NOVAASSIST.Migrations
                             Cedula = "1234",
                             ClaveAcceso = "12",
                             ClaveUsuarios = "1234",
+                            Direccion = "Pimentel",
                             Email = "jf@gmail.com",
                             EmpleadoEliminado = false,
                             FechaNacimiento = new DateTime(2015, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -191,6 +196,7 @@ namespace NOVAASSIST.Migrations
                             Cedula = "1235",
                             ClaveAcceso = "124",
                             ClaveUsuarios = "123",
+                            Direccion = "Santo Domingo",
                             Email = "mm@gmail.com",
                             EmpleadoEliminado = false,
                             FechaNacimiento = new DateTime(2017, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -207,6 +213,7 @@ namespace NOVAASSIST.Migrations
                             Cedula = "1236",
                             ClaveAcceso = "126",
                             ClaveUsuarios = "12",
+                            Direccion = "Samana",
                             Email = "zz@gmail.com",
                             EmpleadoEliminado = false,
                             FechaNacimiento = new DateTime(2022, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),

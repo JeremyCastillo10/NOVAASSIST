@@ -34,16 +34,6 @@ namespace NOVAASSIST.UI.Consulta
             TablaTexto.ItemsSource = listado;
         }
 
-        private void Idtexbo_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void nombretexbo_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
         private void buscartexbo_Click(object sender, RoutedEventArgs e)
         {
             var listado = new List<Empleados>();
@@ -121,12 +111,19 @@ namespace NOVAASSIST.UI.Consulta
 
         private void VER_Click(object sender, RoutedEventArgs e)
         {
-            Empleados empleados = (Empleados)TablaTexto.SelectedItem;
-             
-            MessageBox.Show("ID para buscar: " + empleados.EmpleadoId, "Validacion", MessageBoxButton.OK, MessageBoxImage.Error);
-            
+            Empleados empleados = (Empleados)TablaTexto.SelectedItem;            
             rEmpleados empleadosRegistro = new rEmpleados(Convert.ToInt32(empleados.EmpleadoId));
             empleadosRegistro.Show();
+        }
+
+        private void Idtexbo_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void nombretexbo_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
 
         private void cedulatexbo_TextChanged(object sender, TextChangedEventArgs e)

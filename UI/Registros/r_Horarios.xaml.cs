@@ -36,68 +36,70 @@ namespace NOVAASSIST.UI.Registros
         {
             InitializeComponent();
             this.DataContext = horario;
-             obtnerHoras();
+            obtnerHoras();
         }
+
         public void obtnerHoras()
         {
-            for(int i = 0; i<24; i++){
-                if(i<10){
-                
-                    EntradaCombox.Items.Add("0"+i+":00");
-                    SalidaCombox.Items.Add("0"+i+":00");
-                }else{
-                
-                    EntradaCombox.Items.Add(""+i+":00");
-                    
-                    
-                    SalidaCombox.Items.Add(""+i+":00");
+            for(int i = 0; i < 24; i++)
+            {
+                if(i<10)
+                {
+                    EntradaCombox.Items.Add("0" + i + ":00");
+                    SalidaCombox.Items.Add("0" + i + ":00");
+                }
+                else
+                {
+                    EntradaCombox.Items.Add("" + i + ":00");
+                    SalidaCombox.Items.Add("" + i + ":00");
                 }   
             }
-
         }
+
         private void Cargar()
         {
             this.DataContext = null;
             this.DataContext = this.horario;
         }
+
         private bool Validar()
         {
-           bool valido = true;
-           if(string.IsNullOrWhiteSpace(horario.Descripcion) && string.IsNullOrWhiteSpace(horario.Fecha_Entrada)&& string.IsNullOrWhiteSpace(horario.Fecha_Salida)
-           &&string.IsNullOrWhiteSpace(horario.Dias))
-           {
+            bool valido = true;
+            if(string.IsNullOrWhiteSpace(horario.Descripcion) && string.IsNullOrWhiteSpace(horario.Fecha_Entrada)&& string.IsNullOrWhiteSpace(horario.Fecha_Salida)
+            &&string.IsNullOrWhiteSpace(horario.Dias))
+            {
 
                 valido = false;
                 MessageBox.Show("Tiene que llenar todo los campo para poder guardar", "Validacion", MessageBoxButton.OK,MessageBoxImage.Error);
             
-           }else{
-            if(string.IsNullOrWhiteSpace(horario.Descripcion))
-            {
-                valido = false;
-                DescripcionTextBox.Focus();
-                MessageBox.Show("Indique la descripcion del horario", "Validacion", MessageBoxButton.OK,MessageBoxImage.Error);
             }
-
-            if(string.IsNullOrWhiteSpace(horario.Fecha_Entrada))
+            else
             {
-                valido = false;
-                EntradaCombox.Focus();
-                MessageBox.Show("Indique las horas de entrada del horario", "Validacion", MessageBoxButton.OK,MessageBoxImage.Error);
+                if(string.IsNullOrWhiteSpace(horario.Descripcion))
+                {
+                    valido = false;
+                    DescripcionTextBox.Focus();
+                    MessageBox.Show("Indique la descripcion del horario", "Validacion", MessageBoxButton.OK,MessageBoxImage.Error);
+                }
+                if(string.IsNullOrWhiteSpace(horario.Fecha_Entrada))
+                {
+                    valido = false;
+                    EntradaCombox.Focus();
+                    MessageBox.Show("Indique las horas de entrada del horario", "Validacion", MessageBoxButton.OK,MessageBoxImage.Error);
+                }
+                if(string.IsNullOrWhiteSpace(horario.Fecha_Salida))
+                {
+                    valido = false;
+                    SalidaCombox.Focus();
+                    MessageBox.Show("Indique las horas de salida del horario", "Validacion", MessageBoxButton.OK,MessageBoxImage.Error);
+                }
+                if(string.IsNullOrWhiteSpace(horario.Dias))
+                {
+                    valido = false;
+                    SalidaCombox.Focus();
+                    MessageBox.Show("Debe Indicar El dia", "Validacion", MessageBoxButton.OK,MessageBoxImage.Error);
+                }
             }
-
-            if(string.IsNullOrWhiteSpace(horario.Fecha_Salida))
-            {
-                valido = false;
-                SalidaCombox.Focus();
-                MessageBox.Show("Indique las horas de salida del horario", "Validacion", MessageBoxButton.OK,MessageBoxImage.Error);
-            }
-             if(string.IsNullOrWhiteSpace(horario.Dias))
-            {
-                valido = false;
-                SalidaCombox.Focus();
-                MessageBox.Show("Debe Indicar El dia", "Validacion", MessageBoxButton.OK,MessageBoxImage.Error);
-            }
-           }
 
             return valido;
         }

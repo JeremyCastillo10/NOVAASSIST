@@ -98,7 +98,6 @@ namespace NOVAASSIST.UI.Registros
                     EmailTextBox.Focus();
                     mensaje += ", Email";
                 }
-
                 if (string.IsNullOrWhiteSpace(CedulaTextBox.Text))
                 {
                     valido = false;
@@ -119,7 +118,12 @@ namespace NOVAASSIST.UI.Registros
                         MessageBox.Show("La cedula solo admite numero", "Validacion", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
-
+                if (string.IsNullOrWhiteSpace(DireccionTextBox.Text))
+                {
+                    valido = false;
+                    DireccionTextBox.Focus();
+                    mensaje += ", Direccion";
+                }
                 if (string.IsNullOrWhiteSpace(TelefonoTextBox.Text))
                 {
                     valido = false;

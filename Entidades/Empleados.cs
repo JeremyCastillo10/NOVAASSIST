@@ -27,9 +27,11 @@ namespace NOVAASSIST.Entidades
 
         public string? Telefono { get; set; }
 
-        public string? Email    { get; set; }
+        public string? Email { get; set; }
 
         public int Vacaciones { get; set; } // id vacaciones
+
+        public string? Direccion { get; set; }
         
         public int contador { get; set; } = 0;
 
