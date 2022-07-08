@@ -3,29 +3,37 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:NOVAASSIST"
         Title="Menu admin" Height="700" Width="1100" WindowStartupLocation="CenterScreen" Background="#00635d"
         WindowState="Maximized" Icon="\Img\Icono.png" >
+
     <Grid Background="white" >
         <StackPanel>
             <Menu>
+
+                <Button Style="{StaticResource MaterialDesignIconForegroundButton}" ToolTip="MaterialDesignIconForegroundButton" IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Click ="Back_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="\Img\BackIcon.ico"/>
+                    </Button.Background>
+                </Button>
             
                 <MenuItem Header="Registros">
                     <MenuItem Header ="Registro de Horario" Click ="RegistroAsistencia_Click" />
-                    <MenuItem Header ="Registro de empleados" Click ="RegistroEmpleados_Click" />
+                    <MenuItem Header ="Registro de Empleados" Click ="RegistroEmpleados_Click" />
                     <MenuItem Header ="Registro de Vacaciones" Click ="RegistroVacaciones_Click" />
                 </MenuItem>
 
                 <MenuItem Header="Consultas">
-                    <MenuItem Header="Consulta de asistencia" Click ="ConsultaAsistencia_Click" />
-                    <MenuItem Header="Consulta de empleados" Click ="ConsultaEmpleados_Click" />
+                    <MenuItem Header="Consulta de Asistencia" Click ="ConsultaAsistencia_Click" />
+                    <MenuItem Header="Consulta de Empleados" Click ="ConsultaEmpleados_Click" />
                     <MenuItem Header="Consulta de Horario" Click ="ConsultaHorario_Click" />
                 </MenuItem>
 
                 <MenuItem Header="Reportes">
-                    <MenuItem Header="Reporte de empleados" Click ="ReportesEmpleados_Click" />
-                    <MenuItem Header="Reporte de empleados de inacistencia durante los 60 dias"  />
-                    <MenuItem Header="Reporte de empleados de asistencia durante los 30 dias"  />
+                    <MenuItem Header="Reporte de Empleados" Click ="ReportesEmpleados_Click" />
+                    <MenuItem Header="Reporte de Empleados de inacistencia durante los 60 dias"  />
+                    <MenuItem Header="Reporte de Empleados de asistencia durante los 30 dias"  />
                 </MenuItem>
 
             </Menu>

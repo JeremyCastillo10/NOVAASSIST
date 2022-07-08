@@ -17,5 +17,6 @@
 		<Resource Include="Img\huella.png" />
 		<Resource Include="Img\Icono.png" />
 		<Resource Include="Img\Nova.png" />
+		<Resource Include="Img\BackIcon.ico" />
 	</ItemGroup>
 </Project>

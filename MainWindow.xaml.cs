@@ -43,13 +43,14 @@ namespace NOVAASSIST
 
         private void RegistroEmpleados_Click(object sender, RoutedEventArgs e)
         {
-           rEmpleados m = new rEmpleados ();
-           m.Show();
+            rEmpleados m = new rEmpleados ();
+            m.Show();
         }
-         private void RegistroVacaciones_Click(object sender, RoutedEventArgs e)
+
+        private void RegistroVacaciones_Click(object sender, RoutedEventArgs e)
         {
-           r_Vacaciones m = new r_Vacaciones ();
-           m.Show();
+            r_Vacaciones m = new r_Vacaciones ();
+            m.Show();
         }
 
         private void ConsultaAsistencia_Click(object sender, RoutedEventArgs e)
@@ -60,14 +61,21 @@ namespace NOVAASSIST
 
         private void ConsultaEmpleados_Click(object sender, RoutedEventArgs e)
         {
-          c_Empleado m =new c_Empleado();
-          m.Show();
+            c_Empleado m = new c_Empleado();
+            m.Show();
         }
 
         private void ConsultaHorario_Click(object sender, RoutedEventArgs e)
         {
-             c_Horarios m =new c_Horarios();
-          m.Show();
+            c_Horarios m = new c_Horarios();
+            m.Show();
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            r_Asistencia m = new r_Asistencia();
+            m.Show();
+            this.Close();
         }
 
         private void ReportesEmpleados_Click(object sender, RoutedEventArgs e)
