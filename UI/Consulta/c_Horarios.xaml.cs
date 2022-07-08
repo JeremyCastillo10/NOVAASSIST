@@ -28,70 +28,50 @@ namespace NOVAASSIST.UI.Consulta
         public c_Horarios()
         {
             InitializeComponent();
-            var listado = HorariosBLL.GetList(e => true && e.HorarioEliminado== false);
+            var listado = HorariosBLL.GetList(e => true && e.HorarioEliminado == false);
 
             TablaTexto.ItemsSource = null;
             TablaTexto.ItemsSource = listado;
         }
 
-        private void buscartexbo_Click(object sender, RoutedEventArgs e)
+        private void BuscarButton_Click(object sender, RoutedEventArgs e)
         {
             var listado = new List<Horarios>();
 
-            if (!string.IsNullOrEmpty(Idtexbo.Text) || !string.IsNullOrEmpty(Descripciontexbo.Text))
+            if (!string.IsNullOrEmpty(IdTextBox.Text) || !string.IsNullOrEmpty(DescripcionTextBox.Text))
             {
-                if (!string.IsNullOrEmpty(Idtexbo.Text))
-                    foreach (var horarios1 in HorariosBLL.GetList(e => e.HorarioId.ToString() == Idtexbo.Text && e.HorarioEliminado == false))
+                if (!string.IsNullOrEmpty(IdTextBox.Text))
+                    foreach (var horarios1 in HorariosBLL.GetList(e => e.HorarioId.ToString() == IdTextBox.Text && e.HorarioEliminado == false))
                     {
                         if (!listado.Any(e => e.Equals(horarios1)))
                             listado.Add(horarios1);
                     }
-
-                if (!string.IsNullOrEmpty(Descripciontexbo.Text))
-                    foreach (var horarios in HorariosBLL.GetList(e => e.Descripcion.ToLower().Contains(Descripciontexbo.Text.ToLower()) && e.HorarioEliminado== false))
-
+                if (!string.IsNullOrEmpty(DescripcionTextBox.Text))
+                    foreach (var horarios in HorariosBLL.GetList(e => e.Descripcion.ToLower().Contains(DescripcionTextBox.Text.ToLower()) && e.HorarioEliminado == false))
                     {
-                        listado = HorariosBLL.GetList(e => e.HorarioId.ToString() == Idtexbo.Text);
+                        listado = HorariosBLL.GetList(e => e.HorarioId.ToString() == IdTextBox.Text);
                     }
-
             }
             else
             {
                 listado = HorariosBLL.GetList(e => true && e.HorarioEliminado == false);
             }
 
-
             TablaTexto.ItemsSource = null;
             TablaTexto.ItemsSource = listado;
         }
 
-        private void Nuevo_Click(object sender, RoutedEventArgs e)
+        private void NuevoButton_Click(object sender, RoutedEventArgs e)
         {
-            Idtexbo.Text = "";
-            Descripciontexbo.Text = "";
+            IdTextBox.Text = "";
+            DescripcionTextBox.Text = "";
         }
 
-        private void VER_Click(object sender, RoutedEventArgs e)
+        private void Ver_Click(object sender, RoutedEventArgs e)
         {
             Horarios horarios = (Horarios)TablaTexto.SelectedItem;            
             r_Horarios registroHorarios = new r_Horarios(Convert.ToInt32(horarios.HorarioId));
             registroHorarios.Show();
-        }
-
-        private void Idtexbo_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void Descripciontexbo_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-
-        private void TablaTexto_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

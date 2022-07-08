@@ -14,7 +14,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
-
 using System.Media;
 using System.Threading;
 using NOVAASSIST.BLL;
@@ -129,8 +128,8 @@ namespace NOVAASSIST.UI.Registros
 
         private void NuevoButton_Click(object sender, RoutedEventArgs e)
         {
-            this.horario=new Horarios();
-            this.DataContext= new Horarios();
+            this.horario = new Horarios();
+            this.DataContext = new Horarios();
         }
 
         private void GuardarButton_Click(object sender, RoutedEventArgs e)
@@ -138,18 +137,14 @@ namespace NOVAASSIST.UI.Registros
             horario.Fecha_Entrada=EntradaCombox.Text;
             horario.Fecha_Salida=SalidaCombox.Text;
 
-            bool pasa = false;
-                if(!Validar())
+            if(!Validar())
                 return;
 
-                pasa = HorariosBLL.Guardar(horario);
-
-            if(pasa)
+            if(HorariosBLL.Guardar(horario))
             {
-                 MessageBox.Show("Horario guardado", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
-                 Limpiar();
-            }
-                 
+                MessageBox.Show("Horario guardado", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+                Limpiar();
+            }   
             else
                MessageBox.Show("No se pudo Guardar el Horario", "fallo", MessageBoxButton.OK, MessageBoxImage.Information);
             
@@ -158,7 +153,7 @@ namespace NOVAASSIST.UI.Registros
         private void EliminarButton_Click(object sender, RoutedEventArgs e)
         {
 
-              var encontro = HorariosBLL.Buscar(Convert.ToInt32(horario.HorarioId));
+            var encontro = HorariosBLL.Buscar(Convert.ToInt32(horario.HorarioId));
 
             if(encontro != null)
             {
@@ -183,7 +178,7 @@ namespace NOVAASSIST.UI.Registros
                 else
                 {
                     MessageBox.Show("Horario ya esta en estado eliminado", "Exito",
-                            MessageBoxButton.OK);
+                        MessageBoxButton.OK);
 
                 }
                 
@@ -192,19 +187,9 @@ namespace NOVAASSIST.UI.Registros
             {
                 MessageBox.Show("Empleado no existe");
             }
-
-            /*
-            if (HorariosBLL.Eliminar(horario.HorarioId))
-            {
-                Limpiar();
-                MessageBox.Show("Horario eliminado con éxito", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            else
-                MessageBox.Show("No se pudo eliminar el Horario", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
-
-            */
         }
-          private void SelectAll_Checked(object sender, RoutedEventArgs e)
+
+        private void SelectAll_Checked(object sender, RoutedEventArgs e)
         {
             Option1CheckBox.IsChecked = Option2CheckBox.IsChecked = Option3CheckBox.IsChecked = Option4CheckBox.IsChecked = Option5CheckBox.IsChecked = Option6CheckBox.IsChecked = Option7CheckBox.IsChecked = true;
         }
@@ -233,27 +218,25 @@ namespace NOVAASSIST.UI.Registros
             {
                 // This will cause SelectAll_Unchecked to be executed, so
                 // we don't need to uncheck the other boxes here.
-                 horario.Dias= "Lunes, Martes, Miercoes,Jueves,Viernes,Sabado,Domingo";
+                horario.Dias = "Lunes, Martes, Miercoes, Jueves, Viernes, Sabado, Domingo";
                 OptionsAllCheckBox.IsChecked = false;
             }else{
  
 
                 if (Option1CheckBox.IsChecked == true)
-                 Dias+= " Lunes ";
-                horario.Dias =Dias ;
+                    horario.Dias += " Lunes ";
                 if (Option2CheckBox.IsChecked == true)
-                 Dias+= " Martes ";
-                horario.Dias =Dias;
-                 if (Option3CheckBox.IsChecked == true)
-                horario.Dias += " Miercoles ";
+                    horario.Dias += " Martes ";
+                if (Option3CheckBox.IsChecked == true)
+                    horario.Dias += " Miercoles ";
                 if (Option4CheckBox.IsChecked == true)
-                horario.Dias += " Jueves ";
+                    horario.Dias += " Jueves ";
                 if (Option5CheckBox.IsChecked == true)
-                horario.Dias += " Viernes ";
+                    horario.Dias += " Viernes ";
                 if (Option6CheckBox.IsChecked == true)
-                horario.Dias += " Sabado ";
+                    horario.Dias += " Sabado ";
                 if (Option7CheckBox.IsChecked == true)
-                horario.Dias += " Domingo ";
+                    horario.Dias += " Domingo ";
             }
         }
 

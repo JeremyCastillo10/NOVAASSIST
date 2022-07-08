@@ -14,7 +14,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
-
 using System.Media;
 using System.Threading;
 using NOVAASSIST.BLL;

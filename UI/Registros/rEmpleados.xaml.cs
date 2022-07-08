@@ -11,7 +11,6 @@ using Microsoft.EntityFrameworkCore;
 using NOVAASSIST.BLL;
 using NOVAASSIST.Entidades;
 
-
 namespace NOVAASSIST.UI.Registros
 {
     public partial class rEmpleados : Window
@@ -50,6 +49,7 @@ namespace NOVAASSIST.UI.Registros
                 VacacionesTextBox.SelectedValuePath = "VacacionesId";
                 VacacionesTextBox.DisplayMemberPath = "Descripcion";
                 IdTextBox.IsEnabled = false;
+                UsuarioTextBox.IsEnabled = false;
                 Cargar();
             }
         }
@@ -64,7 +64,7 @@ namespace NOVAASSIST.UI.Registros
         private bool Validar()
         {
             bool valido = true;
-            string mensaje = "Tiene que llenar ";
+            string mensaje = "Tiene que llenar";
 
             if (string.IsNullOrWhiteSpace(NombreTextBox.Text) && string.IsNullOrWhiteSpace(AreaTextBox.Text) && string.IsNullOrWhiteSpace(GeneroTextBox.Text) && string.IsNullOrWhiteSpace(EmailTextBox.Text) && string.IsNullOrWhiteSpace(CedulaTextBox.Text) &&
             string.IsNullOrWhiteSpace(TelefonoTextBox.Text) && string.IsNullOrWhiteSpace(UsuarioTextBox.Text) && string.IsNullOrWhiteSpace(ClaveTextBox.Text))
@@ -144,13 +144,13 @@ namespace NOVAASSIST.UI.Registros
                         MessageBox.Show("El telefono solo admite numero", "Validacion", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
-                if (string.IsNullOrWhiteSpace(UsuarioTextBox.Text) || (UsuarioTextBox.Text.Length != 6) && (UsuarioTextBox.Text.Length != 7) && (UsuarioTextBox.Text.Length != 8))
+                if (string.IsNullOrWhiteSpace(UsuarioTextBox.Text) || !((UsuarioTextBox.Text.Length >= 6) && (UsuarioTextBox.Text.Length <= 8)))
                 {
                     valido = false;
                     UsuarioTextBox.Focus();
                     mensaje += ", Usuiario";
                 }
-                if (string.IsNullOrWhiteSpace(ClaveTextBox.Text) || (ClaveTextBox.Text.Length != 6) && (ClaveTextBox.Text.Length != 7) && (ClaveTextBox.Text.Length != 8))
+                if (string.IsNullOrWhiteSpace(ClaveTextBox.Text) || !((ClaveTextBox.Text.Length >= 6) && (ClaveTextBox.Text.Length <= 8)))
                 {
                     valido = false;
                     ClaveTextBox.Focus();
@@ -163,7 +163,9 @@ namespace NOVAASSIST.UI.Registros
                     mensaje += ", Fecha";
                 }
 
-                MessageBox.Show(mensaje, "Validacion", MessageBoxButton.OK, MessageBoxImage.Error);
+                if (!string.IsNullOrWhiteSpace(NombreTextBox.Text) && !string.IsNullOrWhiteSpace(AreaTextBox.Text) && !string.IsNullOrWhiteSpace(GeneroTextBox.Text) && string.IsNullOrWhiteSpace(EmailTextBox.Text) && string.IsNullOrWhiteSpace(CedulaTextBox.Text) &&
+                    !string.IsNullOrWhiteSpace(TelefonoTextBox.Text) && !string.IsNullOrWhiteSpace(UsuarioTextBox.Text) && !string.IsNullOrWhiteSpace(ClaveTextBox.Text))
+                    MessageBox.Show(mensaje, "Validacion", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             return valido;
@@ -211,20 +213,16 @@ namespace NOVAASSIST.UI.Registros
 
         private void GuardarButton_Click(object sender, RoutedEventArgs e)
         {
-            empleados.Cedula = CedulaTextBox.Text;
-            //empleados.Genero = Convert.ToInt32(GeneroTextBox.Text);
-           
-            
-
-            bool pasa = false;
             if (!Validar())
                 return;
-
-                 
+            
+            empleados.Cedula = CedulaTextBox.Text;
+            empleados.Genero = GeneroTextBox.Text;
+            
             foreach(var item in EmpleadosBLL.GetAreas())
             {
                 if(item.AreaId == empleados.Area)
-                    empleados.AreaDescripcion = item.Descripcion+" "+item.Nombre;
+                    empleados.AreaDescripcion = item.Descripcion + " " + item.Nombre;
             }
 
             foreach(var item in EmpleadosBLL.GetVacaciones())
@@ -233,9 +231,7 @@ namespace NOVAASSIST.UI.Registros
                     empleados.VacacionesDescripcion = item.Descripcion;
             }
 
-            pasa = EmpleadosBLL.Insertar(empleados);
-
-            if (pasa)
+            if (EmpleadosBLL.Guardar(empleados))
             {
                 MessageBox.Show("empleado guardado", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
                 Limpiar();

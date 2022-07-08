@@ -12,7 +12,7 @@ namespace NOVAASSIST.BLL
     public class HorariosBLL
     {
 
-         public static bool Existe(int horarioId)
+        public static bool Existe(int horarioId)
         {
             Contexto contexto = new Contexto();
             bool encontrado = false;

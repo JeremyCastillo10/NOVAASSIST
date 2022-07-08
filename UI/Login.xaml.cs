@@ -20,7 +20,8 @@ namespace NOVAASSIST.UI
     /// </summary>
     public partial class Login : Window
     {
-            MainWindow principal = new MainWindow();
+        MainWindow principal = new MainWindow();
+        
         public Login()
         {
             InitializeComponent();
@@ -33,9 +34,8 @@ namespace NOVAASSIST.UI
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-              this.Close();
-                              principal.Show();
-            
+            this.Close();
+            principal.Show();
         }
     }
 }

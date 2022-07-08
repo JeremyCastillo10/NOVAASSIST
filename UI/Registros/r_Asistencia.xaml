@@ -9,6 +9,7 @@
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Title="Recepcion de ponche" Height="700" Width="1100" Icon="\Img\Icono.png" WindowStartupLocation="CenterScreen" Background="#00635d"
         WindowState="Maximized">
+        
     <Border CornerRadius="0" Background="#FFDADADA" >
         <StackPanel Orientation="Vertical" Margin="10" HorizontalAlignment="Center"> 
             <Grid Name="Principal" Margin="10,34,0,0" HorizontalAlignment="Left" Width="816 "   >

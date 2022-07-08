@@ -5,17 +5,21 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NOVAASSIST.Entidades
 {
-  
     public class Horarios
     {
         [Key]
         public int HorarioId { get; set; }
-        public string? Descripcion { get; set; }
-        public string? Fecha_Entrada { get; set; } 
-        /* public string Fecha_Descanso { get; set; }  */
-        public string? Fecha_Salida { get; set; } 
-        public string? Dias { get; set; }
-        public Boolean? HorarioEliminado { get; set; }  = false;
 
+        public string? Descripcion { get; set; }
+
+        public string? Fecha_Entrada { get; set; }
+
+        /* public string Fecha_Descanso { get; set; }  */
+
+        public string? Fecha_Salida { get; set; }
+
+        public string? Dias { get; set; }
+
+        public Boolean? HorarioEliminado { get; set; }  = false;
     }
 }

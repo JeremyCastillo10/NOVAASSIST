@@ -3,26 +3,41 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:NOVAASSIST.UI.Consulta"
         mc:Ignorable="d"
         Title="Consulta Horarios" Height="750" Width="1200"
         Icon="\Img\Icono.png">
     <Grid>
-        <Label Content="Consulta de Empleados" FontSize="20" FontWeight="SemiBold" Margin="46,10,35,283"/>
-        <TextBox x:Name="Idtexbo"  HorizontalAlignment="Left" Margin="46,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" TextChanged="Idtexbo_TextChanged"/>
-        <Label Content="Id" HorizontalAlignment="Left" FontSize="14" Margin="46,59,0,0" VerticalAlignment="Top" Height="35"/>
-        <Label Content="Nombre" HorizontalAlignment="Left" FontSize="14" Margin="149,60,0,0" VerticalAlignment="Top" Height="35" Width="59"/>
-        <TextBox x:Name="Descripciontexbo"  HorizontalAlignment="Left" Margin="149,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202" TextChanged="Descripciontexbo_TextChanged"/>
-
-        <Button  x:Name="Nuevo" Content="Nuevo" Background="White"   HorizontalAlignment="Left" Margin="930,161,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.295,2.891" Click="Nuevo_Click" Width="125"/>
-        <Button x:Name="buscartexbo"  Content="Buscar" Background="White" HorizontalAlignment="Left" Margin="800,161,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.291,0.309" Click="buscartexbo_Click" Width="125"/>
+        <Label Content="Consulta de Empleados" FontSize="20" FontWeight="SemiBold" Margin="46,10,35,283" />
         
-        <DataGrid x:Name="TablaTexto" ItemsSource="{Binding Path=Horarios}" SelectedItem="{Binding Path=SelectedHorarios, Mode=TwoWay}" Margin="35,237,35,92" SelectionChanged="TablaTexto_SelectionChanged" IsReadOnly="true" >
+        <StackPanel Orientation="Horizontal" Margin="30,72,30,0" >
+
+            <!-- Id horarios -->
+            <StackPanel Orientation="Vertical" Margin="10, 0" >
+                <Label Content="Id" HorizontalAlignment="Left" FontSize="14" VerticalAlignment="Top" Height="35" />
+                <TextBox x:Name="IdTextBox" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}"
+                materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
+            </StackPanel>
+
+            <!-- Descripción horarios -->
+            <StackPanel Orientation="Vertical" Margin="10, 0" >
+                <Label Content="Nombre" HorizontalAlignment="Left" FontSize="14" VerticalAlignment="Top" Height="35" Width="59"/>
+                <TextBox x:Name="DescripcionTextBox" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}"
+                materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
+            </StackPanel>
+
+            <!-- BUSCAR -->
+            <Button x:Name="BuscarButton" Content="Buscar" Background="White" Margin="2, 0" Style="{StaticResource MaterialDesignRaisedDarkButton}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" Height="35" Click="BuscarButton_Click" />
+            <Button x:Name="NuevoButto" Content="Nuevo" Background="White" Margin="2, 0" Style="{StaticResource MaterialDesignRaisedDarkButton}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" Height="35" Click="NuevoButton_Click" />
+        </StackPanel>
+        
+        <DataGrid x:Name="TablaTexto" ItemsSource="{Binding Path=Horarios}" SelectedItem="{Binding Path=SelectedHorarios, Mode=TwoWay}" Margin="35,237,35,92" IsReadOnly="true" >
             <DataGrid.Columns>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate> 
-                         <DataTemplate> 
-                          <Button  x:Name="verdatos" Content="Editar" Background="White" Click="VER_Click"/>
+                        <DataTemplate> 
+                            <Button  x:Name="VerDatos" Content="Editar" Background="White" Click="Ver_Click"/>
                         </DataTemplate> 
                     </DataGridTemplateColumn.CellTemplate> 
                </DataGridTemplateColumn>

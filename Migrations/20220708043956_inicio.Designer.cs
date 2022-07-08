@@ -11,8 +11,8 @@ using NOVAASSIST.DAL;
 namespace NOVAASSIST.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20220708032607_Inicial")]
-    partial class Inicial
+    [Migration("20220708043956_inicio")]
+    partial class inicio
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -138,8 +138,8 @@ namespace NOVAASSIST.Migrations
                     b.Property<DateTime>("FechaNacimiento")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Genero")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Genero")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Nombre")
                         .HasColumnType("TEXT");
@@ -173,7 +173,7 @@ namespace NOVAASSIST.Migrations
                             Email = "jfasnfn@gmail.com",
                             EmpleadoEliminado = false,
                             FechaNacimiento = new DateTime(2010, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Genero = 1,
+                            Genero = "Femenino",
                             Nombre = "Luisa",
                             Telefono = "8093",
                             Vacaciones = 1,
@@ -192,7 +192,7 @@ namespace NOVAASSIST.Migrations
                             Email = "jf@gmail.com",
                             EmpleadoEliminado = false,
                             FechaNacimiento = new DateTime(2015, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Genero = 2,
+                            Genero = "Masculino",
                             Nombre = "pedro",
                             Telefono = "80934",
                             Vacaciones = 2,
@@ -211,7 +211,7 @@ namespace NOVAASSIST.Migrations
                             Email = "mm@gmail.com",
                             EmpleadoEliminado = false,
                             FechaNacimiento = new DateTime(2017, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Genero = 1,
+                            Genero = "Femenino",
                             Nombre = "maria",
                             Telefono = "80939",
                             Vacaciones = 1,
@@ -230,7 +230,7 @@ namespace NOVAASSIST.Migrations
                             Email = "zz@gmail.com",
                             EmpleadoEliminado = false,
                             FechaNacimiento = new DateTime(2022, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Genero = 2,
+                            Genero = "Masculino",
                             Nombre = "mario",
                             Telefono = "80938",
                             Vacaciones = 2,

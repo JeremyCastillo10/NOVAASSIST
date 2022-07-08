@@ -21,7 +21,7 @@ namespace NOVAASSIST.Entidades
 
         public string? Cedula { get; set; }
 
-        public int Genero { get; set; }
+        public string? Genero { get; set; }
 
         public int Area { get; set; } //id area
         public string? AreaDescripcion {set; get;}

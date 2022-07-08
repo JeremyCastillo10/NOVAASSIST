@@ -15,26 +15,28 @@
             <StackPanel Orientation="Horizontal">
                 <Label Content="Consulta de asistencias" Margin="30,20,0,0" FontSize="20" FontWeight="SemiBold" Width="1040"  />
             </StackPanel>
-         
 
             <StackPanel Orientation="Horizontal" Margin="30,72,30,0" VerticalAlignment="Top" >
 
                 <!-- Id empleado -->
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" >
                     <Label Content="Id" VerticalAlignment="Top" Height="35" FontSize="14" />
-                    <TextBox x:Name="IdTextBox"  TextWrapping="Wrap" Width="55"/>
+                    <TextBox x:Name="IdTextBox"  TextWrapping="Wrap" Width="55" materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}"
+                    materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
                 </StackPanel>
 
                 <!-- Nombre empleado -->
                 <StackPanel Orientation="Vertical" Margin="10, 0" VerticalAlignment="Center" HorizontalAlignment="Center" >
                     <Label Content="Nombre" Height="35" FontSize="14" />
-                    <TextBox x:Name="NombreTextBox" TextWrapping="Wrap" Width="223"/>
+                    <TextBox x:Name="NombreTextBox" TextWrapping="Wrap" Width="223" materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}"
+                    materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
                 </StackPanel>
 
                 <!-- Cedula empleado -->
                 <StackPanel Orientation="Vertical" Margin="10, 0" VerticalAlignment="Center" HorizontalAlignment="Center" >
                     <Label Content="Cedula" Height="35" FontSize="14" />
-                    <TextBox x:Name="CedulaTextBox" TextWrapping="Wrap" Width="183"/>
+                    <TextBox x:Name="CedulaTextBox" TextWrapping="Wrap" Width="183" materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}"
+                    materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
                 </StackPanel>
             </StackPanel>
 
@@ -43,39 +45,42 @@
                 <!-- Fecha desde -->
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" >
                     <Label Content="Desde" Height="35" FontSize="14" />
-                    <DatePicker x:Name="DesdeDate" Width="127" />
+                    <DatePicker x:Name="DesdeDate" Width="127" materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}"
+                    materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
                 </StackPanel>
 
                 <!-- Fecha hasta -->
                 <StackPanel Orientation="Vertical" Margin="10, 0" VerticalAlignment="Center" HorizontalAlignment="Center" >
                     <Label Content="Hasta" Height="35" FontSize="14" />
-                    <DatePicker x:Name="HastaDate" Foreground="Black" Width="125" />
+                    <DatePicker x:Name="HastaDate" Foreground="Black" Width="125" materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}"
+                    materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
                 </StackPanel>
 
                 <!-- Tipo de asistencia -->
                 <StackPanel Orientation="Vertical" Margin="10, 0" VerticalAlignment="Center" HorizontalAlignment="Center" >
                     <Label Content="Tipo de asistencia"  VerticalAlignment="Top" Height="35" FontSize="14" />
-                    <TextBox x:Name="TipoTextBox" TextWrapping="Wrap" Width="163"/>
+                    <TextBox x:Name="TipoTextBox" TextWrapping="Wrap" Width="163" materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}"
+                    materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
                 </StackPanel>
 
                 <!-- Area empleado -->
                 <StackPanel Orientation="Vertical" Margin="10, 0" VerticalAlignment="Center" HorizontalAlignment="Center" >
                     <Label Content="Area" Height="35" FontSize="14" />
-                    <TextBox x:Name="AreaTextBox" TextWrapping="Wrap" Width="162"/>
+                    <TextBox x:Name="AreaTextBox" TextWrapping="Wrap" Width="162" materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}"
+                    materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
                 </StackPanel>
 
                 <!-- BUSCAR -->
-                <Button Content="Buscar" Background="White" Margin="60, 0" Style="{StaticResource MaterialDesignRaisedDarkButton}"  Height="35" Click="BuscarButton_Click"
-                        VerticalContentAlignment="Center" VerticalAlignment="Bottom" HorizontalContentAlignment="Center"  Width="125"/>
+                <Button Content="Buscar" Background="White" Margin="60, 0" Style="{StaticResource MaterialDesignRaisedDarkButton}" Width="125" Height="35" Click="BuscarButton_Click"
+                    VerticalContentAlignment="Center" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" />
             </StackPanel>
 
-            <!-- GRID
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="30,216,30,0" Height="468" >
+            <!-- GRID -->
+            <!-- <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="30,216,30,0" Height="468" >
                 <DataGrid x:Name="AsistenciaDataGrid"  Width="1040" />
-            </StackPanel>
-             -->
-            <DataGrid x:Name="AsistenciaDataGrid" Margin="30,217,30,61" />
+            </StackPanel> -->
 
+            <DataGrid x:Name="AsistenciaDataGrid" Margin="30,217,30,61" />
 
         </Grid>
     </Border>

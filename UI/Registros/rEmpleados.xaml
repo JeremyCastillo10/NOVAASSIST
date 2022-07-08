@@ -3,70 +3,87 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:NOVAASSIST.UI.Registros"
         mc:Ignorable="d"
-        Title="Registro de empleados" Height="590" Width="570">
+        Title="Registro de empleados" Height="600" Width="570" Icon="\Img\Icono.png">
 
     <StackPanel Orientation="Vertical" Margin="10" HorizontalAlignment="Center">
         <StackPanel>
             <Label Content="Registro de empleados" FontSize="20" FontWeight="SemiBold"/>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Margin="0,5">
+        <StackPanel Orientation="Horizontal" Margin="0, 5">
             <Label Content="Id" FontSize="16"/>
-            <TextBox x:Name="IdTextBox" Text="{Binding EmpleadoId}" Background="White" Width="200"  FontSize="16"/>
+            <TextBox x:Name="IdTextBox" Text="{Binding EmpleadoId}" Background="White" Width="200"  FontSize="16"
+            materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}" materialDesign:ColorZoneAssist.Mode="SecondaryDark"  />
         </StackPanel>
         
-        <StackPanel Orientation="Horizontal" Margin="0,5">
+        <StackPanel Orientation="Horizontal" Margin="0, 5">
             <Label Content="Nombre" FontSize="16"/>
-            <TextBox x:Name="NombreTextBox" Text="{Binding Nombre}" Background="White" Width="386" FontSize="16"/>
+            <TextBox x:Name="NombreTextBox" Text="{Binding Nombre}" Background="White" Width="386" FontSize="16"
+            materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}" materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Margin="0,5">
+        <StackPanel Orientation="Horizontal" Margin="0, 5">
             <Label Content="Fecha de nacimiento" FontSize="16" />
-            <DatePicker Width="208" x:Name="FechaTextBox" FontSize="16" SelectedDate="{Binding FechaNacimiento, StringFormat='HH:mm:ss'}" />
+            <DatePicker Width="208" x:Name="FechaTextBox" FontSize="16" SelectedDate="{Binding FechaNacimiento, StringFormat='HH:mm:ss'}"
+            materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}" materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Margin="0,5">
+        <StackPanel Orientation="Horizontal" Margin="0, 5">
             <Label Content="Cedula" FontSize="16"/>
-            <TextBox x:Name="CedulaTextBox"  Background="White" Width="245" FontSize="16"/>
+            <TextBox x:Name="CedulaTextBox" MaxLength="11" Background="White" Width="245" FontSize="16"
+            materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}" materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
+
             <Label Content="Genero" FontSize="16"/>
-            <ComboBox x:Name="GeneroTextBox" ItemsSource="{Binding Genero}" Background="White" Width="95" FontSize="16" >
-                <ComboBoxItem Content="Masculino"/>
-                <ComboBoxItem Content="Femenino"/>
+            <ComboBox x:Name="GeneroTextBox" Text="{Binding Genero}" Background="White" Width="95" FontSize="16"
+            materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}" materialDesign:ColorZoneAssist.Mode="SecondaryDark" >
+                <ComboBox.Items>
+                    <ComboBoxItem Content="Masculino"/>
+                    <ComboBoxItem Content="Femenino"/>
+                </ComboBox.Items>
             </ComboBox>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Margin="0,5">
+        <StackPanel Orientation="Horizontal" Margin="0, 10">
             <Label Content="Area" FontSize="16"/>
-            <ComboBox x:Name="AreaTextBox" SelectedValue="{Binding Area}" Background="White" Width="415" FontSize="16" />
+            <ComboBox x:Name="AreaTextBox" SelectedValue="{Binding Area}" Background="White" Width="415" FontSize="16"
+            materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}" materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Margin="0,5">
+        <StackPanel Orientation="Horizontal" Margin="0, 5">
             <Label Content="Vacaciones" FontSize="16"/>
-            <ComboBox x:Name="VacacionesTextBox" SelectedValue="{Binding Vacaciones}" Background="White" Width="369" FontSize="16" />
+            <ComboBox x:Name="VacacionesTextBox" SelectedValue="{Binding Vacaciones}" Background="White" Width="369" FontSize="16"
+            materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}" materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Margin="0,5">
+        <StackPanel Orientation="Horizontal" Margin="0, 5">
             <Label Content="Usuario" FontSize="16"/>
-            <TextBox x:Name="UsuarioTextBox" Text="{Binding ClaveUsuarios}" Background="White" Width="113" FontSize="16"/>
+            <TextBox x:Name="UsuarioTextBox" Text="{Binding ClaveUsuarios}" MaxLength="8" Background="White" Width="113" FontSize="16"
+            materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}" materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Margin="0,5">
+        <StackPanel Orientation="Horizontal" Margin="0, 10">
             <Label Content="Clave" FontSize="16"/>
-            <TextBox x:Name="ClaveTextBox" Text="{Binding ClaveAcceso}" Background="White" Width="113" FontSize="16"/>
+            <TextBox x:Name="ClaveTextBox" Text="{Binding ClaveAcceso}" MaxLength="8" Background="White" Width="113" FontSize="16"
+            materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}" materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Margin="0,5">
+        <StackPanel Orientation="Horizontal" Margin="0, 10">
             <Label Content="Telefono" FontSize="16"/>
-            <TextBox x:Name="TelefonoTextBox" Text="{Binding Telefono}" Background="White" Width="140" FontSize="16" PreviewTextInput="Telefono_PreviewTextInput" />
+            <TextBox x:Name="TelefonoTextBox" Text="{Binding Telefono}" Background="White" Width="140" FontSize="16" PreviewTextInput="Telefono_PreviewTextInput"
+            materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}" materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
+            
             <Label Content="Email" FontSize="16"/>
-            <TextBox x:Name="EmailTextBox" Text="{Binding Email}" Background="White" Width="203" FontSize="16"/>
+            <TextBox x:Name="EmailTextBox" Text="{Binding Email}" Background="White" Width="203" FontSize="16"
+            materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}" materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Margin="0,5">
+        <StackPanel Orientation="Horizontal" Margin="0, 5">
             <Label Content="Direccion" FontSize="16"/>
-            <TextBox x:Name="DireccionTextBox" Text="{Binding Direccion}" Background="White" Width="383" FontSize="16"/>
+            <TextBox x:Name="DireccionTextBox" Text="{Binding Direccion}" Background="White" Width="383" FontSize="16"
+            materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}" materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
         </StackPanel>
 
         <StackPanel Margin="0,16,0,0" Orientation="Horizontal" HorizontalAlignment="Center" >

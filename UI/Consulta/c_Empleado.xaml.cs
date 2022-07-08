@@ -37,23 +37,26 @@ namespace NOVAASSIST.UI.Consulta
         private void buscartexbo_Click(object sender, RoutedEventArgs e)
         {
             var listado = new List<Empleados>();
-
-            if (!string.IsNullOrEmpty(Idtexbo.Text) || !string.IsNullOrEmpty(nombretexbo.Text) /* || !string.IsNullOrEmpty(generotexbo.Text) */ || !string.IsNullOrEmpty(emailtexbo.Text) || !string.IsNullOrEmpty(cedulatexbo.Text) || !string.IsNullOrEmpty(telefonotexbo.Text))
+            
+            if (!string.IsNullOrEmpty(Idtexbo.Text) || !string.IsNullOrEmpty(nombretexbo.Text) || !string.IsNullOrEmpty(GeneroTextBox.Text) || !string.IsNullOrEmpty(emailtexbo.Text) || !string.IsNullOrEmpty(cedulatexbo.Text) || !string.IsNullOrEmpty(telefonotexbo.Text) || desdetexbo.SelectedDate != null || hastatexbo.SelectedDate != null)
             {
+                if (desdetexbo.SelectedDate != null || hastatexbo.SelectedDate != null)
+                    listado = EmpleadosBLL.GetList(c => (c.FechaNacimiento.Date >= desdetexbo.SelectedDate && c.FechaNacimiento.Date <= hastatexbo.SelectedDate) && c.EmpleadoEliminado == false);
                 if (!string.IsNullOrEmpty(Idtexbo.Text))
+                {
                     foreach (var empleado in EmpleadosBLL.GetList(e => e.EmpleadoId.ToString() == Idtexbo.Text && e.EmpleadoEliminado == false))
                     {
                         if (!listado.Any(e => e.Equals(empleado)))
                             listado.Add(empleado);
                     }
-
+                }
                 if (!string.IsNullOrEmpty(nombretexbo.Text))
+                {
                     foreach (var empleado in EmpleadosBLL.GetList(e => e.Nombre.ToLower().Contains(nombretexbo.Text.ToLower()) && e.EmpleadoEliminado == false))
-
                     {
                         listado = EmpleadosBLL.GetList(e => e.EmpleadoId.ToString() == Idtexbo.Text);
                     }
-
+                }
                 if (!string.IsNullOrEmpty(emailtexbo.Text))
                 {
                     foreach (var empleado in EmpleadosBLL.GetList(e => e.Email.ToLower().Contains(emailtexbo.Text.ToLower()) && e.EmpleadoEliminado == false))
@@ -62,14 +65,14 @@ namespace NOVAASSIST.UI.Consulta
                             listado.Add(empleado);
                     }
                 }
-                /* if (!string.IsNullOrEmpty(generotexbo.Text))
+                if (!string.IsNullOrEmpty(GeneroTextBox.Text))
                 {
-                    foreach (var empleado in EmpleadosBLL.GetList(e => e.Genero.ToLower() == generotexbo.Text.ToLower() && e.EmpleadoEliminado == false))
+                    foreach (var empleado in EmpleadosBLL.GetList(e => e.Genero.ToLower() == GeneroTextBox.Text.ToLower() && e.EmpleadoEliminado == false))
                     {
                         if (!listado.Any(e => e.Equals(empleado)))
                             listado.Add(empleado);
                     }
-                } */
+                }
                 if (!string.IsNullOrEmpty(telefonotexbo.Text))
                 {
                     foreach (var empleado in EmpleadosBLL.GetList(e => e.Telefono == telefonotexbo.Text && e.EmpleadoEliminado == false))
@@ -91,10 +94,7 @@ namespace NOVAASSIST.UI.Consulta
             {
                 listado = EmpleadosBLL.GetList(e => true && e.EmpleadoEliminado == false);
             }
-
-            if (desdetexbo.SelectedDate != null || hastatexbo.SelectedDate != null)
-                listado = EmpleadosBLL.GetList(c => (c.FechaNacimiento.Date >= desdetexbo.SelectedDate && c.FechaNacimiento.Date <= hastatexbo.SelectedDate) && c.EmpleadoEliminado == false);
-
+            
             TablaTexto.ItemsSource = null;
             TablaTexto.ItemsSource = listado;
         }
@@ -105,11 +105,15 @@ namespace NOVAASSIST.UI.Consulta
             nombretexbo.Text = "";
             cedulatexbo.Text = "";
             emailtexbo.Text = "";
-            /* generotexbo.Text = ""; */
+            GeneroTextBox.Text = "";
             telefonotexbo.Text = "";
+            desdetexbo.Text = "";
+            desdetexbo.SelectedDate = null;
+            hastatexbo.Text = "";
+            hastatexbo.SelectedDate = null;
         }
 
-        private void VER_Click(object sender, RoutedEventArgs e)
+        private void Ver_Click(object sender, RoutedEventArgs e)
         {
             Empleados empleados = (Empleados)TablaTexto.SelectedItem;            
             rEmpleados empleadosRegistro = new rEmpleados(Convert.ToInt32(empleados.EmpleadoId));

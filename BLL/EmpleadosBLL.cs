@@ -12,6 +12,14 @@ namespace NOVAASSIST.BLL
 {
     public class EmpleadosBLL
     {
+        public static bool Guardar(Empleados empleados)
+        {
+            if(!Existe(empleados.EmpleadoId))
+                return Insertar(empleados);
+            else
+                return Modificar(empleados);
+        }
+
         public static bool Insertar(Empleados empleados)
         {
             bool confirmar = false;
@@ -33,24 +41,20 @@ namespace NOVAASSIST.BLL
 
         public static bool Modificar(Empleados empleados)
         {
-            bool paso = false;
+            bool confirmar = false;
             Contexto contexto = new Contexto();
 
             try
             {
-                //marcar la entidad como modificada para que el contexto sepa como proceder
                 contexto.Entry(empleados).State = EntityState.Modified;
-                paso = contexto.SaveChanges() > 0;
+                confirmar = contexto.SaveChanges() > 0;
             }
             catch (Exception)
             {
                 throw;
             }
-            finally
-            {
-                contexto.Dispose();
-            }
-            return paso;
+
+            return confirmar;
         }
 
         public static bool Eliminar(int id)
@@ -117,23 +121,19 @@ namespace NOVAASSIST.BLL
         public static bool Existe(string id, string id2)
         {
      
+            bool confirmars = false;
             Contexto contexto = new Contexto();
-                   bool confirmars = false;
 
             try
             {
-                 var confirmar = from Empleados in contexto.Empleados
-                              where Empleados.ClaveUsuarios == id
-                              && Empleados.ClaveAcceso == id2
-                              select Empleados;
+                var confirmar = from Empleados in contexto.Empleados
+                    where Empleados.ClaveUsuarios == id && Empleados.ClaveAcceso == id2
+                    select Empleados;
 
                if(confirmar.Count() > 0)
-               {
-                  confirmars=true;
-               }else
-               {
-                confirmars=false;
-               }
+                    confirmars = true;
+               else
+                    confirmars = false;
             }
             catch (Exception)
             {
@@ -142,6 +142,23 @@ namespace NOVAASSIST.BLL
             finally { contexto.Dispose(); }
 
             return confirmars;
+        }
+
+        private static bool Existe(int id)
+        {
+            bool confirmar = false;
+            Contexto contexto = new Contexto();
+
+            try
+            {
+                confirmar = contexto.Empleados.Any(e => e.EmpleadoId == id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return confirmar;
         }
 
         public static List<Empleados> GetEmpleados()
