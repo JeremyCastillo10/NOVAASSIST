@@ -31,6 +31,8 @@ namespace NOVAASSIST.UI.Registros
         public r_Excepciones(int id)
         {
             InitializeComponent();
+            excepciones = ExcepcionesBLL.Buscar(id);
+            IdTextBox.IsEnabled = false;
             this.DataContext = excepciones;
         }
 
