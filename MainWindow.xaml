@@ -22,12 +22,14 @@
                     <MenuItem Header ="Registro de Empleados" Click ="RegistroEmpleados_Click" />
                     <MenuItem Header ="Registro de Horario" Click ="RegistroAsistencia_Click" />
                     <MenuItem Header ="Registro de Vacaciones" Click ="RegistroVacaciones_Click" />
+                    <MenuItem Header ="Registro de Excepciones" Click ="RegistroExcepciones_Click" />
                 </MenuItem>
 
                 <MenuItem Header="Consultas">
                     <MenuItem Header="Consulta de Asistencia" Click ="ConsultaAsistencia_Click" />
                     <MenuItem Header="Consulta de Empleados" Click ="ConsultaEmpleados_Click" />
                     <MenuItem Header="Consulta de Horario" Click ="ConsultaHorario_Click" />
+                    <MenuItem Header="Consulta de Excepciones" Click ="ConsultaExcepciones_Click" />
                 </MenuItem>
 
                 <MenuItem Header="Reportes">

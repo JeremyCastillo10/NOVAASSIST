@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
+using NOVAASSIST.UI.Consulta;
 using NOVAASSIST.BLL;
 using NOVAASSIST.Entidades;
 
@@ -202,6 +203,12 @@ namespace NOVAASSIST.UI.Registros
             {
                 return false;
             }
+        }
+
+        public void ConsultarButton_Click(object sender, RoutedEventArgs e)
+        {
+            c_Empleado m = new c_Empleado();
+            m.Show();            
         }
 
         private void NuevoButton_Click(object sender, RoutedEventArgs e)

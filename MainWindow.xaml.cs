@@ -52,6 +52,12 @@ namespace NOVAASSIST
             m.Show();
         }
 
+        private void RegistroExcepciones_Click(object sender, RoutedEventArgs e)
+        {
+            r_Excepciones m = new r_Excepciones ();
+            m.Show();
+        }
+
         private void ConsultaAsistencia_Click(object sender, RoutedEventArgs e)
         {
             c_Asistencia m = new c_Asistencia();
@@ -67,6 +73,11 @@ namespace NOVAASSIST
         private void ConsultaHorario_Click(object sender, RoutedEventArgs e)
         {
             c_Horarios m = new c_Horarios();
+            m.Show();
+        }
+        private void ConsultaExcepciones_Click(object sender, RoutedEventArgs e)
+        {
+            c_Excepciones m = new c_Excepciones();
             m.Show();
         }
 

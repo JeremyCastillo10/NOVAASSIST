@@ -15,7 +15,7 @@ namespace NOVAASSIST.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "6.0.6");
+            modelBuilder.HasAnnotation("ProductVersion", "6.0.7");
 
             modelBuilder.Entity("NOVAASSIST.Entidades.Areas", b =>
                 {
@@ -235,6 +235,29 @@ namespace NOVAASSIST.Migrations
                             VacacionesDescripcion = "Vacaciones diciembre",
                             contador = 0
                         });
+                });
+
+            modelBuilder.Entity("NOVAASSIST.Entidades.Excepciones", b =>
+                {
+                    b.Property<int>("ExcepcionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Descripcion")
+                        .HasColumnType("TEXT");
+
+                    b.Property<float>("Descuento")
+                        .HasColumnType("REAL");
+
+                    b.Property<DateTime>("Fecha_Creacion")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ExcepcionId");
+
+                    b.ToTable("Excepciones");
                 });
 
             modelBuilder.Entity("NOVAASSIST.Entidades.Horarios", b =>

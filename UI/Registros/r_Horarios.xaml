@@ -17,6 +17,8 @@
             <Label Content="Id" FontSize="16"/>
             <TextBox x:Name="IdTextBox" Margin="10, 0" Text="{Binding HorarioId}" Background="White" Width="200" FontSize="16"
             materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}" materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
+
+            <Button Content="Consultar" Click="ConsultarButton_Click" Background="#D9D9D9" Width="130" Height="40" FontSize="16"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="0, 5">

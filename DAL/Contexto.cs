@@ -16,6 +16,8 @@ namespace NOVAASSIST.DAL
 
         public DbSet<Vacaciones> Vacaciones { get; set; }
 
+        public DbSet<Excepciones> Excepciones {get; set;}
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite(@"Data Source = DATA\DATA.db");

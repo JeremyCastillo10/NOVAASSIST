@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace NOVAASSIST.Migrations
 {
-    public partial class inicial : Migration
+    public partial class inicio : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -72,6 +72,22 @@ namespace NOVAASSIST.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Empleados", x => x.EmpleadoId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Excepciones",
+                columns: table => new
+                {
+                    ExcepcionId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Fecha_Creacion = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Nombre = table.Column<string>(type: "TEXT", nullable: true),
+                    Descripcion = table.Column<string>(type: "TEXT", nullable: true),
+                    Descuento = table.Column<float>(type: "REAL", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Excepciones", x => x.ExcepcionId);
                 });
 
             migrationBuilder.CreateTable(
@@ -157,6 +173,9 @@ namespace NOVAASSIST.Migrations
 
             migrationBuilder.DropTable(
                 name: "Empleados");
+
+            migrationBuilder.DropTable(
+                name: "Excepciones");
 
             migrationBuilder.DropTable(
                 name: "Horarios");

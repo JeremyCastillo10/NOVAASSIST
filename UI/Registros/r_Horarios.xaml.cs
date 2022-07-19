@@ -16,6 +16,7 @@ using System.Windows.Threading;
 
 using System.Media;
 using System.Threading;
+using NOVAASSIST.UI.Consulta;
 using NOVAASSIST.BLL;
 using NOVAASSIST.Entidades;
 
@@ -40,12 +41,13 @@ namespace NOVAASSIST.UI.Registros
         public r_Horarios(int id)
         {
             InitializeComponent();
+            obtnerHoras();
 
             var encontro = HorariosBLL.Buscar(id);
 
             if(encontro != null)
             {
-                horario= encontro;
+                horario = encontro;
                 IdTextBox.IsEnabled = false;
                 Cargar();
             }
@@ -120,6 +122,12 @@ namespace NOVAASSIST.UI.Registros
             EntradaCombox = null;
             SalidaCombox = null;
             horario.Dias = " ";
+        }
+
+        public void ConsultarButton_Click(object sender, RoutedEventArgs e)
+        {
+            c_Horarios m = new c_Horarios();
+            m.Show();            
         }
 
         private void NuevoButton_Click(object sender, RoutedEventArgs e)

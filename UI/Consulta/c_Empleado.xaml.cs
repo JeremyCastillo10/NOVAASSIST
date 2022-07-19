@@ -34,7 +34,17 @@ namespace NOVAASSIST.UI.Consulta
             TablaTexto.ItemsSource = listado;
         }
 
-        private void buscartexbo_Click(object sender, RoutedEventArgs e)
+        private void BuscarButton_Click(object sender, RoutedEventArgs e)
+        {
+            Filtrados();
+        }
+
+        private void Actualizar_GotFocus(object sender, RoutedEventArgs e)
+        {
+            Filtrados();
+        }
+
+        private void Filtrados()
         {
             var listado = new List<Empleados>();
             
@@ -117,7 +127,7 @@ namespace NOVAASSIST.UI.Consulta
         private void Ver_Click(object sender, RoutedEventArgs e)
         {
             Empleados empleados = (Empleados)TablaTexto.SelectedItem;            
-            rEmpleados empleadosRegistro = new rEmpleados(Convert.ToInt32(empleados.EmpleadoId));
+            r_Excepciones empleadosRegistro = new r_Excepciones(Convert.ToInt32(empleados.EmpleadoId));
             empleadosRegistro.Show();
         }
 
