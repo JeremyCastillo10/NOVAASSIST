@@ -19,7 +19,7 @@ namespace NOVAASSIST.BLL
                 return Modificar(Excepciones);
         }
 
-        private static bool Insertar(Excepciones Excepciones)
+        public static bool Insertar(Excepciones Excepciones)
         {
             Contexto contexto = new Contexto();
             bool paso = false;
@@ -42,14 +42,14 @@ namespace NOVAASSIST.BLL
             return paso;
         }
 
-        private static bool Modificar(Excepciones Excepciones)
+        public static bool Modificar(Excepciones excepciones)
         {
             Contexto contexto = new Contexto();
             bool paso = false;
 
             try
             {
-                contexto.Entry(Excepciones).State = EntityState.Modified;
+                contexto.Entry(excepciones).State = EntityState.Modified;
                 paso = contexto.SaveChanges() > 0;
             }
             catch (Exception)

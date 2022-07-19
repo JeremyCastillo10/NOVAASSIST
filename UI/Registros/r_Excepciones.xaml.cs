@@ -20,41 +20,43 @@ namespace NOVAASSIST.UI.Registros
 {
     public partial class r_Excepciones : Window
     {
-        private Excepciones Excepciones = new Excepciones();
+        private Excepciones excepciones = new Excepciones();
 
         public r_Excepciones()
         {
             InitializeComponent();
-            this.DataContext = Excepciones;
+            this.DataContext = excepciones;
         }
 
         public r_Excepciones(int id)
         {
             InitializeComponent();
-            this.DataContext = Excepciones;
+            this.DataContext = excepciones;
         }
+
         private void Limpiar()
         {
-            this.Excepciones = new Excepciones();
-            this.DataContext = Excepciones;
+            this.excepciones = new Excepciones();
+            this.DataContext = excepciones;
         }
+
         private bool Validar()
         {
             bool valido = true;
-            if(string.IsNullOrWhiteSpace(Excepciones.Descripcion) && string.IsNullOrWhiteSpace(Excepciones.Nombre))
+            if(string.IsNullOrWhiteSpace(excepciones.Descripcion) && string.IsNullOrWhiteSpace(excepciones.Nombre))
             {
                 valido = false;
                 MessageBox.Show("Tiene que llenar todo los campo para poder guardar", "Validacion", MessageBoxButton.OK,MessageBoxImage.Error);
             }
             else
             {
-                if(string.IsNullOrWhiteSpace(Excepciones.Descripcion))
+                if(string.IsNullOrWhiteSpace(excepciones.Descripcion))
                 {
                     valido = false;
                     descripciontext.Focus();
                     MessageBox.Show("Indique la descripcion de la excepcion", "Validacion", MessageBoxButton.OK,MessageBoxImage.Error);
                 }
-                if(string.IsNullOrWhiteSpace(Excepciones.Nombre))
+                if(string.IsNullOrWhiteSpace(excepciones.Nombre))
                 {
                     valido = false;
                     nombretext.Focus();
@@ -82,7 +84,7 @@ namespace NOVAASSIST.UI.Registros
 
             if(!string.IsNullOrEmpty(nombretext.Text)){
             
-            confirmar = ExcepcionesBLL.Guardar(Excepciones);
+            confirmar = ExcepcionesBLL.Guardar(excepciones);
 
             if (confirmar)
             {
@@ -100,15 +102,44 @@ namespace NOVAASSIST.UI.Registros
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
         private void EliminarButton_Click(object sender, RoutedEventArgs e)
         {
-            if (ExcepcionesBLL.Eliminar(Excepciones.ExcepcionId))
+            var encontro = ExcepcionesBLL.Buscar(Convert.ToInt32(excepciones.ExcepcionId));
+
+            if(encontro != null)
             {
-                Limpiar();
-                MessageBox.Show("eliminado con éxito", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+                excepciones = encontro;
+
+                if(excepciones.ExcepcionEliminada == false)
+                {
+                    excepciones.ExcepcionEliminada = true;
+
+                    if(ExcepcionesBLL.Modificar(excepciones))
+                    {
+                        MessageBox.Show("Excepción eliminada", "Exito",
+                            MessageBoxButton.OK);
+                        Limpiar();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se fue posible eliminar el excepción", "Fallo",
+                            MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Excepción ya eliminada fue restaurado", "Exito",
+                            MessageBoxButton.OK);
+                    excepciones.ExcepcionEliminada = false;
+                    ExcepcionesBLL.Modificar(excepciones);
+                    Limpiar();
+                }
             }
             else
-                MessageBox.Show("No se pudo eliminar", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+            {
+                MessageBox.Show("La excepción no existe");
+            }
         }
     }
 }

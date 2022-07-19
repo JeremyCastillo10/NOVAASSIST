@@ -15,7 +15,7 @@ namespace NOVAASSIST.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "6.0.7");
+            modelBuilder.HasAnnotation("ProductVersion", "6.0.6");
 
             modelBuilder.Entity("NOVAASSIST.Entidades.Areas", b =>
                 {
@@ -248,6 +248,9 @@ namespace NOVAASSIST.Migrations
 
                     b.Property<float>("Descuento")
                         .HasColumnType("REAL");
+
+                    b.Property<bool?>("ExcepcionEliminada")
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Fecha_Creacion")
                         .HasColumnType("TEXT");

@@ -83,7 +83,8 @@ namespace NOVAASSIST.Migrations
                     Fecha_Creacion = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Nombre = table.Column<string>(type: "TEXT", nullable: true),
                     Descripcion = table.Column<string>(type: "TEXT", nullable: true),
-                    Descuento = table.Column<float>(type: "REAL", nullable: false)
+                    Descuento = table.Column<float>(type: "REAL", nullable: false),
+                    ExcepcionEliminada = table.Column<bool>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {

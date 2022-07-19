@@ -17,5 +17,7 @@ namespace NOVAASSIST.Entidades
         public string? Descripcion  { get; set; }
         
         public float Descuento { get; set; }
+
+        public Boolean? ExcepcionEliminada { get; set; }  = false;
     }
 }
