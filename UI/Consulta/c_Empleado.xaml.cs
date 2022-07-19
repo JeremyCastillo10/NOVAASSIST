@@ -127,7 +127,7 @@ namespace NOVAASSIST.UI.Consulta
         private void Ver_Click(object sender, RoutedEventArgs e)
         {
             Empleados empleados = (Empleados)TablaTexto.SelectedItem;            
-            r_Excepciones empleadosRegistro = new r_Excepciones(Convert.ToInt32(empleados.EmpleadoId));
+            rEmpleados empleadosRegistro = new rEmpleados(Convert.ToInt32(empleados.EmpleadoId));
             empleadosRegistro.Show();
         }
 
