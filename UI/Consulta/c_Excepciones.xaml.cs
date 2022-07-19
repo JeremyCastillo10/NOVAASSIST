@@ -47,9 +47,7 @@ namespace NOVAASSIST.UI.Consulta
 
         private void Ver_Click(object sender, RoutedEventArgs e)
         {
-            Excepciones excepciones = (Excepciones)TablaTexto.SelectedItem;            
-            Excepciones excepcionesRegistro = new Excepciones(Convert.ToInt32(empleados.EmpleadoId));
-            excepcionesRegistro.Show();
+            
         }
     }
 }
