@@ -15,32 +15,33 @@
 
         <StackPanel Orientation="Horizontal" Margin="0,5">
             <Label Content="Id" FontSize="16"/>
-            <TextBox x:Name="IdTextBox" Text="{Binding ExcepcionId}" Background="White" Width="304" FontSize="16"
+            <TextBox x:Name="IdTextBox" Text="{Binding ExcepcionId}" Background="White" Width="200" FontSize="16"
             materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}" materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
+            
             <Button Content="Consultar" Click="ConsultarButton_Click" Background="#D9D9D9" Width="130" Height="40" FontSize="16"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="0,5" >
             <Label Content="Fecha Creacion" FontSize="16"/>
-            <DatePicker Width="335" FontSize="16" SelectedDate="{Binding Fecha_Creacion, StringFormat='HH:mm:ss'}"
+            <DatePicker Width="208" FontSize="16" SelectedDate="{Binding Fecha_Creacion, StringFormat='HH:mm:ss'}"
             materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}" materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="0,5">
             <Label Content="Nombre" FontSize="16"/>
-            <TextBox x:Name="nombretext" Text="{Binding Nombre}" Background="White" Width="383" FontSize="16"
+            <TextBox x:Name="nombretext" Text="{Binding Nombre}" Background="White" Width="200" FontSize="16"
             materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}" materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="0,5">
             <Label Content="Descripcion" FontSize="16"/>
-            <TextBox x:Name="descripciontext" Text="{Binding Descripcion}" Background="White" Width="360" FontSize="16"
+            <TextBox x:Name="descripciontext" Text="{Binding Descripcion}" Background="White" Width="200" FontSize="16"
             materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}" materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
         </StackPanel>
 
          <StackPanel Orientation="Horizontal" Margin="0,5">
             <Label Content="Descuento" FontSize="16"/>
-            <TextBox x:Name="descuentotext" Text="{Binding Descuento}" Background="White" Width="368" FontSize="16"
+            <TextBox x:Name="descuentotext" Text="{Binding Descuento}" Background="White" Width="200" FontSize="16"
             materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}" materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
         </StackPanel>
 

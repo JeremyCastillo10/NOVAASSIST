@@ -7,11 +7,45 @@
         xmlns:local="clr-namespace:NOVAASSIST.UI.Consulta"
         mc:Ignorable="d"
         Title="Consulta Excepciones" Height="750" Width="1200"
-        Icon="\Img\Icono.png" > <!-- GotFocus="Actualizar_GotFocus" -->
+        Icon="\Img\Icono.png"  >
     <Grid>
         <Label Content="Consulta de Excepciones" FontSize="20" FontWeight="SemiBold" Margin="46,10,35,283" />
+
+          <StackPanel Orientation="Horizontal" Margin="30,72,30,0" >
+
+            <!-- Id horarios -->
+            <StackPanel Orientation="Vertical" Margin="10, 0" >
+                <Label Content="Id" HorizontalAlignment="Left" FontSize="14" VerticalAlignment="Top" Height="35" />
+                <TextBox x:Name="IdTextBox" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}"
+                materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
+            </StackPanel>
+
+            <!-- Descripción horarios -->
+            <StackPanel Orientation="Vertical" Margin="10, 0" >
+                <Label Content="Descripción" HorizontalAlignment="Left" FontSize="14" VerticalAlignment="Top" Height="35" Width="59"/>
+                <TextBox x:Name="DescripcionTextBox" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}"
+                materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
+            </StackPanel>
+
+            <!-- BUSCAR -->
+            <Button x:Name="BuscarButton" Content="Buscar" Background="White" Margin="2, 0" Style="{StaticResource MaterialDesignRaisedDarkButton}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" Height="35" Click="BuscarButton_Click" />
+            <Button x:Name="NuevoButto" Content="Nuevo" Background="White" Margin="2, 0" Style="{StaticResource MaterialDesignRaisedDarkButton}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" Height="35" Click="NuevoButton_Click" />
+        </StackPanel>
         
+        <DataGrid x:Name="TablaTexto" ItemsSource="{Binding Path=Excepciones}" SelectedItem="{Binding Path=SelectedExcepciones, Mode=TwoWay}" Margin="35,237,35,92" IsReadOnly="true" >
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate> 
+                        <DataTemplate> 
+                            <Button  x:Name="VerDatos" Content="Editar" Background="White" Click="Ver_Click"/>
+                        </DataTemplate> 
+                    </DataGridTemplateColumn.CellTemplate> 
+               </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
 
  
-    </Grid>
+  
 </Window>

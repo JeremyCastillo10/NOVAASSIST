@@ -11,8 +11,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using NOVAASSIST.BLL;
-using NOVAASSIST.UI.Registros;
 using NOVAASSIST.Entidades;
+using NOVAASSIST.UI.Registros;
 
 namespace NOVAASSIST.UI.Consulta
 {
@@ -21,10 +21,16 @@ namespace NOVAASSIST.UI.Consulta
     /// </summary>
     public partial class c_Excepciones : Window
     {
-        public c_Excepciones()
+    
+         public c_Excepciones()
         {
             InitializeComponent();
+            var listado = ExcepcionesBLL.GetList(e => true && e.ExcepcionEliminada == false);
+
+            TablaTexto.ItemsSource = null;
+            TablaTexto.ItemsSource = listado;
         }
+
 
         private void BuscarButton_Click(object sender, RoutedEventArgs e)
         {
@@ -40,17 +46,17 @@ namespace NOVAASSIST.UI.Consulta
         {
 
         }
-
-        private void Nuevo_Click(object sender, RoutedEventArgs e)
+        private void NuevoButton_Click(object sender, RoutedEventArgs e)
         {
-
+            IdTextBox.Text = "";
+            DescripcionTextBox.Text = "";
         }
 
         private void Ver_Click(object sender, RoutedEventArgs e)
         {
-            /* Empleados empleados = (Empleados)TablaTexto.SelectedItem;
-            r_Excepciones empleadosRegistro = new r_Excepciones(Convert.ToInt32(empleados.EmpleadoId));
-            empleadosRegistro.Show(); */
+            Excepciones horarios = (Excepciones)TablaTexto.SelectedItem;            
+            r_Excepciones registroHorarios = new r_Excepciones(Convert.ToInt32(horarios.ExcepcionId));
+            registroHorarios.Show();
         }
     }
 }
