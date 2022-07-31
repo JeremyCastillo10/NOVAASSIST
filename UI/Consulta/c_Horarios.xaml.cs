@@ -52,7 +52,7 @@ namespace NOVAASSIST.UI.Consulta
             {
                 if (!string.IsNullOrEmpty(IdTextBox.Text) && !string.IsNullOrEmpty(DescripcionTextBox.Text))
                 {
-                    listado = HorariosBLL.GetList(e => e.HorarioId.ToString() == IdTextBox.Text && e.Descripcion.ToLower() == DescripcionTextBox.Text.ToLower());
+
                 }
                 else if (!string.IsNullOrEmpty(IdTextBox.Text))
                 {
