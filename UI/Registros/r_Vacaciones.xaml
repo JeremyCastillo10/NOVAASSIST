@@ -15,25 +15,25 @@
 
         <StackPanel Orientation="Horizontal" Margin="0,5">
             <Label Content="Id" FontSize="16"/>
-            <TextBox x:Name="IdTextBox" Text="{Binding VacacionesId}" Background="White" Width="200" FontSize="16"
+            <TextBox x:Name="IdTextBox" Text="{Binding VacacionesId}" Background="White" Width="426" FontSize="16"
             materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}" materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="0,5">
             <Label Content="Descripcion" FontSize="16"/>
-            <TextBox x:Name="descriciontext" Text="{Binding Descripcion}" Background="White" Width="200" FontSize="16"
+            <TextBox x:Name="descriciontext" Text="{Binding Descripcion}" Background="White" Width="362" FontSize="16"
             materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}" materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="0,5" >
             <Label Content="Fecha Inicio" FontSize="16"/>
-            <DatePicker Width="208" FontSize="16" SelectedDate="{Binding Fecha_Inicio, StringFormat='HH:mm:ss'}"
+            <DatePicker Width="359" FontSize="16" SelectedDate="{Binding Fecha_Inicio, StringFormat='HH:mm:ss'}"
             materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}" materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="0,5">
             <Label Content="Fecha Fin" FontSize="16"/>
-            <DatePicker Width="208" FontSize="16" SelectedDate="{Binding Fecha_Fin, StringFormat='HH:mm:ss'}"
+            <DatePicker Width="377" FontSize="16" SelectedDate="{Binding Fecha_Fin, StringFormat='HH:mm:ss'}"
             materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}" materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
         </StackPanel>
 
