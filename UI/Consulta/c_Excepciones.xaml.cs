@@ -11,8 +11,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using NOVAASSIST.BLL;
-using NOVAASSIST.Entidades;
 using NOVAASSIST.UI.Registros;
+using NOVAASSIST.Entidades;
 
 namespace NOVAASSIST.UI.Consulta
 {
@@ -21,8 +21,7 @@ namespace NOVAASSIST.UI.Consulta
     /// </summary>
     public partial class c_Excepciones : Window
     {
-    
-         public c_Excepciones()
+        public c_Excepciones()
         {
             InitializeComponent();
             var listado = ExcepcionesBLL.GetList(e => true && e.ExcepcionEliminada == false);
@@ -31,21 +30,21 @@ namespace NOVAASSIST.UI.Consulta
             TablaTexto.ItemsSource = listado;
         }
 
-
         private void BuscarButton_Click(object sender, RoutedEventArgs e)
         {
             Filtrados();
         }
 
-        private void Actualizar_GotFocus(object sender, RoutedEventArgs e)
+        /* private void Actualizar_GotFocus(object sender, RoutedEventArgs e)
         {
             Filtrados();
-        }
+        } */
 
         private void Filtrados()
         {
 
         }
+
         private void NuevoButton_Click(object sender, RoutedEventArgs e)
         {
             IdTextBox.Text = "";

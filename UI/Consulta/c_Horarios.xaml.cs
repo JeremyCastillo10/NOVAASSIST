@@ -39,10 +39,10 @@ namespace NOVAASSIST.UI.Consulta
             Filtrados();
         }
 
-        private void Actualizar_GotFocus(object sender, RoutedEventArgs e)
+        /* private void Actualizar_GotFocus(object sender, RoutedEventArgs e)
         {
             Filtrados();
-        }
+        } */
 
         private void Filtrados()
         {
@@ -50,11 +50,7 @@ namespace NOVAASSIST.UI.Consulta
 
             if (!string.IsNullOrEmpty(IdTextBox.Text) || !string.IsNullOrEmpty(DescripcionTextBox.Text))
             {
-                if (!string.IsNullOrEmpty(IdTextBox.Text) && !string.IsNullOrEmpty(DescripcionTextBox.Text))
-                {
-                    listado = HorariosBLL.GetList(e => e.HorarioId.ToString() == IdTextBox.Text && e.Descripcion.ToLower() == DescripcionTextBox.Text.ToLower());
-                }
-                else if (!string.IsNullOrEmpty(IdTextBox.Text))
+                 if (!string.IsNullOrEmpty(IdTextBox.Text))
                 {
                     foreach (var horarios1 in HorariosBLL.GetList(e => e.HorarioId.ToString() == IdTextBox.Text && e.HorarioEliminado == false))
                     {

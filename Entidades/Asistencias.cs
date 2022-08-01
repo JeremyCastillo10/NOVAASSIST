@@ -11,11 +11,11 @@ namespace NOVAASSIST.Entidades
 
         public int AsistenciaId { get; set; }
         
-        public string ? Nombre { get; set; }
+        public string? Nombre { get; set; }
 
         public int EmpleadoId { get; set; }
         
-        public string ? cedula { get; set; }
+        public string? cedula { get; set; }
 
         public DateTime Fecha_Entrada { get; set; }
 

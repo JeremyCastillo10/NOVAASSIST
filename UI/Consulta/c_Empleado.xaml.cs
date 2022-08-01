@@ -39,10 +39,10 @@ namespace NOVAASSIST.UI.Consulta
             Filtrados();
         }
 
-        private void Actualizar_GotFocus(object sender, RoutedEventArgs e)
+        /* private void Actualizar_GotFocus(object sender, RoutedEventArgs e)
         {
             Filtrados();
-        }
+        } */
 
         private void Filtrados()
         {

@@ -6,17 +6,17 @@ namespace NOVAASSIST.DAL
 {
     public class Contexto : DbContext
     {
-        public DbSet<Asistencias> Asistencias { get; set;}
+        public DbSet<Asistencias>? Asistencias { get; set;}
 
-        public DbSet<Empleados> Empleados { get; set;}
+        public DbSet<Empleados>? Empleados { get; set;}
 
-        public DbSet<Horarios> Horarios { get; set;}
+        public DbSet<Horarios>? Horarios { get; set;}
 
-        public DbSet<Areas> Areas { get; set; }
+        public DbSet<Areas>? Areas { get; set; }
 
-        public DbSet<Vacaciones> Vacaciones { get; set; }
+        public DbSet<Vacaciones>? Vacaciones { get; set; }
 
-        public DbSet<Excepciones> Excepciones {get; set;}
+        public DbSet<Excepciones>? Excepciones {get; set;}
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -43,7 +43,7 @@ namespace NOVAASSIST.Entidades
 
         public Boolean? EmpleadoEliminado { get; set; } = false;
 
-        public override bool Equals(object? obj)
+        /* public override bool Equals(object? obj)
         {
             if(obj==null)
                 return false;
@@ -53,6 +53,6 @@ namespace NOVAASSIST.Entidades
 
             return (this.EmpleadoId == ((Empleados)obj).EmpleadoId)
                     && this.EmpleadoId== ((Empleados)obj).EmpleadoId;
-        }
+        } */
     }
 }

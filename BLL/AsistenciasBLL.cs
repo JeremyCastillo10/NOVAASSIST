@@ -14,12 +14,12 @@ namespace NOVAASSIST.BLL
         public static bool Insertar(Asistencias asistencias)
         {
             bool confirmar = false;
-            Contexto contexto = new Contexto();
+            Contexto? contexto = new Contexto();
 
             try
             {
-                contexto.Asistencias.Add(asistencias);
-                confirmar = contexto.SaveChanges() > 0;
+                contexto?.Asistencias?.Add(asistencias);
+                confirmar = contexto?.SaveChanges() > 0;
             }
             catch (Exception)
             {
@@ -59,7 +59,7 @@ namespace NOVAASSIST.BLL
 
             try
             {
-                asistencias = contexto.Asistencias.Where(A => A.EmpleadoId==id).SingleOrDefault();
+                asistencias = contexto?.Asistencias?.Where(A => A.EmpleadoId==id).SingleOrDefault();
                  
             }
             catch (Exception)
@@ -96,7 +96,7 @@ namespace NOVAASSIST.BLL
 
             try
             {
-                lista = contexto.Asistencias.ToList();
+                lista = contexto?.Asistencias?.ToList();
             }
             catch (Exception)
             {
@@ -114,7 +114,7 @@ namespace NOVAASSIST.BLL
 
             try
             {
-                lista = contexto.Asistencias?.Where(criterio).ToList();
+                lista = contexto?.Asistencias?.Where(criterio)?.ToList();
             }
             catch (Exception)
             {

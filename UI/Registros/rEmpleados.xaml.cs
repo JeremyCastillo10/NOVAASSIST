@@ -157,7 +157,7 @@ namespace NOVAASSIST.UI.Registros
                     ClaveTextBox.Focus();
                     mensaje += ", Clave";
                 }
-                if (FechaTextBox == null)
+                if (string.IsNullOrWhiteSpace(FechaTextBox.Text))
                 {
                     valido = false;
                     FechaTextBox.Focus();

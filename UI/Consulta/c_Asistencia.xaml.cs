@@ -34,10 +34,10 @@ namespace NOVAASSIST.UI.Consulta
             Filtrados();
         }
         
-        private void Actualizar_GotFocus(object sender, RoutedEventArgs e)
+        /* private void Actualizar_GotFocus(object sender, RoutedEventArgs e)
         {
             Filtrados();
-        }
+        } */
 
         private void Filtrados()
         {
@@ -45,26 +45,29 @@ namespace NOVAASSIST.UI.Consulta
 
             if (!string.IsNullOrEmpty(IdTextBox.Text) || !string.IsNullOrEmpty(NombreTextBox.Text) || !string.IsNullOrEmpty(CedulaTextBox.Text) || !string.IsNullOrEmpty(AreaTextBox.Text))
             {
-              
                 if(!string.IsNullOrEmpty(IdTextBox.Text))
-                    lista= AsistenciasBLL.GetList(e => e.AsistenciaId.ToString() == IdTextBox.Text);
+                    lista = AsistenciasBLL.GetList(e => e.AsistenciaId.ToString() == IdTextBox.Text);
 
-                if(!string.IsNullOrEmpty(NombreTextBox.Text))
-                {
-                    foreach(var empleado in  AsistenciasBLL.GetList(e => e.Nombre.ToLower().Contains(NombreTextBox.Text.ToLower())))
-                    {
-                        if(!lista.Any(e => e.Equals(empleado)))
-                            lista.Add(empleado);
-                    }
-                }
-                if(!string.IsNullOrEmpty(CedulaTextBox.Text))
-                {
-                    foreach(var empleado in  AsistenciasBLL.GetList(e => e.cedula==CedulaTextBox.Text))
-                    {
-                        if(!lista.Any(e => e.Equals(empleado)))
-                            lista.Add(empleado);
-                    }
-                }
+                else if(!string.IsNullOrEmpty(NombreTextBox.Text) && !string.IsNullOrEmpty(CedulaTextBox.Text) && (DesdeDate.SelectedDate != null || HastaDate.SelectedDate != null))
+                    lista = AsistenciasBLL.GetList(e => e.Nombre.ToLower().Contains(NombreTextBox.Text.ToLower()) && e.cedula.Contains(CedulaTextBox.Text) && ((e.Fecha_Entrada.Date >= DesdeDate.SelectedDate && e.Fecha_Salida.Date <= HastaDate.SelectedDate) || (e.Fecha_Salida.Date >= DesdeDate.SelectedDate && e.Fecha_Salida.Date <= HastaDate.SelectedDate)));
+
+                else if(!string.IsNullOrEmpty(NombreTextBox.Text) && !string.IsNullOrEmpty(CedulaTextBox.Text))
+                    lista = AsistenciasBLL.GetList(e => e.Nombre.ToLower().Contains(NombreTextBox.Text.ToLower()) && e.cedula.Contains(CedulaTextBox.Text));
+
+                else if(!string.IsNullOrEmpty(NombreTextBox.Text) && (DesdeDate.SelectedDate != null || HastaDate.SelectedDate != null))
+                    lista = AsistenciasBLL.GetList(e => e.Nombre.ToLower().Contains(NombreTextBox.Text.ToLower()) && ((e.Fecha_Entrada.Date >= DesdeDate.SelectedDate && e.Fecha_Salida.Date <= HastaDate.SelectedDate) || (e.Fecha_Salida.Date >= DesdeDate.SelectedDate && e.Fecha_Salida.Date <= HastaDate.SelectedDate)));
+
+                else if((DesdeDate.SelectedDate != null || HastaDate.SelectedDate != null) && !string.IsNullOrEmpty(CedulaTextBox.Text))
+                    lista = AsistenciasBLL.GetList(e => ((e.Fecha_Entrada.Date >= DesdeDate.SelectedDate && e.Fecha_Salida.Date <= HastaDate.SelectedDate) || (e.Fecha_Salida.Date >= DesdeDate.SelectedDate && e.Fecha_Salida.Date <= HastaDate.SelectedDate)) && e.cedula.Contains(CedulaTextBox.Text));
+
+                else if(!string.IsNullOrEmpty(NombreTextBox.Text))
+                    lista = AsistenciasBLL.GetList(e => e.Nombre.ToLower().Contains(NombreTextBox.Text.ToLower()));
+
+                else if(!string.IsNullOrEmpty(CedulaTextBox.Text))
+                    lista = AsistenciasBLL.GetList(e => e.cedula.Contains(CedulaTextBox.Text));
+
+                else if(DesdeDate.SelectedDate != null || HastaDate.SelectedDate != null)
+                    lista = AsistenciasBLL.GetList(e => (e.Fecha_Entrada.Date >= DesdeDate.SelectedDate && e.Fecha_Salida.Date <= HastaDate.SelectedDate) || (e.Fecha_Salida.Date >= DesdeDate.SelectedDate && e.Fecha_Salida.Date <= HastaDate.SelectedDate));
             }
             else
             {

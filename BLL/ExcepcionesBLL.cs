@@ -26,8 +26,8 @@ namespace NOVAASSIST.BLL
 
             try
             {
-                contexto.Excepciones.Add(Excepciones);
-                paso = contexto.SaveChanges() > 0;
+                contexto?.Excepciones?.Add(Excepciones);
+                paso = contexto?.SaveChanges() > 0;
 
             }
             catch (Exception)

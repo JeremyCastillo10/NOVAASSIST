@@ -29,13 +29,13 @@
 
         <StackPanel Orientation="Horizontal" Margin="0, 5">
             <Label Content="Entrada" FontSize="16"/>
-            <ComboBox x:Name="EntradaCombox" Margin="10, 0" Width="200" FontSize="16"
+            <ComboBox x:Name="EntradaCombox" Text="{Binding Fecha_Entrada}" Margin="10, 0" Width="200" FontSize="16"
             materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}" materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="0, 5">
             <Label Content="Salida" FontSize="16"/>
-            <ComboBox x:Name="SalidaCombox" Margin="10, 0" Width="200" FontSize="16"
+            <ComboBox x:Name="SalidaCombox" Text="{Binding Fecha_Salida}" Margin="10, 0" Width="200" FontSize="16"
             materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}" materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
         </StackPanel>
 

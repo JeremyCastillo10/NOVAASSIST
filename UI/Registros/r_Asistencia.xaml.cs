@@ -30,9 +30,9 @@ namespace NOVAASSIST.UI.Registros
 
         public int ver { set; get; } = 0;
 
-        public string  m { set; get; } = null;
+        public string?  m { set; get; } = null;
 
-        public string  p { set; get; } = null;
+        public string?  p { set; get; } = null;
 
         public Asistencias asistencias = new Asistencias();
 

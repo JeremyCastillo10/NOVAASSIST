@@ -29,8 +29,6 @@ namespace NOVAASSIST.UI.Registros
     {
         private Horarios horario = new Horarios();
 
-        private string Dias;
-
         public r_Horarios()
         {
             InitializeComponent();
@@ -50,6 +48,7 @@ namespace NOVAASSIST.UI.Registros
                 horario = encontro;
                 IdTextBox.IsEnabled = false;
                 Cargar();
+                horario.Dias = "";
             }
         }
 
