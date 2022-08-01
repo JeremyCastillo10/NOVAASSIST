@@ -58,16 +58,16 @@
 
                 <!-- Tipo de asistencia -->
                 <StackPanel Orientation="Vertical" Margin="10, 0" VerticalAlignment="Center" HorizontalAlignment="Center" >
-                    <Label Content="Tipo de asistencia"  VerticalAlignment="Top" Height="35" FontSize="14" />
+                    <Label Content="Tipo de asistencia"  VerticalAlignment="Top" Height="35" FontSize="14" Visibility="Collapsed" />
                     <TextBox x:Name="TipoTextBox" TextWrapping="Wrap" Width="163" materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}"
-                    materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
+                    materialDesign:ColorZoneAssist.Mode="SecondaryDark" Visibility="Collapsed"/>
                 </StackPanel>
 
                 <!-- Area empleado -->
                 <StackPanel Orientation="Vertical" Margin="10, 0" VerticalAlignment="Center" HorizontalAlignment="Center" >
-                    <Label Content="Area" Height="35" FontSize="14" />
+                    <Label Content="Area" Height="35" FontSize="14" Visibility="Collapsed"/>
                     <TextBox x:Name="AreaTextBox" TextWrapping="Wrap" Width="162" materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}"
-                    materialDesign:ColorZoneAssist.Mode="SecondaryDark" />
+                    materialDesign:ColorZoneAssist.Mode="SecondaryDark" Visibility="Collapsed"/>
                 </StackPanel>
 
                 <!-- BUSCAR -->

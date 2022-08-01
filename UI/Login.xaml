@@ -6,30 +6,29 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:NOVAASSIST.UI"
         mc:Ignorable="d"
-        Title="Login" Height="350" Width="400" Background= "#D9D9D9" WindowStartupLocation="CenterScreen" Icon="\Img\Icono.png">
+        Title="Login" Height="350" Width="500" Background= "#FFFFFF" WindowStartupLocation="CenterScreen" Icon="\Img\Icono.png">
 
     <Border Background ="White" CornerRadius="20" Margin="20">
         <StackPanel Margin="10">
             <Label Content="Login" Foreground="black" FontSize="25" HorizontalAlignment="Center"/>
-            <Separator></Separator>
+           
             
-            <Label Content="Nombre de Usuario" Foreground="black" FontSize="12"/>
-            <TextBox x:Name="NombreUsuarioTextBox" Background="#D9D9D9"
-            materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}" materialDesign:ColorZoneAssist.Mode="SecondaryDark"/>
+            <Label Content="Usuario" Foreground="black" FontSize="14"/>
+            <TextBox x:Name="NombreUsuarioTextBox" Background="#D9D9D9" FontSize="16"
+            materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}" materialDesign:ColorZoneAssist.Mode="SecondaryDark" Height="40"/>
             
-            <Label Content="Contraseña" Foreground="black"/>
-            <PasswordBox x:Name="ClavePassWordBox" Background ="#D9D9D9" FontSize="12"
-            materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}" materialDesign:ColorZoneAssist.Mode="SecondaryDark"/>
+            <Label Content="Contraseña" Foreground="black" FontSize="14"/>
+            <PasswordBox x:Name="ClavePassWordBox" Background ="#D9D9D9" FontSize="16"
+            materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}" materialDesign:ColorZoneAssist.Mode="SecondaryDark" Height="40"/>
             
-            <StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
 
-                <Button x:Name="LoginButton" Height="35" Background="#D9D9D9" Foreground="White" Click="LoginButton_Click" Width="100" Margin="0,15">
+                <Button x:Name="LoginButton" Height="35" Background="#D9D9D9" Foreground="White" Click="LoginButton_Click" Width="100" Margin="10,15">
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Login" Foreground="black" FontSize ="12"/>
                     </StackPanel>
                 </Button>
-               
-                <Button x:Name="CancelarButton" Height="35" Background="#D9D9D9" Foreground="White" Margin="0,0,0,0" Click="CancelarButton_Click" Width="100">
+                <Button x:Name="CancelarButton" Height="35" Background="#D9D9D9" Foreground="White" Click="CancelarButton_Click" Width="100" Margin="10,15">
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Cancelar" Foreground="black" FontSize ="12"/>
                     </StackPanel>
