@@ -213,79 +213,141 @@ namespace NOVAASSIST.BLL
             }
             return lista;
         }
-        public static Dictionary<int, double> ObtenerHorasTrabajadas(DateTime fechaSeleccionada)
+        public static Dictionary<int, double> ObtenerHorasTrabajadas(DateTime fecha)
         {
             Dictionary<int, double> horasTrabajadasPorEmpleado = new Dictionary<int, double>();
+            Contexto contexto = new Contexto();
 
-            using (Contexto contexto = new Contexto())
+            try
             {
-                try
+                var asistencias = contexto.Asistencias.ToList();
+
+                foreach (var asistencia in asistencias)
                 {
-                    // Obtener todas las asistencias del día seleccionado
-                    var asistencias = contexto.Asistencias
-                        .Where(a => a.Fecha_Entrada.Date == fechaSeleccionada.Date || a.Fecha_Salida.Date == fechaSeleccionada.Date)
-                        .ToList();
+                    double horasTrabajadas = (asistencia.Fecha_Salida - asistencia.Fecha_Entrada).TotalHours;
 
-                    // Agrupar entradas y salidas por empleado
-                    var entradasPorEmpleado = asistencias
-                        .Where(a => a.Fecha_Entrada.Date == fechaSeleccionada.Date)
-                        .GroupBy(a => a.EmpleadoId)
-                        .ToDictionary(g => g.Key, g => g.ToList());
-
-                    var salidasPorEmpleado = asistencias
-                        .Where(a => a.Fecha_Salida.Date == fechaSeleccionada.Date)
-                        .GroupBy(a => a.EmpleadoId)
-                        .ToDictionary(g => g.Key, g => g.ToList());
-
-                    // Mensaje de depuración
-                    MessageBox.Show($"Entradas encontradas: {entradasPorEmpleado.Sum(e => e.Value.Count)}, Salidas encontradas: {salidasPorEmpleado.Sum(e => e.Value.Count)}");
-
-                    // Calcular horas trabajadas
-                    foreach (var entrada in entradasPorEmpleado)
+                    if (horasTrabajadasPorEmpleado.ContainsKey(asistencia.EmpleadoId))
                     {
-                        int empleadoId = entrada.Key;
-                        var listaEntradas = entrada.Value;
-
-                        foreach (var e in listaEntradas)
-                        {
-                            // Buscar salida más cercana
-                            var salida = salidasPorEmpleado.ContainsKey(empleadoId) ?
-                                salidasPorEmpleado[empleadoId].FirstOrDefault(s => s.Fecha_Salida > e.Fecha_Entrada) : null;
-
-                            if (salida != null)
-                            {
-                                double horasTrabajadas = (salida.Fecha_Salida - e.Fecha_Entrada).TotalHours;
-
-                                // Mensaje de depuración
-                                MessageBox.Show($"EmpleadoId: {empleadoId}, Horas Trabajadas: {horasTrabajadas}");
-
-                                // Acumula las horas por empleado
-                                if (horasTrabajadasPorEmpleado.ContainsKey(empleadoId))
-                                {
-                                    horasTrabajadasPorEmpleado[empleadoId] += horasTrabajadas;
-                                }
-                                else
-                                {
-                                    horasTrabajadasPorEmpleado[empleadoId] = horasTrabajadas;
-                                }
-                            }
-                            else
-                            {
-                                MessageBox.Show($"No se encontró una salida válida para EmpleadoId {empleadoId} en la fecha {fechaSeleccionada.ToShortDateString()}");
-                            }
-                        }
+                        horasTrabajadasPorEmpleado[asistencia.EmpleadoId] += horasTrabajadas;
+                    }
+                    else
+                    {
+                        horasTrabajadasPorEmpleado[asistencia.EmpleadoId] = horasTrabajadas;
                     }
                 }
-                catch (Exception ex)
-                {
-                    // Manejo de excepciones
-                    MessageBox.Show($"Error: {ex.Message}");
-                    throw;
-                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                contexto.Dispose();
             }
 
             return horasTrabajadasPorEmpleado;
         }
+        public static Dictionary<int, double> ObtenerHorasTrabajadasPorMes(int mes, int anio)
+        {
+            Dictionary<int, double> horasTrabajadasPorEmpleado = new Dictionary<int, double>();
+            Contexto contexto = new Contexto();
+
+            try
+            {
+                var asistencias = contexto.Asistencias
+                    .Where(a => a.Fecha_Entrada.Month == mes && a.Fecha_Entrada.Year == anio)
+                    .ToList();
+
+                foreach (var asistencia in asistencias)
+                {
+                    if (asistencia.Fecha_Salida != DateTime.MinValue) // Asegurarse de que hay una salida registrada
+                    {
+                        double horasTrabajadas = (asistencia.Fecha_Salida - asistencia.Fecha_Entrada).TotalHours;
+
+                        if (horasTrabajadasPorEmpleado.ContainsKey(asistencia.EmpleadoId))
+                        {
+                            horasTrabajadasPorEmpleado[asistencia.EmpleadoId] += horasTrabajadas;
+                        }
+                        else
+                        {
+                            horasTrabajadasPorEmpleado[asistencia.EmpleadoId] = horasTrabajadas;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Se produjo un error: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                throw;
+            }
+            finally
+            {
+                contexto.Dispose();
+            }
+
+            return horasTrabajadasPorEmpleado;
+        }
+        public static Dictionary<int, double> ObtenerHorasTrabajadasDelMes(DateTime mes)
+        {
+            Dictionary<int, double> horasTrabajadasPorEmpleado = new Dictionary<int, double>();
+            Contexto contexto = new Contexto();
+
+            // Obtener el primer y último día del mes
+            DateTime primerDia = new DateTime(mes.Year, mes.Month, 1);
+            DateTime ultimoDia = primerDia.AddMonths(1).AddDays(-1);
+
+            try
+            {
+                var asistencias = contexto.Asistencias
+                    .Where(a => a.Fecha_Entrada >= primerDia && a.Fecha_Entrada <= ultimoDia)
+                    .ToList();
+
+                // Diccionario para llevar el control de entradas y salidas en un mismo día
+                Dictionary<int, DateTime?> entradasDiarias = new Dictionary<int, DateTime?>();
+
+                foreach (var asistencia in asistencias)
+                {
+                    // Si la entrada es la primera del día
+                    if (!entradasDiarias.ContainsKey(asistencia.EmpleadoId))
+                    {
+                        // Registrar la entrada
+                        entradasDiarias[asistencia.EmpleadoId] = asistencia.Fecha_Entrada;
+                    }
+                    else
+                    {
+                        // Si ya había una entrada registrada, se considera una salida
+                        DateTime? fechaEntrada = entradasDiarias[asistencia.EmpleadoId];
+                        if (fechaEntrada.HasValue)
+                        {
+                            double horasTrabajadas = (asistencia.Fecha_Entrada - fechaEntrada.Value).TotalHours;
+
+                            if (horasTrabajadasPorEmpleado.ContainsKey(asistencia.EmpleadoId))
+                            {
+                                horasTrabajadasPorEmpleado[asistencia.EmpleadoId] += horasTrabajadas;
+                            }
+                            else
+                            {
+                                horasTrabajadasPorEmpleado[asistencia.EmpleadoId] = horasTrabajadas;
+                            }
+
+                            // Reiniciar entrada a null para que la próxima asistencia del mismo día sea una nueva entrada
+                            entradasDiarias[asistencia.EmpleadoId] = null;
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                contexto.Dispose();
+            }
+
+            return horasTrabajadasPorEmpleado;
+        }
+
 
         public static List<Vacaciones> GetVacaciones()
         {

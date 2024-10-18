@@ -36,7 +36,7 @@
                 <MenuItem Header="Reportes">
                     <MenuItem Header="Reporte de horas de hoy" Click ="ReportesEmpleados_Click" />
                     <MenuItem Header="Reporte de horas de esta semana"  />
-                    <MenuItem Header="Reporte de horas de este mes"  />
+                    <MenuItem Header="Reporte de horas de este mes" Click ="ReportesHorasMes_Click"  />
                 </MenuItem>
 
             </Menu>

@@ -32,9 +32,20 @@ namespace NOVAASSIST.UI.Consulta
         private void CargarEmpleados(DateTime fecha)
         {
             var listado = EmpleadosBLL.GetList(e => e.EmpleadoEliminado == false);
+
+            // Obtener los valores de los TextBox
+            string nombreFiltro = NombreTextBox.Text.ToLower();
+            string cedulaFiltro = CedulaTextBox.Text.ToLower();
+
+            // Filtrar la lista por nombre y cédula
+            var empleadosFiltrados = listado.Where(e =>
+                (string.IsNullOrEmpty(nombreFiltro) || e.Nombre.ToLower().Contains(nombreFiltro)) &&
+                (string.IsNullOrEmpty(cedulaFiltro) || e.Cedula.ToLower().Contains(cedulaFiltro))
+            );
+
             var horasTrabajadas = EmpleadosBLL.ObtenerHorasTrabajadas(fecha); // Obtener horas trabajadas para la fecha seleccionada
 
-            var reportes = listado.Select(empleado => new
+            var reportes = empleadosFiltrados.Select(empleado => new
             {
                 empleado.EmpleadoId,
                 empleado.Nombre,
@@ -55,11 +66,6 @@ namespace NOVAASSIST.UI.Consulta
                 MessageBox.Show("No se encontraron horas trabajadas para la fecha seleccionada.");
                 TablaTexto.ItemsSource = null; // Limpia el DataGrid
             }
-        }
-
-        private void FechaPicker_SelectedDateChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-            // Este evento no es necesario si no deseas hacer actualizaciones automáticas
         }
     }
 }

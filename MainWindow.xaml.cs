@@ -92,6 +92,11 @@ namespace NOVAASSIST
         {
             HorasTrabajadasR horasTrabajadasWindow = new HorasTrabajadasR();
             horasTrabajadasWindow.ShowDialog();
-        }       
+        }
+        private void ReportesHorasMes_Click(object sender, RoutedEventArgs e)
+        {
+            ReporteHorasMensual horasTrabajadasWindow = new ReporteHorasMensual();
+            horasTrabajadasWindow.ShowDialog();
+        }
     }
 }
