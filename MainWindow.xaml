@@ -23,6 +23,7 @@
                     <MenuItem Header ="Registro de Horario" Click ="RegistroAsistencia_Click" />
                     <MenuItem Header ="Registro de Vacaciones" Click ="RegistroVacaciones_Click" />
                     <MenuItem Header ="Registro de Excepciones" Click ="RegistroExcepciones_Click" />
+
                 </MenuItem>
 
                 <MenuItem Header="Consultas">
@@ -33,9 +34,9 @@
                 </MenuItem>
 
                 <MenuItem Header="Reportes">
-                    <MenuItem Header="Reporte de Empleados" Click ="ReportesEmpleados_Click" />
-                    <MenuItem Header="Reporte de Empleados de inacistencia durante los 60 dias"  />
-                    <MenuItem Header="Reporte de Empleados de asistencia durante los 30 dias"  />
+                    <MenuItem Header="Reporte de horas de hoy" Click ="ReportesEmpleados_Click" />
+                    <MenuItem Header="Reporte de horas de esta semana"  />
+                    <MenuItem Header="Reporte de horas de este mes"  />
                 </MenuItem>
 
             </Menu>

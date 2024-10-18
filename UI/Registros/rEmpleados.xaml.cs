@@ -1,16 +1,12 @@
 using System;
-using System.Windows;
-using System.Windows.Input;
-using System.Windows.Controls;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.ComponentModel.DataAnnotations;
-using Microsoft.EntityFrameworkCore;
-using NOVAASSIST.UI.Consulta;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 using NOVAASSIST.BLL;
 using NOVAASSIST.Entidades;
+using NOVAASSIST.UI.Consulta;
 
 namespace NOVAASSIST.UI.Registros
 {
@@ -30,18 +26,29 @@ namespace NOVAASSIST.UI.Registros
             VacacionesTextBox.ItemsSource = EmpleadosBLL.GetVacaciones();
             VacacionesTextBox.SelectedValuePath = "VacacionesId";
             VacacionesTextBox.DisplayMemberPath = "Descripcion";
+            CargarHoras();
         }
+
+        private void CargarHoras()
+        {
+            for (int i = 0; i < 24; i++)
+            {
+                string hourString = $"{i:D2}:00";
+                HoraEntradaComboBox.Items.Add(new ComboBoxItem { Content = hourString });
+                HoraSalidaComboBox.Items.Add(new ComboBoxItem { Content = hourString });
+            }
+        }
+
 
         public rEmpleados(int id)
         {
             InitializeComponent();
 
             var encontro = EmpleadosBLL.Buscar(id);
-
-            if(encontro != null)
+            if (encontro != null)
             {
                 empleados = encontro;
-                
+
                 AreaTextBox.ItemsSource = EmpleadosBLL.GetAreas();
                 AreaTextBox.SelectedValuePath = "AreaId";
                 AreaTextBox.DisplayMemberPath = "Nombre";
@@ -49,8 +56,6 @@ namespace NOVAASSIST.UI.Registros
                 VacacionesTextBox.ItemsSource = EmpleadosBLL.GetVacaciones();
                 VacacionesTextBox.SelectedValuePath = "VacacionesId";
                 VacacionesTextBox.DisplayMemberPath = "Descripcion";
-                IdTextBox.IsEnabled = false;
-                UsuarioTextBox.IsEnabled = false;
                 Cargar();
             }
         }
@@ -64,225 +69,130 @@ namespace NOVAASSIST.UI.Registros
 
         private bool Validar()
         {
-            bool valido = true;
-            string mensaje = "Tiene que llenar";
+            List<string> errores = new List<string>();
 
-            if (string.IsNullOrWhiteSpace(NombreTextBox.Text) && string.IsNullOrWhiteSpace(AreaTextBox.Text) && string.IsNullOrWhiteSpace(GeneroTextBox.Text) && string.IsNullOrWhiteSpace(EmailTextBox.Text) && string.IsNullOrWhiteSpace(CedulaTextBox.Text) &&
-            string.IsNullOrWhiteSpace(TelefonoTextBox.Text) && string.IsNullOrWhiteSpace(UsuarioTextBox.Text) && string.IsNullOrWhiteSpace(ClaveTextBox.Text))
+            if (string.IsNullOrWhiteSpace(NombreTextBox.Text))
+                errores.Add("Nombre es requerido.");
+
+            if (string.IsNullOrWhiteSpace(AreaTextBox.Text))
+                errores.Add("Area es requerido.");
+
+            if (string.IsNullOrWhiteSpace(GeneroTextBox.Text))
+                errores.Add("Genero es requerido.");
+
+            if (string.IsNullOrWhiteSpace(CedulaTextBox.Text))
+                errores.Add("Cedula es requerida.");
+
+            if (string.IsNullOrWhiteSpace(TelefonoTextBox.Text))
+                errores.Add("Telefono es requerido.");
+
+            if (string.IsNullOrWhiteSpace(EmailTextBox.Text) || !Regex.IsMatch(EmailTextBox.Text, @"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"))
+                errores.Add("Email inválido.");
+
+            if (errores.Count > 0)
             {
-                valido = false;
-                MessageBox.Show("Tiene que llenar todo los campos", "Validacion", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            else
-            {
-                if (string.IsNullOrWhiteSpace(NombreTextBox.Text))
-                {
-                    valido = false;
-                    NombreTextBox.Focus();
-                    mensaje += ", Nombre";
-                }
-                if (string.IsNullOrWhiteSpace(AreaTextBox.Text))
-                {
-                    valido = false;
-                    AreaTextBox.Focus();
-                    mensaje += ", Area";
-                }
-                if (string.IsNullOrWhiteSpace(GeneroTextBox.Text))
-                {
-                    valido = false;
-                    GeneroTextBox.Focus();
-                    mensaje += ", Genero";
-                }
-                if (string.IsNullOrWhiteSpace(EmailTextBox.Text) && ValidarEmail(EmailTextBox.Text) == false)
-                {
-                    valido = false;
-                    EmailTextBox.Focus();
-                    mensaje += ", Email";
-                }
-                if (string.IsNullOrWhiteSpace(CedulaTextBox.Text))
-                {
-                    valido = false;
-                    CedulaTextBox.Focus();
-                    mensaje += ", Cedula";
-                }
-                else
-                {
-                    if (Regex.IsMatch(CedulaTextBox.Text, @"^[0-9]+$"))
-                    {
-                        if (CedulaTextBox.Text.Length != 11)
-                        {
-                            MessageBox.Show("La cedula solo tiene 11 digito", "Validacion", MessageBoxButton.OK, MessageBoxImage.Error);
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("La cedula solo admite numero", "Validacion", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                }
-                if (string.IsNullOrWhiteSpace(DireccionTextBox.Text))
-                {
-                    valido = false;
-                    DireccionTextBox.Focus();
-                    mensaje += ", Direccion";
-                }
-                if (string.IsNullOrWhiteSpace(TelefonoTextBox.Text))
-                {
-                    valido = false;
-                    TelefonoTextBox.Focus();
-                    mensaje += ", Telefono";
-                }
-                else
-                {
-                    if (Regex.IsMatch(TelefonoTextBox.Text, @"^[0-9]+$"))
-                    {
-                        if (TelefonoTextBox.Text.Length != 10)
-                        {
-                            MessageBox.Show("El telefono solo tiene 10 digito", "Validacion", MessageBoxButton.OK, MessageBoxImage.Error);
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("El telefono solo admite numero", "Validacion", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                }
-                if (string.IsNullOrWhiteSpace(UsuarioTextBox.Text) || !((UsuarioTextBox.Text.Length >= 6) && (UsuarioTextBox.Text.Length <= 8)))
-                {
-                    valido = false;
-                    UsuarioTextBox.Focus();
-                    mensaje += ", Usuiario";
-                }
-                if (string.IsNullOrWhiteSpace(ClaveTextBox.Text) || !((ClaveTextBox.Text.Length >= 6) && (ClaveTextBox.Text.Length <= 8)))
-                {
-                    valido = false;
-                    ClaveTextBox.Focus();
-                    mensaje += ", Clave";
-                }
-                if (string.IsNullOrWhiteSpace(FechaTextBox.Text))
-                {
-                    valido = false;
-                    FechaTextBox.Focus();
-                    mensaje += ", Fecha";
-                }
-                if (!string.IsNullOrWhiteSpace(NombreTextBox.Text) && !string.IsNullOrWhiteSpace(AreaTextBox.Text) && !string.IsNullOrWhiteSpace(GeneroTextBox.Text) && string.IsNullOrWhiteSpace(EmailTextBox.Text) && string.IsNullOrWhiteSpace(CedulaTextBox.Text) &&
-                !string.IsNullOrWhiteSpace(TelefonoTextBox.Text) && !string.IsNullOrWhiteSpace(UsuarioTextBox.Text) && !string.IsNullOrWhiteSpace(ClaveTextBox.Text))
-                    MessageBox.Show(mensaje, "Validacion", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(string.Join(Environment.NewLine, errores), "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
             }
 
-            return valido;
+            return true;
         }
 
         private void Limpiar()
         {
             this.empleados = new Empleados();
             this.DataContext = empleados;
+
             CedulaTextBox.Text = "";
             GeneroTextBox.Text = "";
+            TelefonoTextBox.Text = "";
+            EmailTextBox.Text = "";
+            NombreTextBox.Text = "";
+            SalarioTextBox.Text = "";
         }
 
-        private void Telefono_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void GuardarButton_Click(object sender, RoutedEventArgs e)
         {
-            e.Handled = new Regex("[^0-9]").IsMatch(e.Text);
-        }
+            // Verificar la selección de horas
+            var horaEntradaSeleccionada = HoraEntradaComboBox.SelectedItem as ComboBoxItem;
+            var horaSalidaSeleccionada = HoraSalidaComboBox.SelectedItem as ComboBoxItem;
 
-        public static bool ValidarEmail(string comprobarEmail)
-        {
-            string emailFormato;
-            emailFormato = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
-            if (Regex.IsMatch(comprobarEmail, emailFormato))
+            if (horaEntradaSeleccionada == null || horaSalidaSeleccionada == null)
             {
-                if (Regex.Replace(comprobarEmail, emailFormato, string.Empty).Length == 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                MessageBox.Show("Por favor, selecciona tanto la hora de entrada como la de salida.");
+                return;
+            }
+            if (!Validar())
+                return;
+
+            empleados.Cedula = CedulaTextBox.Text;
+            empleados.Genero = GeneroTextBox.Text;
+            empleados.Telefono = TelefonoTextBox.Text;
+            empleados.Email = EmailTextBox.Text;
+            empleados.Nombre = NombreTextBox.Text;
+            empleados.HoraEntrada = horaEntradaSeleccionada.Content.ToString();
+            empleados.HoraSalida = horaSalidaSeleccionada.Content.ToString();
+            if (double.TryParse(SalarioTextBox.Text, out double salario))
+            {
+                empleados.SalarioPorHora = salario;
             }
             else
             {
-                return false;
+                MessageBox.Show("Por favor, ingrese un valor numérico válido para el salario.");
+                return;
             }
+            // Generar un usuario aleatorio y asignarlo
+            empleados.ClaveUsuarios = GenerarUsuarioAleatorio();
+            empleados.ClaveAcceso = ClaveTextBox.Text;
+
+            foreach (var item in EmpleadosBLL.GetAreas())
+            {
+                if (item.AreaId == empleados.Area)
+                    empleados.Area = item.AreaId;
+            }
+
+            foreach (var item in EmpleadosBLL.GetVacaciones())
+            {
+                if (item.VacacionesId == empleados.Vacaciones)
+                    empleados.Vacaciones = item.VacacionesId;
+            }
+
+
+            if (EmpleadosBLL.Guardar(empleados))
+            {
+                MessageBox.Show("Empleado guardado. Usuario: " + empleados.ClaveUsuarios, "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                Limpiar();
+            }
+            else
+                MessageBox.Show("No se pudo guardar el empleado", "Fallo", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        public void ConsultarButton_Click(object sender, RoutedEventArgs e)
+        private void ConsultarButton_Click(object sender, RoutedEventArgs e)
         {
-            c_Empleado m = new c_Empleado();
-            m.Show();            
+            var consulta = new c_Empleado();
+            consulta.Show();
         }
 
         private void NuevoButton_Click(object sender, RoutedEventArgs e)
         {
             Limpiar();
-            IdTextBox.IsEnabled = true;
-        }
-
-        private void GuardarButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (!Validar())
-                return;
-            
-            empleados.Cedula = CedulaTextBox.Text;
-            empleados.Genero = GeneroTextBox.Text;
-            
-            foreach(var item in EmpleadosBLL.GetAreas())
-            {
-                if(item.AreaId == empleados.Area)
-                    empleados.AreaDescripcion = item.Descripcion + " " + item.Nombre;
-            }
-
-            foreach(var item in EmpleadosBLL.GetVacaciones())
-            {
-                if(item.VacacionesId == empleados.Vacaciones)
-                    empleados.VacacionesDescripcion = item.Descripcion;
-            }
-
-            if (EmpleadosBLL.Guardar(empleados))
-            {
-                MessageBox.Show("empleado guardado", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
-                Limpiar();
-            }
-            else
-                MessageBox.Show("No se pudo Guardar el empleadoo", "fallo", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void EliminarButton_Click(object sender, RoutedEventArgs e)
         {
-            var encontro = EmpleadosBLL.Buscar(Convert.ToInt32(empleados.EmpleadoId));
+            // Implementa la lógica de eliminación aquí.
+        }
 
-            if(encontro != null)
-            {
-                empleados = encontro;
+        private void Telefono_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
 
-                if(empleados.EmpleadoEliminado == false)
-                {
-                    empleados.EmpleadoEliminado = true;
-
-                    if(EmpleadosBLL.Modificar(empleados))
-                    {
-                        MessageBox.Show("Empleado eliminado", "Exito",
-                            MessageBoxButton.OK);
-                        Limpiar();
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se fue posible eliminar el empleado", "Fallo",
-                            MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Empleado ya eliminado fue restaurado", "Exito",
-                            MessageBoxButton.OK);
-                    empleados.EmpleadoEliminado = false;
-                    EmpleadosBLL.Modificar(empleados);
-                    Limpiar();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Empleado no existe");
-            }
+        private string GenerarUsuarioAleatorio()
+        {
+            Random random = new Random();
+            return random.Next(1000, 9999).ToString(); // Genera un número entre 8 dígitos
         }
     }
 }

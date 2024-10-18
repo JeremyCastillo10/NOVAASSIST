@@ -11,23 +11,14 @@ namespace NOVAASSIST.BLL
 {
     public class AsistenciasBLL
     {
-        public static bool Insertar(Asistencias asistencias)
+
+        public static void Insertar(Asistencias asistencia)
         {
-            bool confirmar = false;
-            Contexto? contexto = new Contexto();
-
-            try
+            using (var contexto = new Contexto())
             {
-                contexto?.Asistencias?.Add(asistencias);
-                confirmar = contexto?.SaveChanges() > 0;
+                contexto.Asistencias.Add(asistencia); // No se establece ID manualmente
+                contexto.SaveChanges(); // Aquí se generará el ID
             }
-            catch (Exception)
-            {
-                throw;
-            }
-            finally { contexto.Dispose(); }
-
-            return confirmar;
         }
 
         public static bool Modificar(Asistencias asistencias)
@@ -59,8 +50,8 @@ namespace NOVAASSIST.BLL
 
             try
             {
-                asistencias = contexto?.Asistencias?.Where(A => A.EmpleadoId==id).SingleOrDefault();
-                 
+                asistencias = contexto?.Asistencias?.Where(A => A.EmpleadoId == id).SingleOrDefault();
+
             }
             catch (Exception)
             {

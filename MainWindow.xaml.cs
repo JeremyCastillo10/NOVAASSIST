@@ -90,7 +90,8 @@ namespace NOVAASSIST
 
         private void ReportesEmpleados_Click(object sender, RoutedEventArgs e)
         {
-            
+            HorasTrabajadasR horasTrabajadasWindow = new HorasTrabajadasR();
+            horasTrabajadasWindow.ShowDialog();
         }       
     }
 }

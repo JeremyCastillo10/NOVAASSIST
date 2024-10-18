@@ -64,70 +64,70 @@ namespace NOVAASSIST.UI.Registros
 
         private void Button1(object sender, RoutedEventArgs e)
         {
-            Sonido();
+            //Sonido();
             Pantalla.Password += "1";
             Pantallausuario.Text += "1";
         }
 
         private void Button2(object sender, RoutedEventArgs e)
         {
-            Sonido();
+            //Sonido();
             Pantalla.Password += "2"; 
             Pantallausuario.Text += "2";
         }
 
         private void Button3(object sender, RoutedEventArgs e)
         {
-            Sonido();
+            //Sonido();
             Pantalla.Password += "3";
             Pantallausuario.Text += "3";
         }
 
         private void Button4(object sender, RoutedEventArgs e)
         {
-            Sonido();
+           // Sonido();
             Pantalla.Password += "4";
             Pantallausuario.Text += "4";
         }
 
         private void Button5(object sender, RoutedEventArgs e)
         {
-            Sonido();
+           // Sonido();
             Pantalla.Password += "5"; 
             Pantallausuario.Text += "5";
         }
 
         private void Button6(object sender, RoutedEventArgs e)
         {
-            Sonido();
+           // Sonido();
             Pantalla.Password += "6";
             Pantallausuario.Text += "6"; 
         }
 
         private void Button7(object sender, RoutedEventArgs e)
         {
-            Sonido();
+           // Sonido();
             Pantalla.Password += "7";
             Pantallausuario.Text += "7"; 
         }
 
         private void Button8(object sender, RoutedEventArgs e)
         {
-            Sonido();
+            //Sonido();
             Pantalla.Password += "8";
             Pantallausuario.Text += "8"; 
         }
 
         private void Button9(object sender, RoutedEventArgs e)
         {
-            Sonido();
+           // Sonido();
             Pantalla.Password += "9";
             Pantallausuario.Text += "9";
         }
 
         private void Button0(object sender, RoutedEventArgs e)
         {
-            Sonido();
+            //Sonido();
             Pantalla.Password += "0";
             Pantallausuario.Text += "0";
         }
@@ -139,19 +139,19 @@ namespace NOVAASSIST.UI.Registros
 
         private void ButtonOK(object sender, RoutedEventArgs e)
         {
-         
+
             if (string.IsNullOrEmpty(Pantalla.Password))
             {
-                Sonido2();
+                
             }
             else
             {
-                if(ver == 0)
+                if (ver == 0)
                 {
                     m = Pantalla.Password;
                     Eliminar();
                     ver += 1;
-                  
+
                     Pantallausuario.Visibility = Visibility.Collapsed;
                     Pantalla.Visibility = Visibility.Visible;
                 }
@@ -161,8 +161,8 @@ namespace NOVAASSIST.UI.Registros
                     Eliminar();
                     ver = 0;
                 }
-               
-                if(m != null && p != null)
+
+                if (m != null && p != null)
                 {
                     if (EmpleadosBLL.Existe(m, p))
                     {
@@ -170,7 +170,7 @@ namespace NOVAASSIST.UI.Registros
                         Pantalla.Password = p;
 
                         insetar_asistencia();
-                        Pantallausuario.Visibility = Visibility.Visible;;                       
+                        Pantallausuario.Visibility = Visibility.Visible; ;
                         Pantalla.Visibility = Visibility.Collapsed;
                         p = null;
                         m = null;
@@ -183,9 +183,9 @@ namespace NOVAASSIST.UI.Registros
                         contado_bloqueador = contado_bloqueador + 1;
                         Bloqueo(contado_bloqueador);
 
-                        Sonido2();
+                       
                         Eliminar();
-                        Pantallausuario.Visibility = Visibility.Visible;;                       
+                        Pantallausuario.Visibility = Visibility.Visible; ;
                         Pantalla.Visibility = Visibility.Collapsed;
                     }
                 }
@@ -208,29 +208,29 @@ namespace NOVAASSIST.UI.Registros
             Pantallausuario.Clear();
         }
 
-        public void Sonido()
-        {
-            using (var sp = new SoundPlayer(@"Sonido/B.wav"))
-            {
-                sp.Play();
-            }
-        }
+        //public void Sonido()
+        //{
+        //    using (var sp = new SoundPlayer(@"Sonido/B.wav"))
+        //    {
+        //        sp.Play();
+        //    }
+        //}
 
-        public void Sonido2()
-        {
-            using (var sp = new SoundPlayer(@"Sonido/A.wav"))
-            {
-                sp.Play();
-            }
-        }
+        //public void Sonido2()
+        //{
+        //    using (var sp = new SoundPlayer(@"Sonido/A.wav"))
+        //    {
+        //        sp.Play();
+        //    }
+        //}
 
-        public void Sonido3()
-        {
-            using (var sp = new SoundPlayer(@"Sonido/C.wav"))
-            {
-                sp.Play();
-            }
-        }
+        //public void Sonido3()
+        //{
+        //    using (var sp = new SoundPlayer(@"Sonido/C.wav"))
+        //    {
+        //        sp.Play();
+        //    }
+        //}
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
@@ -246,66 +246,52 @@ namespace NOVAASSIST.UI.Registros
 
         public void insetar_asistencia()
         {
-            Empleados encontrado = EmpleadosBLL.Buscar(Pantalla.Password);
+            // Asume que 'm' es la ClaveUsuarios y 'p' es la ClaveAcceso
+            Empleados encontrado = EmpleadosBLL.Buscar(m, p);
 
             if (encontrado != null)
             {
                 this.empleados = encontrado;
 
-                if (Pantalla.Password.Length <= 8)
+                if (p.Length <= 8)
                 {
-                    Sonido3();
-                    
-                    if (encontrado.Estado != null)
+                    asistencias.Nombre = encontrado.Nombre;
+                    asistencias.cedula = encontrado.Cedula;
+
+                    // Verifica el estado del empleado
+                    if (encontrado.Estado == true)
                     {
-                        if (encontrado.Estado == true)
-                        {
-                            asistencias.Nombre = encontrado.Nombre;
-                            asistencias.cedula = encontrado.Cedula;
-                            asistencias.Estado = false;
-                            empleados.Estado = false;
-                            asistencias.Fecha_Salida = DateTime.Now;
-                            EmpleadosBLL.Modificar(empleados);
-                        }
-                        else
-                            if (encontrado.Estado == false)
-                            {
-                                asistencias.Nombre = encontrado.Nombre;
-                                asistencias.cedula = encontrado.Cedula;
-                                asistencias.Estado = true;
-                                empleados.Estado = true;
-                                asistencias.Fecha_Entrada = DateTime.Now;
-                                EmpleadosBLL.Modificar(empleados);
-                            }
+                        // Registro de salida
+                        asistencias.Estado = false;
+                        empleados.Estado = false;
+                        asistencias.Fecha_Salida = DateTime.Now;
+                        EmpleadosBLL.Modificar(empleados);
                     }
                     else
                     {
-                        asistencias.Nombre = encontrado.Nombre;
-                        asistencias.cedula = encontrado.Cedula;
-                        asistencias.Fecha_Entrada = DateTime.Now;
+                        // Registro de entrada
                         asistencias.Estado = true;
                         empleados.Estado = true;
+                        asistencias.Fecha_Entrada = DateTime.Now;
                         EmpleadosBLL.Modificar(empleados);
                     }
+
                     asistencias.EmpleadoId = empleados.EmpleadoId;
-                    asistencias.HuellaEmpleado = "das";
-                  
                     AsistenciasBLL.Insertar(asistencias);
-                   
+                    MessageBox.Show($"Asistencia registrada para {encontrado.Nombre}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
                     Eliminar();
                 }
                 else
                 {
-                    MessageBox.Show("Ha sucedido un error, la clave ingresada es incorrecta", "CorrecciÃ³n",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
-                    Sonido2();
+                    MessageBox.Show("La clave ingresada es incorrecta, debe tener 8 caracteres o menos.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     Eliminar();
-                } 
+                }
             }
             else
             {
-                Pantalla.Password = "bobo"; 
+                MessageBox.Show("No se encontró un empleado con esas credenciales.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
     }
 }

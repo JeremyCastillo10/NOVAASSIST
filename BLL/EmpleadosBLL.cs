@@ -6,6 +6,8 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 using NOVAASSIST.DAL;
 using NOVAASSIST.Entidades;
+using Microsoft.Data.SqlClient;
+using System.Windows;
 
 namespace NOVAASSIST.BLL
 {
@@ -81,21 +83,18 @@ namespace NOVAASSIST.BLL
 
         public static Empleados Buscar(string id)
         {
-            Contexto contexto = new Contexto();
-            Empleados? empleados;
-
-            try
+            using (var contexto = new Contexto())
             {
-                empleados = contexto.Empleados.Where(A => A.ClaveAcceso==id).SingleOrDefault();
-                 
+                return contexto.Empleados.FirstOrDefault(A => A.ClaveAcceso == id);
             }
-            catch (Exception)
+        }
+        public static Empleados Buscar(string claveUsuario, string claveAcceso)
+        {
+            using (var contexto = new Contexto())
             {
-                throw;
+                return contexto.Empleados
+                    .FirstOrDefault(e => e.ClaveUsuarios == claveUsuario && e.ClaveAcceso == claveAcceso);
             }
-            finally { contexto.Dispose(); }
-
-            return empleados;
         }
 
         public static Empleados Buscar(int id)
@@ -106,7 +105,7 @@ namespace NOVAASSIST.BLL
             try
             {
                 empleados = contexto.Empleados.Where(e => e.EmpleadoId == id).SingleOrDefault();
-                 
+
             }
             catch (Exception)
             {
@@ -125,12 +124,12 @@ namespace NOVAASSIST.BLL
             try
             {
                 var confirmar = from Empleados in contexto.Empleados
-                    where Empleados.ClaveUsuarios == id && Empleados.ClaveAcceso == id2
-                    select Empleados;
+                                where Empleados.ClaveUsuarios == id && Empleados.ClaveAcceso == id2
+                                select Empleados;
 
-               if(confirmar.Count() > 0)
+                if (confirmar.Count() > 0)
                     confirmars = true;
-               else
+                else
                     confirmars = false;
             }
             catch (Exception)
@@ -194,6 +193,7 @@ namespace NOVAASSIST.BLL
 
             return lista;
         }
+       
 
         public static List<Areas> GetAreas()
         {
@@ -212,6 +212,79 @@ namespace NOVAASSIST.BLL
                 contexto.Dispose();
             }
             return lista;
+        }
+        public static Dictionary<int, double> ObtenerHorasTrabajadas(DateTime fechaSeleccionada)
+        {
+            Dictionary<int, double> horasTrabajadasPorEmpleado = new Dictionary<int, double>();
+
+            using (Contexto contexto = new Contexto())
+            {
+                try
+                {
+                    // Obtener todas las asistencias del día seleccionado
+                    var asistencias = contexto.Asistencias
+                        .Where(a => a.Fecha_Entrada.Date == fechaSeleccionada.Date || a.Fecha_Salida.Date == fechaSeleccionada.Date)
+                        .ToList();
+
+                    // Agrupar entradas y salidas por empleado
+                    var entradasPorEmpleado = asistencias
+                        .Where(a => a.Fecha_Entrada.Date == fechaSeleccionada.Date)
+                        .GroupBy(a => a.EmpleadoId)
+                        .ToDictionary(g => g.Key, g => g.ToList());
+
+                    var salidasPorEmpleado = asistencias
+                        .Where(a => a.Fecha_Salida.Date == fechaSeleccionada.Date)
+                        .GroupBy(a => a.EmpleadoId)
+                        .ToDictionary(g => g.Key, g => g.ToList());
+
+                    // Mensaje de depuración
+                    MessageBox.Show($"Entradas encontradas: {entradasPorEmpleado.Sum(e => e.Value.Count)}, Salidas encontradas: {salidasPorEmpleado.Sum(e => e.Value.Count)}");
+
+                    // Calcular horas trabajadas
+                    foreach (var entrada in entradasPorEmpleado)
+                    {
+                        int empleadoId = entrada.Key;
+                        var listaEntradas = entrada.Value;
+
+                        foreach (var e in listaEntradas)
+                        {
+                            // Buscar salida más cercana
+                            var salida = salidasPorEmpleado.ContainsKey(empleadoId) ?
+                                salidasPorEmpleado[empleadoId].FirstOrDefault(s => s.Fecha_Salida > e.Fecha_Entrada) : null;
+
+                            if (salida != null)
+                            {
+                                double horasTrabajadas = (salida.Fecha_Salida - e.Fecha_Entrada).TotalHours;
+
+                                // Mensaje de depuración
+                                MessageBox.Show($"EmpleadoId: {empleadoId}, Horas Trabajadas: {horasTrabajadas}");
+
+                                // Acumula las horas por empleado
+                                if (horasTrabajadasPorEmpleado.ContainsKey(empleadoId))
+                                {
+                                    horasTrabajadasPorEmpleado[empleadoId] += horasTrabajadas;
+                                }
+                                else
+                                {
+                                    horasTrabajadasPorEmpleado[empleadoId] = horasTrabajadas;
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show($"No se encontró una salida válida para EmpleadoId {empleadoId} en la fecha {fechaSeleccionada.ToShortDateString()}");
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Manejo de excepciones
+                    MessageBox.Show($"Error: {ex.Message}");
+                    throw;
+                }
+            }
+
+            return horasTrabajadasPorEmpleado;
         }
 
         public static List<Vacaciones> GetVacaciones()

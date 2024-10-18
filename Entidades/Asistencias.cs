@@ -23,6 +23,5 @@ namespace NOVAASSIST.Entidades
 
         public Boolean? Estado { get; set; }
 
-        public string? HuellaEmpleado { get; set; }
     }
 }

@@ -15,8 +15,6 @@ namespace NOVAASSIST.Entidades
 
         public string? Fecha_Entrada { get; set; }
 
-        /* public string Fecha_Descanso { get; set; }  */
-
         public string? Fecha_Salida { get; set; }
 
         public string? Dias { get; set; }
