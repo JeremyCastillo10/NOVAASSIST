@@ -22,6 +22,7 @@ namespace NOVAASSIST.Entidades
         public DateTime Fecha_Salida { get; set; }
 
         public Boolean? Estado { get; set; }
+        public double HorasTrabajadas => (Fecha_Salida > Fecha_Entrada) ? (Fecha_Salida - Fecha_Entrada).TotalHours : 0;
 
     }
 }

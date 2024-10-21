@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 using NOVAASSIST.DAL;
 using NOVAASSIST.Entidades;
+using System.Windows;
 
 namespace NOVAASSIST.BLL
 {
@@ -16,11 +17,98 @@ namespace NOVAASSIST.BLL
         {
             using (var contexto = new Contexto())
             {
-                contexto.Asistencias.Add(asistencia); // No se establece ID manualmente
-                contexto.SaveChanges(); // Aquí se generará el ID
+                // Buscar la última asistencia del empleado en el mismo día
+                var asistenciaExistente = contexto.Asistencias
+                    .Where(a => a.EmpleadoId == asistencia.EmpleadoId &&
+                                a.Fecha_Entrada.Date == DateTime.Now.Date)
+                    .OrderByDescending(a => a.Fecha_Entrada)
+                    .FirstOrDefault();
+
+                // Si ya existe una entrada para el día
+                if (asistenciaExistente != null)
+                {
+                    if (asistenciaExistente.Estado == true)
+                    {
+                        // Modificar la asistencia existente: actualizar Fecha_Salida y cambiar el estado a false
+                        asistenciaExistente.Fecha_Salida = DateTime.Now; // Asignar la fecha actual
+                        asistenciaExistente.Estado = false; // Cambiar el estado a false
+
+                        contexto.Entry(asistenciaExistente).State = EntityState.Modified;
+                        contexto.SaveChanges(); // Guardar los cambios
+                    }
+                    else
+                    {
+                        // Si el estado es false, se crea una nueva asistencia
+                        asistencia.Fecha_Entrada = DateTime.Now; // Asignar la fecha actual
+                        asistencia.Fecha_Salida = DateTime.MinValue; // Asignar nulo a Fecha_Salida
+                        asistencia.Estado = true; // Establecer el estado como true
+
+                        contexto.Asistencias.Add(asistencia); // Agregar nueva asistencia
+                        contexto.SaveChanges(); // Guardar cambios en la base de datos
+                    }
+                }
+                else
+                {
+                    // Si no hay asistencia previa, agregar nueva asistencia
+                    asistencia.Fecha_Entrada = DateTime.Now; // Asignar la fecha actual
+                    asistencia.Fecha_Salida = DateTime.MinValue; // Asignar nulo a Fecha_Salida
+                    asistencia.Estado = true; // Establecer el estado como true
+
+                    contexto.Asistencias.Add(asistencia); // Agregar nueva asistencia
+                    contexto.SaveChanges(); // Guardar cambios en la base de datos
+                }
             }
         }
 
+
+
+
+        public static TimeSpan CalcularHorasTrabajadas(int empleadoId, DateTime fechaInicio, DateTime fechaFin)
+        {
+            using (var contexto = new Contexto())
+            {
+                try
+                {
+                    var asistencias = contexto.Asistencias
+                        .Where(a => a.EmpleadoId == empleadoId &&
+                                    a.Fecha_Entrada.Date >= fechaInicio.Date &&
+                                    a.Fecha_Entrada.Date <= fechaFin.Date)
+                        .ToList();
+
+                    if (asistencias.Count == 0)
+                    {
+                        MessageBox.Show("No se encontraron asistencias para este empleado en el rango de fechas especificado.", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+                        return TimeSpan.Zero;
+                    }
+
+                    TimeSpan totalHoras = TimeSpan.Zero;
+
+                    foreach (var asistencia in asistencias)
+                    {
+                        if (asistencia.Fecha_Salida > asistencia.Fecha_Entrada)
+                        {
+                            totalHoras += (asistencia.Fecha_Salida - asistencia.Fecha_Entrada);
+                        }
+                    }
+
+                    return totalHoras;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error al calcular horas trabajadas: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return TimeSpan.Zero; // En caso de error, devuelve TimeSpan.Zero
+                }
+            }
+        }
+        public static List<Asistencias> GetAsistencias(int empleadoId, DateTime startDate, DateTime endDate)
+        {
+            using (var contexto = new Contexto())
+            {
+                return contexto.Asistencias
+                    .Where(a => a.EmpleadoId == empleadoId && a.Fecha_Entrada >= startDate && a.Fecha_Entrada < endDate)
+                    .ToList();
+            }
+        }
         public static bool Modificar(Asistencias asistencias)
         {
             bool paso = false;

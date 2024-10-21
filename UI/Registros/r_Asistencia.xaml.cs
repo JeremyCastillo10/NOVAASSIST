@@ -208,29 +208,29 @@ namespace NOVAASSIST.UI.Registros
             Pantallausuario.Clear();
         }
 
-        //public void Sonido()
-        //{
-        //    using (var sp = new SoundPlayer(@"Sonido/B.wav"))
-        //    {
-        //        sp.Play();
-        //    }
-        //}
+        public void Sonido()
+        {
+            using (var sp = new SoundPlayer(@"Sonido/B.wav"))
+            {
+                sp.Play();
+            }
+        }
 
-        //public void Sonido2()
-        //{
-        //    using (var sp = new SoundPlayer(@"Sonido/A.wav"))
-        //    {
-        //        sp.Play();
-        //    }
-        //}
+        public void Sonido2()
+        {
+            using (var sp = new SoundPlayer(@"Sonido/A.wav"))
+            {
+                sp.Play();
+            }
+        }
 
-        //public void Sonido3()
-        //{
-        //    using (var sp = new SoundPlayer(@"Sonido/C.wav"))
-        //    {
-        //        sp.Play();
-        //    }
-        //}
+        public void Sonido3()
+        {
+            using (var sp = new SoundPlayer(@"Sonido/C.wav"))
+            {
+                sp.Play();
+            }
+        }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
@@ -280,15 +280,19 @@ namespace NOVAASSIST.UI.Registros
                     AsistenciasBLL.Insertar(asistencias);
                     MessageBox.Show($"Asistencia registrada para {encontrado.Nombre}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
                     Eliminar();
+
                 }
                 else
                 {
+
                     MessageBox.Show("La clave ingresada es incorrecta, debe tener 8 caracteres o menos.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     Eliminar();
+                  
                 }
             }
             else
             {
+
                 MessageBox.Show("No se encontró un empleado con esas credenciales.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }

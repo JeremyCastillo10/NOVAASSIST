@@ -21,6 +21,7 @@ using NOVAASSIST.BLL;
 using NOVAASSIST.Entidades;
 using NOVAASSIST.UI.Registros;
 using NOVAASSIST.UI.Consulta;
+using NOVAASSIST.UI;
 
 namespace NOVAASSIST
 {
