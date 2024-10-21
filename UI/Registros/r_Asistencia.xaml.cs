@@ -18,6 +18,7 @@ using System.Media;
 using System.Threading;
 using NOVAASSIST.BLL;
 using NOVAASSIST.Entidades;
+using MaterialDesignColors;
 
 namespace NOVAASSIST.UI.Registros
 {
@@ -61,6 +62,11 @@ namespace NOVAASSIST.UI.Registros
         {
             Hora.Text = DateTime.Now.ToString(@"hh\:mm\:ss") + "   " + (DateTime.Now.ToString("d/M/yyyy"));  
         }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("De momento no está disponible", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+
+        }
 
         private void Button1(object sender, RoutedEventArgs e)
         {
@@ -85,7 +91,7 @@ namespace NOVAASSIST.UI.Registros
 
         private void Button4(object sender, RoutedEventArgs e)
         {
-           // Sonido();
+            //Sonido();
             Pantalla.Password += "4";
             Pantallausuario.Text += "4";
         }
@@ -113,7 +119,7 @@ namespace NOVAASSIST.UI.Registros
 
         private void Button8(object sender, RoutedEventArgs e)
         {
-            //Sonido();
+           // Sonido();
             Pantalla.Password += "8";
             Pantallausuario.Text += "8"; 
         }
@@ -127,7 +133,7 @@ namespace NOVAASSIST.UI.Registros
 
         private void Button0(object sender, RoutedEventArgs e)
         {
-            //Sonido();
+           // Sonido();
             Pantalla.Password += "0";
             Pantallausuario.Text += "0";
         }
@@ -142,7 +148,7 @@ namespace NOVAASSIST.UI.Registros
 
             if (string.IsNullOrEmpty(Pantalla.Password))
             {
-                
+               // Sonido2();
             }
             else
             {
@@ -183,7 +189,7 @@ namespace NOVAASSIST.UI.Registros
                         contado_bloqueador = contado_bloqueador + 1;
                         Bloqueo(contado_bloqueador);
 
-                       
+                     //   Sonido2();
                         Eliminar();
                         Pantallausuario.Visibility = Visibility.Visible; ;
                         Pantalla.Visibility = Visibility.Collapsed;
@@ -210,25 +216,25 @@ namespace NOVAASSIST.UI.Registros
 
         public void Sonido()
         {
-            using (var sp = new SoundPlayer(@"Sonido/B.wav"))
+            using (SoundPlayer player = new SoundPlayer(@"C:\Users\jerem\Desktop\botonera\NOVAASSIST\Sonidos\B.wav"))
             {
-                sp.Play();
+                player.Play();
             }
         }
 
         public void Sonido2()
         {
-            using (var sp = new SoundPlayer(@"Sonido/A.wav"))
+            using (SoundPlayer player = new SoundPlayer(@"C:\Users\jerem\Desktop\botonera\NOVAASSIST\Sonidos\A.wav"))
             {
-                sp.Play();
+                player.Play();
             }
         }
 
         public void Sonido3()
         {
-            using (var sp = new SoundPlayer(@"Sonido/C.wav"))
+            using (SoundPlayer player = new SoundPlayer(@"C:\Users\jerem\Desktop\botonera\NOVAASSIST\Sonidos\C.wav"))
             {
-                sp.Play();
+                player.Play();
             }
         }
 
@@ -239,11 +245,7 @@ namespace NOVAASSIST.UI.Registros
             this.Close();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
+     
         public void insetar_asistencia()
         {
             // Asume que 'm' es la ClaveUsuarios y 'p' es la ClaveAcceso
@@ -255,6 +257,8 @@ namespace NOVAASSIST.UI.Registros
 
                 if (p.Length <= 8)
                 {
+                //    Sonido3();
+
                     asistencias.Nombre = encontrado.Nombre;
                     asistencias.cedula = encontrado.Cedula;
 
@@ -285,6 +289,7 @@ namespace NOVAASSIST.UI.Registros
                 else
                 {
 
+                  //  Sonido2();
                     MessageBox.Show("La clave ingresada es incorrecta, debe tener 8 caracteres o menos.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     Eliminar();
                   

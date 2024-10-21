@@ -29,7 +29,6 @@ namespace NOVAASSIST.Entidades
 
         public string? Email { get; set; }
 
-        public int Vacaciones { get; set; } // id vacaciones
 
         public string? Direccion { get; set; }
         

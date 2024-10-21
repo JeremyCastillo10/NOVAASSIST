@@ -72,11 +72,7 @@ namespace NOVAASSIST.UI.Registros
             Limpiar();
         }
         
-        public void ConsultarButton_Click(object sender, RoutedEventArgs e)
-        {
-            c_Excepciones m = new c_Excepciones();
-            m.Show();            
-        }
+
 
         private void GuardarButton_Click(object sender, RoutedEventArgs e)
         {

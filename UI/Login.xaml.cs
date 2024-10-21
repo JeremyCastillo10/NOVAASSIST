@@ -1,32 +1,17 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using NOVAASSIST.BLL;
+using NOVAASSIST.Entidades;
 
 namespace NOVAASSIST.UI
 {
-    /// <summary>
-    /// Interaction logic for Login.xaml
-    /// </summary>
     public partial class Login : Window
     {
-        MainWindow principal = new MainWindow();
-        
         public Login()
         {
             InitializeComponent();
         }
-        
+
         private void CancelarButton_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
@@ -34,8 +19,23 @@ namespace NOVAASSIST.UI
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
-            principal.Show();
+            string username = NombreUsuarioTextBox.Text;
+            string password = ClavePasswordBox.Password;
+
+            // Aquí se llama al método de la BLL para validar el usuario
+            var usuario = UsuariosBLL.ValidarUsuario(username, password);
+
+            if (usuario != null)
+            {
+                // Aquí puedes abrir la ventana principal basada en el rol del usuario
+                MainWindow mainWindow = new MainWindow(usuario.Rol);
+                mainWindow.Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Usuario o contraseña incorrectos", "Error de Login", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

@@ -46,9 +46,7 @@
                         <ComboBox x:Name="AreaTextBox" FontSize="16" 
                                    Width="250" Style="{StaticResource MaterialDesignComboBox}"/>
 
-                        <TextBlock Text="Vacaciones" FontSize="16" Width="100" Margin="20,0,0,0"/>
-                        <ComboBox x:Name="VacacionesTextBox" FontSize="16" 
-                                   Width="250" Style="{StaticResource MaterialDesignComboBox}"/>
+
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0,5">
@@ -82,7 +80,7 @@
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0,5">
-                        <TextBlock Text="Hora de Salida" FontSize="16" Width="100"/>
+                        <TextBlock Text="Hora de Salida" FontSize="16" Width="120"/>
                         <ComboBox x:Name="HoraSalidaComboBox" FontSize="16" 
                                    Width="250" Style="{StaticResource MaterialDesignComboBox}"/>
                     </StackPanel>

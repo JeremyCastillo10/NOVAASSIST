@@ -5,41 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:NOVAASSIST"
-        Title="Menu admin" Height="700" Width="1100" WindowStartupLocation="CenterScreen" Background="#00635d"
-        WindowState="Maximized" Icon="\Img\Icono.png" >
+        Title="Menu" Height="700" Width="1100" WindowStartupLocation="CenterScreen" Background="#00635d"
+        WindowState="Maximized" Icon="\Img\Icono.png">
 
-    <Grid Background="white" >
+    <Grid Background="white">
         <StackPanel>
             <Menu>
-
-                <Button Style="{StaticResource MaterialDesignIconForegroundButton}" ToolTip="MaterialDesignIconForegroundButton" IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Click ="Back_Click">
+                <Button Style="{StaticResource MaterialDesignIconForegroundButton}" ToolTip="Back" Click="Back_Click">
                     <Button.Background>
                         <ImageBrush ImageSource="\Img\BackIcon.ico"/>
                     </Button.Background>
                 </Button>
-            
-                <MenuItem Header="Registros">
-                    <MenuItem Header ="Registro de Empleados" Click ="RegistroEmpleados_Click" />
-                    <MenuItem Header ="Registro de Horario" Click ="RegistroAsistencia_Click" />
-                    <MenuItem Header ="Registro de Vacaciones" Click ="RegistroVacaciones_Click" />
-                    <MenuItem Header ="Registro de Excepciones" Click ="RegistroExcepciones_Click" />
 
+                <MenuItem Header="Registros" x:Name="RegistrosMenu">
+                    <MenuItem Header="Registro de Empleados" Click="RegistroEmpleados_Click" />
+                    <MenuItem Header="Registro de Usuarios" Click="RegistroUsuarios_Click" />
                 </MenuItem>
 
-                <MenuItem Header="Consultas">
-                    <MenuItem Header="Consulta de Asistencia" Click ="ConsultaAsistencia_Click" />
-                    <MenuItem Header="Consulta de Empleados" Click ="ConsultaEmpleados_Click" />
-                    <MenuItem Header="Consulta de Horario" Click ="ConsultaHorario_Click" />
-                    <MenuItem Header="Consulta de Excepciones" Click ="ConsultaExcepciones_Click" />
+                <MenuItem Header="Consultas" x:Name="ConsultasMenu">
+                    <MenuItem Header="Consulta de Asistencia" Click="ConsultaAsistencia_Click" />
+                    <MenuItem Header="Consulta de Empleados" Click="ConsultaEmpleados_Click" />
                 </MenuItem>
 
-                <MenuItem Header="Reportes">
-                    <MenuItem Header="Reporte de horas de hoy" Click ="ReportesEmpleados_Click" />
-                    <MenuItem Header="Reporte de horas de esta semana"  />
-                    <MenuItem Header="Reporte de horas de este mes" Click ="ReportesHorasMes_Click"  />
+                <MenuItem Header="Reportes" x:Name="ReportesMenu">
+                    <MenuItem Header="Reporte de horas" Click="ReportesEmpleados_Click" />
                 </MenuItem>
-
             </Menu>
+
             <Image Height="622" Width="1103" Source="/Img/Nova.png" Stretch="Uniform"/>
         </StackPanel>
     </Grid>

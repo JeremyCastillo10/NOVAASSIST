@@ -39,6 +39,14 @@ namespace NOVAASSIST.BLL
 
             return confirmar;
         }
+        public static List<Empleados> GetEmpleadosPorArea(int areaId)
+        {
+            using (var context = new Contexto())
+            {
+                return context.Empleados.Where(e => e.Area == areaId).ToList();
+            }
+        }
+
 
         public static bool Modificar(Empleados empleados)
         {
@@ -349,23 +357,6 @@ namespace NOVAASSIST.BLL
         }
 
 
-        public static List<Vacaciones> GetVacaciones()
-        {
-            List<Vacaciones> lista = new List<Vacaciones>();
-            Contexto contexto = new Contexto();
-            try
-            {
-                lista = contexto.Vacaciones.ToList();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            finally
-            {
-                contexto.Dispose();
-            }
-            return lista;
-        }
+       
     }
 }

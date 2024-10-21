@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,9 +25,6 @@ namespace NOVAASSIST.UI.Registros
             AreaTextBox.SelectedValuePath = "AreaId";
             AreaTextBox.DisplayMemberPath = "Nombre";
 
-            VacacionesTextBox.ItemsSource = EmpleadosBLL.GetVacaciones();
-            VacacionesTextBox.SelectedValuePath = "VacacionesId";
-            VacacionesTextBox.DisplayMemberPath = "Descripcion";
             CargarHoras();
         }
 
@@ -52,20 +51,49 @@ namespace NOVAASSIST.UI.Registros
                 AreaTextBox.ItemsSource = EmpleadosBLL.GetAreas();
                 AreaTextBox.SelectedValuePath = "AreaId";
                 AreaTextBox.DisplayMemberPath = "Nombre";
-
-                VacacionesTextBox.ItemsSource = EmpleadosBLL.GetVacaciones();
-                VacacionesTextBox.SelectedValuePath = "VacacionesId";
-                VacacionesTextBox.DisplayMemberPath = "Descripcion";
                 Cargar();
+                CargarHoras();
             }
         }
 
         private void Cargar()
         {
-            this.DataContext = null;
-            this.DataContext = this.empleados;
+            this.DataContext = null; // Limpiar el contexto de datos anterior
+            this.DataContext = this.empleados; // Asignar el objeto de empleados
+
+            // Asignar valores a los campos de texto
             CedulaTextBox.Text = empleados.Cedula;
+            NombreTextBox.Text = empleados.Nombre;
+            TelefonoTextBox.Text = empleados.Telefono;
+            EmailTextBox.Text = empleados.Email;
+            DireccionTextBox.Text = empleados.Direccion; // Asegúrate de que esto esté en la clase
+            GeneroTextBox.SelectedItem = GeneroTextBox.Items
+                .OfType<ComboBoxItem>()
+                .FirstOrDefault(item => item.Content.ToString() == empleados.Genero);
+
+            FechaTextBox.SelectedDate = empleados.FechaNacimiento; // Asegúrate de que esto esté en la clase
+
+            // Cargar el área
+            AreaTextBox.SelectedValue = empleados.Area; // Esto debe ser un ID que coincida con los de la lista
+
+            // Asignar salario
+            SalarioTextBox.Text = empleados.SalarioPorHora.ToString();
+
+            // Asignar horas de entrada y salida
+            HoraEntradaComboBox.SelectedItem = HoraEntradaComboBox.Items
+                .OfType<ComboBoxItem>()
+                .FirstOrDefault(item => item.Content.ToString() == empleados.HoraEntrada);
+
+            HoraSalidaComboBox.SelectedItem = HoraSalidaComboBox.Items
+                .OfType<ComboBoxItem>()
+                .FirstOrDefault(item => item.Content.ToString() == empleados.HoraSalida);
+
+            // Cargar la clave de acceso
+            ClaveTextBox.Text = empleados.ClaveAcceso;
         }
+
+
+
 
         private bool Validar()
         {
@@ -151,11 +179,7 @@ namespace NOVAASSIST.UI.Registros
                     empleados.Area = item.AreaId;
             }
 
-            foreach (var item in EmpleadosBLL.GetVacaciones())
-            {
-                if (item.VacacionesId == empleados.Vacaciones)
-                    empleados.Vacaciones = item.VacacionesId;
-            }
+  
 
 
             if (EmpleadosBLL.Guardar(empleados))
@@ -194,5 +218,6 @@ namespace NOVAASSIST.UI.Registros
             Random random = new Random();
             return random.Next(1000, 9999).ToString(); // Genera un número entre 8 dígitos
         }
+
     }
 }
